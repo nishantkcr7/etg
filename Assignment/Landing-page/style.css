@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  align-items: center;
+  background-image: url("https://i.pinimg.com/originals/d9/34/10/d93410801d0cbbc4fc578aadb4117c58.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-top: 4px solid green;
+  box-shadow: 2px 2px 7px rgb(182, 248, 182);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 800px;
+  padding: 100px;
+  margin: 100px 200px;
+}
+
+.heading,
+.description {
+  color: rgb(245, 245, 245);
+}
+
+.heading {
+  font-size: 68px;
+  text-shadow: 1px 0 4px rgb(245, 245, 245);
+}
+.description {
+  font-size: 20px;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.btn {
+  background-color: rgb(145, 247, 145);
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+  font-size: 32px;
+  font-weight: bolder;
+  padding: 9px;
+  margin-top: 100px;
+}
+
+.happy-learning {
+  align-items: center;
+  background-image: url("https://media1.tenor.com/images/c31f990d80ce50fdcfcdb46500554bc5/tenor.gif?itemid=18482815");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-top: 4px solid green;
+  box-shadow: 2px 2px 7px rgb(182, 248, 182);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 800px;
+  padding: 100px;
+  margin: 100px 200px;
+}
+.happy-learning-heading {
+  font-size: 78px;
+  text-shadow: 1px 0 4px rgb(245, 245, 245);
+}
+a {
+  text-decoration: none;
+  color: rgb(79, 82, 79);
+}
