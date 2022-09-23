@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Geolocation App | Nishant Kumar</title>
+    <!-- Importing 3rd Part libary 'Leaflet' for map -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+      crossorigin=""
+    />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+      crossorigin=""
+    ></script>
+    <!-- Importing Custome Styling -->
+    <link rel="stylesheet" href="includes/style_map.css" />
+
+    <!-- Importing Core Style -->
+    <link rel="stylesheet" href="../../includes/style.css">
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap Icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+  </head>
+  <body class="container">
+    <!-- Navigation Starts -->
+    <section>
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="../../">Nishant Kumar</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav navbar-right">
+              <a class="nav-link" aria-current="page" href="../../">Home</a>
+              <a class="nav-link active" href="../../content/assignment.html">Assignments</a>
+              <a class="nav-link" href="../../content/about.html">About</a>
+              <a class="nav-link" href="../../content/contact.html">Contact</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+    <!-- Navigation Ends -->
+
+    <!-- Geolocation App Heading Starts -->
+    <section class="my-5">
+      <div class="row justify-content-center">
+        <div class="col-2"><hr /></div>
+        <div
+          class="col d-flex align-items-center justify-content-start text-uppercase"
+        >
+          check where you are
+        </div>
+      </div>
+      <div class="row">
+        <div class="col author-name fs-3">
+          welcome to
+          <span class="fs-1 author-name name">Geoloaction App 🌎</span> (In Progress)
+        </div>
+      </div>
+    </section>
+    <!-- Geolocation App Heading Ends -->
+
+    <!-- Map Container Starts -->
+    <section>
+      <div class="row mt-3">
+        <div class="col shadow" id="map"></div>
+      </div>
+      <div class="row mt-2">
+        <div class="col d-flex justify-content-end">
+          <button class="btn btn-outline-danger btn-refresh">
+            <i class="bi bi-arrow-clockwise"></i> Refresh Map
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Map Container Ends -->
+
+    <!-- Map Search Container Starts -->
+    <div class="row">
+      <div class="col">
+        <div class="h3">Search Map By Value</div>
+      </div>
+    </div>
+    <form>
+      <div class="row mb-5">
+        <div class="col-6">
+          <div class="mb-1">
+            <label for="input-latitude" class="form-label"
+              >Latitude <span class="error-msg error-msg-latitude mb-3"></label
+            >
+            <div class="input-group">
+              <span class="input-group-text"> 📐 </span>
+              <input
+                type="number"
+                class="form-control"
+                id="input-latitude"
+                aria-describedby="inputLatitude"
+              />
+            </div>
+            <div id="inputLatitude" class="form-text">
+              The angular distance of a place north or south of the earth's
+              equator
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-3">
+            <label for="input-longitude" class="form-label"
+              >Longitude <span class="error-msg error-msg-longitude mb-3"></span></label
+            >
+            <div class="input-group">
+              <span class="input-group-text"> 📏 </span>
+              <input
+                type="number"
+                class="form-control"
+                id="input-longitude"
+                aria-describedby="inputLongitude"
+              />
+            </div>
+            <div id="inputLongitude" class="form-text">
+              The angular distance of a place east or west of the Greenwich
+              meridian
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-info" id="btn-search">
+          <i class="bi bi-search"></i> Search
+        </button>
+      </div>
+    </form>
+    <!-- Map search container Ends -->
+    <!-- Custome JS -->
+    <script src="includes/script_map.js"></script>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
