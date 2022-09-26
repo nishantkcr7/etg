@@ -165,14 +165,16 @@ function emText(t) {
 
 // =========================RESUME====================
 
+// Getting the form data and assigning to Resume section
 function setResume() {
   console.log("Set resume");
   document.querySelector(".resume-name").innerText =
     document.querySelector(".input-first-name").value +
     " " +
     document.querySelector(".input-last-name").value;
-  document.querySelector(".resume-email").innerText =
-    document.querySelector(".input-resume-email").value;
+  document.querySelector(".resume-email").innerText = document.querySelector(
+    ".input-resume-email"
+  ).value;
   document.querySelector(".resume-PAN").innerText =
     document.querySelector(".input-pan").value;
   document.querySelector(".resume-college-name").innerText =

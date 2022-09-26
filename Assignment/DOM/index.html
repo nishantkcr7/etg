@@ -44,8 +44,41 @@
   </section>
   <!-- Nav Ends -->
 
+  <!-- Offcanvas Starts -->
+  <button class="btn btn-outline-primary canvas-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">&leftarrow;</button>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Section Navigation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="row">
+        <a href="#login-section" class="w-100">
+          <div class="col bg-light text-center fs-4">Login Check</div>
+        </a>
+    </div>
+    <div class="row">
+      <a href="#password-section" class="w-100">
+        <div class="col bg-light text-center fs-4">Strong Password</div>
+      </a>
+  </div>
+  <div class="row">
+    <a href="#resume-section" class="w-100">
+      <div class="col bg-light text-center fs-4">Build Resume</div>
+    </a>
+</div>
+<div class="row">
+  <a href="#skill-section" class="w-100">
+    <div class="col bg-light text-center fs-4">Skill Management</div>
+  </a>
+</div>
+</div>
+</div>
+  <!-- Offcanvas ends -->
+
   <!-- Email Validation Starts -->
-  <section class="mb-5 mt-3 dom-content">
+  <section class="mb-5 mt-3 dom-content" id="login-section">
     <div class="row justify-content-center">
       <div class="col-2">
         <hr />
@@ -120,7 +153,7 @@
     </div>
   </div>
   <!-- Password Validation Starts -->
-  <section class="dom-content">
+  <section class="dom-content" id="password-section">
     <div class="row justify-content-center mt-5 pt-5">
       <div class="col-2">
         <hr />
@@ -173,7 +206,7 @@
   <!-- Password Validation Body Ends -->
 
   <!-- Sign Up Heading Starts -->
-  <section class="dom-content">
+  <section class="dom-content" id="resume-section">
     <div class="row justify-content-center">
       <div class="col-2">
         <hr />
@@ -385,7 +418,7 @@
   </div>
 
   <!-- To Do Heading Starts -->
-  <section class="dom-content">
+  <section class="dom-content" id="skill-section">
     <div class="row justify-content-center">
       <div class="col-2">
         <hr />

@@ -26,3 +26,11 @@ body {
   border-bottom: 8px solid rgb(255, 173, 21);
   border-bottom-width: 100%;
 }
+.canvas-button {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  position: fixed;
+  font-size: 24px;
+  z-index: 1;
+}
