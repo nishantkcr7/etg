@@ -1,91 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bootstrap demo</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body class="container">
-    <div class="row mt-5">
-      <div class="col-4"></div>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Working with DOM | Nishant Kumar</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+  <!-- Custome CSS -->
+  <link rel="stylesheet" href="../../includes/style.css" />
+  <!-- Custom CSS for this assignment -->
+  <link rel="stylesheet" href="includes/style_dom.css">
+  <!-- Bootstrap Icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet">
+</head>
+
+<body class="container">
+  <!-- Nav Starts -->
+  <section>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../">Nishant Kumar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav navbar-right">
+            <a class="nav-link" aria-current="page" href="../../">Home</a>
+            <a class="nav-link active" href="../../content/assignment.html">Assignments</a>
+            <a class="nav-link" href="../../content/about.html">About</a>
+            <a class="nav-link" href="../../content/">Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </section>
+  <!-- Nav Ends -->
+
+  <!-- Email Validation Starts -->
+  <section class="mb-5 mt-3 dom-content">
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <hr />
+      </div>
+      <div class="col d-flex align-items-center justify-content-start text-uppercase">
+        Email Validation
+      </div>
     </div>
     <div class="row">
-      <div class="col">
-        Demo Emails:<br />[abc@d.com, demo@mail.com, nishantkcr7@gmail.com,
-        nishant.k@etg.digital]
+      <div class="col author-name fs-3">
+        to rock, please
+        <span class="fs-1 author-name name">Login</span>
       </div>
     </div>
-    <div class="row mt-4">
+  </section>
+
+  <!-- Email Validation Ends -->
+
+  <!-- Email Validation Body Starts -->
+  <section>
+    <div class="row mt-4 mb-4">
       <div class="col d-flex justify-content-center">
-        <div class="border shadow p-4 rounded">
-          <div class="mb-3">
-            <label for="inputEmail" class="form-label">Email address</label>
-            <input
-              type="email"
-              class="form-control"
-              id="inputEmail"
-              aria-describedby="emailHelp"
-              placeholder="Enter Your Email"
-            />
+        <div class="border shadow p-5 rounded bg-light">
+          <p class="text-center h1 mb-4 login-header">Login Here</p>
+          <div class="mb-3 text-center">
+            <input type="email" class="form-control input-email" aria-describedby="emailHelp"
+              placeholder="Enter Your Email" />
             <div id="emailHelp" class="form-text"></div>
           </div>
-          <button
-            id="btnCheck"
-            type="button"
-            class="btn btn-outline-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#emailModal"
-          >
-            Check Mail
+          <button id="btnEmailCheck" type="button" class="btn btn-outline-primary me-1">
+            Check Email</button><button id="btnReset" type="reset" class="btn btn-outline-danger ms-1">
+            Reset
           </button>
+          <div class="row">
+            <div class="hide login-success col text-center mt-3"></div>
+          </div>
         </div>
       </div>
     </div>
-    <!-- Modal Starts -->
+  </section>
+  <!-- Email Validation Body Ends -->
 
-    <!-- Modal -->
-    <div
-      class="modal fade modal-dialog modal-dialog-centered"
-      id="emailModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+  <!-- Accordian Starts -->
+  <div class="accordion mt-4 mb-5" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="emailAccordian">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseEmailAccordian" aria-expanded="false" aria-controls="collapseEmailAccordian">
+          Don't have Credential? Get it here ☺️
+        </button>
+      </h2>
+      <div id="collapseEmailAccordian" class="accordion-collapse collapse" aria-labelledby="emailAccordian"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <p>
+            Here are some email Id which you can use for the login purpose.
+          </p>
+          <p>
+          <ul class="ul">
+            <li class="li"><input type="text" value="nishantkcr7@gmail.com" readonly /></input> <i
+                class="bi bi-clipboard2 uncopied"></i> <i class="bi bi-check2-square copied hide"></i></li>
+            <li class="li"><input type="text" value="abc@d.com" readonly /></input> <i
+                class="bi bi-clipboard2 uncopied"></i> <i class="bi bi-check2-square copied hide"></i></li>
+            <li class="li"><input type="text" value="demo@mail.com" readonly /></input> <i
+                class="bi bi-clipboard2 uncopied"></i> <i class="bi bi-check2-square copied hide"></i></li>
+            <li class="li"><input type="text" value="nishant.k@etg.digital" readonly /></input> <i
+                class="bi bi-clipboard2 uncopied"></i> <i class="bi bi-check2-square copied hide"></i></li>
+          </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Password Validation Starts -->
+  <section class="dom-content">
+    <div class="row justify-content-center mt-5 pt-5">
+      <div class="col-2">
+        <hr />
+      </div>
+      <div class="col d-flex align-items-center justify-content-start text-uppercase">
+        Password Validation
+      </div>
+    </div>
+    <div class="row">
+      <div class="col author-name fs-3">
+        make a strong
+        <span class="fs-1 author-name name">Password</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Password Validation Ends -->
+
+  <!-- Password Validation Body Starts -->
+  
+  <section class="mt-5">
+    <div class="row mt-4 mb-4 mt-5">
+      <div class="col d-flex justify-content-end">
+        <div class="border shadow p-5 rounded bg-light">
+          <p class="text-center h1 mb-4 login-header">Check Password</p>
+          <div class="mb-3 text-center">
+            <input type="password" class="form-control input-password" aria-describedby="passwordHelp"
+              placeholder="Enter Your Password" />
+            <div id="passwordHelp" class="form-text"></div>
           </div>
-          <div class="modal-body"></div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
+          <button id="btnPassword" type="button" class="btn btn-success w-100 me-1 fw-bold hide">
+            Proceed</button>
+          <div class="row">
+            <div class="hide login-success col text-center mt-3"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col justify-content-start">
+        <p class="h4">Your Passowrd Should Have</p>
+        <ul class="ul">
+          <li class="li Eightchar" id="Eightchar">At least eight characters</li>
+          <li class="li lowercase" id="lowercase">At least one lower case letter (a..z)</li>
+          <li class="li uppercase" id="uppercase">At least one uper case letter (A..Z)</li>
+          <li class="li hasnumber" id="hasnumber">A least one number</li>
+          <li class="li hasspecial" id="hasspecial">A least one special character (only @, #, _ )</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- Password Validation Body Ends -->
+
+  <!-- Sign Up Heading Starts -->
+  <section class="dom-content">
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <hr />
+      </div>
+      <div class="col d-flex align-items-center justify-content-start text-uppercase">
+        register yourself
+      </div>
+    </div>
+    <div class="row">
+      <div class="col author-name fs-3">
+        build a simple
+        <span class="fs-1 author-name name">Resume</span>
+      </div>
+    </div>
+  </section>
+  <!-- Sign Up Heading Ends -->
+
+  <!-- Sign Up Form Starts -->
+  <section>
+    <div class="row mt-4 mb-4">
+      <div class="col d-flex justify-content-center">
+        <div class="border shadow p-5 rounded bg-light">
+          <p class="text-center h1 mb-4 login-header">Fill Your Details</p>
+          <!-- Personal Details Start -->
+          <p class="mt-3 fw-bold">Personal Details</p>
+          <!-- Row 1 S -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3 text-center">
+                <input type="text" class="form-control input-first-name" placeholder="First Name" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3 text-center">
+                <input type="text" class="form-control input-last-name" placeholder="Last Name" />
+              </div>
+            </div>
+          </div>
+          <!-- Row 1 E -->
+          <!-- Row 2 S -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3 text-center">
+                <input type="email" class="form-control input-resume-email" placeholder="Email ID" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3 text-center">
+                <input type="text" class="form-control input-pan" placeholder="PAN Number" />
+              </div>
+            </div>
+          </div>
+          <!-- Row 2 E -->
+          <!-- Personal Details Ends -->
+
+          <!-- Educational Details Starts -->
+          <p class="mt-3 fw-bold">Educational Details</p>
+          <!-- Row 1 S -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3 text-center">
+                <input type="text" class="form-control input-college-name" placeholder="College Name" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3 text-center">
+                <input type="text" class="form-control input-university-name" placeholder="University Name" />
+              </div>
+            </div>
+          </div>
+          <!-- Row 1 E -->
+          <!-- Row 2 S -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3 text-center">
+                <input type="number" class="form-control input-registration-number" placeholder="Registration Number" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3 text-center">
+                <input type="number" class="form-control input-course-duration" placeholder="Course Duration" />
+              </div>
+            </div>
+          </div>
+          <!-- Row 2 E -->
+          <!-- Educational Details Ends -->
+
+          <!-- More Details Starts -->
+          <p class="mt-3 fw-bold">More Details</p>
+          <!-- Row 1 S -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3 text-center">
+                <select name="degree" id="degree" class="form-control input-degree">
+                  <option value="null">Select Degree</option>
+                  <option value="b.tech">B.tech</option>
+                  <option value="bca">BCA</option>
+                  <option value="mca">MCA</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3 text-start">
+                Is Married
+                <input type="radio" name="ismarried" class="ms-1" id="ismarried"> Yes
+
+                &nbsp;<input type="radio" name="ismarried" class="ms-1" id="ismarried"> No
+              </div>
+            </div>
+          </div>
+          <!-- Row 1 E -->
+          <!-- Row 2 S -->
+          <div class="row">
+            <div class="col d-flex justify-content-start">
+              <div class="mb-3 text-center">
+                Prefered Team
+                <input type="checkbox" name="" id="input-prefered-team" class="form-check-input ms-2"> SFCC
+                <input type="checkbox" name="" id="input-prefered-team" class="form-check-input ms-2"> SFDC
+
+                <input type="checkbox" name="" id="input-prefered-team" class="form-check-input ms-2"> SFMC
+              </div>
+            </div>
+          </div>
+          <!-- Row 2 E -->
+          <!-- More Details Ends -->
+
+          <button id="submit-form" type="button" class="btn btn-outline-primary col-md-7 me-1 col-12"
+            data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="setResume()">
+            Submit Form</button>
+          <button id="btnReset" type="reset" class="btn ms-1 btn-outline-danger col-md-4 col-12">
+            Reset
+          </button>
+          <div class="row">
+            <div class="hide login-success col text-center mt-3"></div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Modal Ends -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-      crossorigin="anonymous"
-    ></script>
-    <script src="includes/script_dom.js"></script>
-  </body>
+  </section>
+
+  <!-- Sign Up Form Ends -->
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Resume</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Name -->
+          <div class="row">
+            <div class="col-4 text-end">Name: </div>
+            <div class="col resume-name">Nishant Kumar</div>
+          </div>
+          <!-- Email -->
+          <div class="row">
+            <div class="col-4 text-end">Email: </div>
+            <div class="col resume-email"></div>
+          </div><!-- PAN -->
+          <div class="row">
+            <div class="col-4 text-end">PAN: </div>
+            <div class="col resume-PAN"></div>
+          </div><!-- college-name -->
+          <div class="row">
+            <div class="col-4 text-end">College Name: </div>
+            <div class="col resume-college-name"></div>
+          </div>
+          <!-- University-name -->
+          <div class="row">
+            <div class="col-4 text-end">University Name: </div>
+            <div class="col resume-university-name"></div>
+          </div>
+          <!-- Registration Number -->
+          <div class="row">
+            <div class="col-4 text-end">Registration Number: </div>
+            <div class="col resume-registration"></div>
+          </div>
+          <!-- Course Duration -->
+          <div class="row">
+            <div class="col-4 text-end">Course Duration: </div>
+            <div class="col resume-course-duration"></div>
+          </div>
+          <!-- degree -->
+          <div class="row">
+            <div class="col-4 text-end">Degree: </div>
+            <div class="col resume-degree"></div>
+          </div>
+          <!-- is-married -->
+          <div class="row">
+            <div class="col-4 text-end">Maratial Status: </div>
+            <div class="col resume-is-married"></div>
+          </div>
+          <!-- prefered-team -->
+          <div class="row">
+            <div class="col-4 text-end">Prefered Team: </div>
+            <div class="col resume-prefered-team"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- To Do Heading Starts -->
+  <section class="dom-content">
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <hr />
+      </div>
+      <div class="col d-flex align-items-center justify-content-start text-uppercase">
+        assign courses
+      </div>
+    </div>
+    <div class="row">
+      <div class="col author-name fs-3">
+        help to build
+        <span class="fs-1 author-name name">Skills</span>
+      </div>
+    </div>
+  </section>
+  <!-- To Do Heading Ends -->
+
+  <!-- Add Skills Body Starts -->
+  <section>
+    <div class="row mt-4 mb-4">
+      <div class="col d-flex justify-content-center">
+        <div class="border shadow py-2 px-5 rounded bg-light">
+          <p class="text-center h1 mb-2 login-header">Add Skills</p>
+          <div class="row">
+            <div class="mb-3 col-9 text-center">
+              <input type="text" class="form-control input-skill" placeholder="Enter Course Name" />
+            </div>
+            <div class="col-2 mb-3 text-center fs-2"><i class="bi bi-patch-plus add-skill"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-3 text-center fs-3">
+        <p>Your Added skills are</p>
+      </div>
+      <div class="row d-flex justify-content-center text-center  py-1 skills-item">
+        <p class="skill-item skill-para-element" style="display: none;" class="fs-4"><input type="checkbox"
+            class="form-check-input me-2"><i class="bi bi-patch-minus ms-2 remove-skill cursor-pointer"></i></p>
+      </div>
+    </div>
+  </section>
+  <!-- Add Skills Body Ends -->
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+  <script src="includes/script_dom.js"></script>
+</body>
+
 </html>

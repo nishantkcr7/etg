@@ -1,0 +1,28 @@
+.hide {
+  display: none;
+}
+li .bi {
+  cursor: pointer;
+}
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+}
+input:focus {
+  outline: none;
+}
+.login-header {
+  font-family: "Slabo 27px", serif;
+}
+.add-skill {
+  cursor: pointer;
+}
+.dom-content {
+  margin-top: 150px;
+}
+body {
+  border-bottom: 8px solid rgb(255, 173, 21);
+  border-bottom-width: 100%;
+}

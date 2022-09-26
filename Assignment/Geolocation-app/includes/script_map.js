@@ -1,4 +1,6 @@
 "use strict";
+let latitude;
+let longitude;
 /*
 
 +=============================================================+
@@ -16,10 +18,6 @@ const inputLongitude = document.getElementById("input-longitude");
 const btnSearch = document.querySelector("#btn-search");
 // Getting reference of refresh button
 const buttonRefresh = document.querySelector(".btn-refresh");
-
-let latitude, longitude;
-
-let currentCord = {};
 
 /*
 +=============================================================+
@@ -41,9 +39,12 @@ inputLongitude.addEventListener("input", () => {
 */
 
 function getLeafletMap(latitude, longitude) {
-  console.log(`Inside getLeafLetMap() Lati: ${latitude}\t Long: ${longitude}`);
-  console.log([latitude, longitude]);
+  console.log("3. getLeafLetMap() Lati:" + latitude + "Long: " + longitude);
 
+  var container = L.DomUtil.get("map");
+  if (container != null) {
+    container._leaflet_id = null;
+  }
   const map = L.map("map").setView([latitude, longitude], 12);
 
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -54,6 +55,8 @@ function getLeafletMap(latitude, longitude) {
     .addTo(map)
     .bindPopup("You are here 🙋‍♂️")
     .openPopup();
+  /*
+    // On click funcion
   map.on("click", function (mapEvent) {
     console.log(mapEvent);
     const { lat, lng } = mapEvent.latlng;
@@ -71,20 +74,20 @@ function getLeafletMap(latitude, longitude) {
       .setPopupContent("My popup")
       .openPopup();
   });
+  */
 }
 
 // Function to get current locaction coordinate
 function getCurrentCord() {
-  // const currentCord = {};
   // Getting the longitude and latitude of user using navigator
   navigator.geolocation.getCurrentPosition(
     function (position) {
       // Destructuring latitude and longitude from the coords object
-      currentCord.latitude = position.coords.latitude;
-      currentCord.longitude = position.coords.longitude;
-      console.log(
-        `Inside getCurrentCord() ${currentCord.latitude}, ${currentCord.longitude}`
-      );
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+      console.log(position.coords.latitude, position.coords.longitude);
+
+      console.log(`Inside getCurrentCord() ${latitude}, ${longitude}`);
       // Url for google map: https://www.google.com/maps/@17.4084003,78.3500764
       // passing the current postion to google map query string
 
@@ -94,13 +97,11 @@ function getCurrentCord() {
       console.log("Error Occured: ", error.message);
     }
   );
-  console.log(
-    `Inside getCurrentCord() ${currentCord.latitude}, ${currentCord.longitude}`
-  );
-
-  return currentCord;
+  console.log(`Inside getCurrentCord() ${latitude}, ${longitude}`);
+  // return [latitude, longitude];
+  // return currentCord;
 }
-getLeafletMap(90, 60);
+// getLeafletMap(90, 60);
 // Getting the longitude and latitude of user using navigator
 // navigator.geolocation.getCurrentPosition(
 //   (position) => {
@@ -118,21 +119,26 @@ getLeafletMap(90, 60);
 // );
 // end
 // Display Map Function
-function displayMap(
-  latitude = getCurrentCord().latitude,
-  longitude = getCurrentCord().longitude
-) {
-  console.log(`Inside displayMap() Lati: ${latitude}\t Long: ${longitude}`);
+// function displayMap(
+//   latitude = getCurrentCord().latitude,
+//   longitude = getCurrentCord().longitude
+// ) {
+function displayMap(latitude, longitude) {
+  console.log("2. displayMap() Lati: " + latitude + " \t Long:  " + longitude);
   // this will take lati and longi and call
   getLeafletMap(latitude, longitude);
 }
 
 // Adding event listener on Refresh button to reload the map
 buttonRefresh.addEventListener("click", () => {
+  refreshMap();
+});
+
+function refreshMap() {
   let container = L.DomUtil.get("map");
   if (container != null) container._leaflet_id = null;
   displayMap();
-});
+}
 
 // displayMap(getCurrentCord().latitude, getCurrentCord().longitude);
 
@@ -144,7 +150,6 @@ btnSearch.addEventListener("click", function (e) {
   // Getting the values of latitude and longitude
   const inputLatitudeValue = inputLatitude.value;
   const inputLongitudeValue = inputLongitude.value;
-  console.log(inputLatitudeValue, inputLongitudeValue);
 
   // Validating the inputbox
   if (inputLatitudeValue === "") {
@@ -157,5 +162,35 @@ btnSearch.addEventListener("click", function (e) {
     errorMsgLatitude.innerText = "Plase enter latitude!";
     errorMsgLongitude.innerText = "Plase enter longitude!";
   }
-  displayMap(inputLatitude, inputLongitude);
+  console.log(
+    "1. btnSearch Clicked " + inputLatitudeValue,
+    inputLongitudeValue
+  );
+  displayMap(inputLatitudeValue, inputLongitudeValue);
+  // displayMap(100, 10);
 });
+
+function getMapOnLoad() {
+  console.log(`1a. On load of document`);
+
+  // let [latitude, longitude] = getCurrentCord();
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      // Destructuring latitude and longitude from the coords object
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+      console.log(position.coords.latitude, position.coords.longitude);
+
+      displayMap(latitude, longitude);
+
+      console.log(`Inside getCurrentCord() ${latitude}, ${longitude}`);
+      // Url for google map: https://www.google.com/maps/@17.4084003,78.3500764
+      // passing the current postion to google map query string
+
+      // getLeafletMap(latitude, longitude);
+    },
+    function (error) {
+      console.log("Error Occured: ", error.message);
+    }
+  );
+}
