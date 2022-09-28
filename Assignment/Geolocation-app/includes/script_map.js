@@ -55,26 +55,6 @@ function getLeafletMap(latitude, longitude) {
     .addTo(map)
     .bindPopup("You are here 🙋‍♂️")
     .openPopup();
-  /*
-    // On click funcion
-  map.on("click", function (mapEvent) {
-    console.log(mapEvent);
-    const { lat, lng } = mapEvent.latlng;
-    L.marker([lat, lng])
-      .addTo(map)
-      .bindPopup(
-        L.popup({
-          maxWidth: 250,
-          minWidth: 100,
-          autoClose: false,
-          closeOnClick: false,
-          className: "popup",
-        })
-      )
-      .setPopupContent("My popup")
-      .openPopup();
-  });
-  */
 }
 
 // Function to get current locaction coordinate
@@ -101,28 +81,7 @@ function getCurrentCord() {
   // return [latitude, longitude];
   // return currentCord;
 }
-// getLeafletMap(90, 60);
-// Getting the longitude and latitude of user using navigator
-// navigator.geolocation.getCurrentPosition(
-//   (position) => {
-//     // Destructuring latitude and longitude from the coords object
-//     latitude = position.coords.latitude;
-//     longitude = position.coords.longitude;
-//     // Url for google map: https://www.google.com/maps/@17.4084003,78.3500764
-//     // passing the current postion to google map query string
 
-//     getLeafletMap(latitude, longitude);
-//   },
-//   (error) => {
-//     console.log("Error Occured: ", error.message);
-//   }
-// );
-// end
-// Display Map Function
-// function displayMap(
-//   latitude = getCurrentCord().latitude,
-//   longitude = getCurrentCord().longitude
-// ) {
 function displayMap(latitude, longitude) {
   console.log("2. displayMap() Lati: " + latitude + " \t Long:  " + longitude);
   // this will take lati and longi and call
@@ -184,10 +143,6 @@ function getMapOnLoad() {
       displayMap(latitude, longitude);
 
       console.log(`Inside getCurrentCord() ${latitude}, ${longitude}`);
-      // Url for google map: https://www.google.com/maps/@17.4084003,78.3500764
-      // passing the current postion to google map query string
-
-      // getLeafletMap(latitude, longitude);
     },
     function (error) {
       console.log("Error Occured: ", error.message);
