@@ -46,15 +46,34 @@ function getLeafletMap(latitude, longitude) {
     container._leaflet_id = null;
   }
   const map = L.map("map").setView([latitude, longitude], 12);
+  // Fetching city and country from an API geocode.xyz
+  fetch(
+    `https://geocode.xyz/${latitude},${longitude}?geoit=json&auth=281007463117368306282x93815`
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      let areaMsg = "";
+      if (data.city && data.country)
+        areaMsg = `<b>${data.city}, ${data.country} 🙋‍♂️</b>`;
+      else if (data.city) areaMsg = `<b>${data.city} 🙋‍♂️</b>`;
+      else if (data.country) areaMsg = `<b>${data.country} 🙋‍♂️</b>`;
+      else areaMsg = `<b>You are here 🙋‍♂️</b>`;
 
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "",
-  }).addTo(map);
+      L.tileLayer("http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}", {
+        maxZoom: 20,
+        subdomains: ["mt0", "mt1", "mt2", "mt3"],
+      }).addTo(map);
 
-  L.marker([latitude, longitude])
-    .addTo(map)
-    .bindPopup("You are here 🙋‍♂️")
-    .openPopup();
+      L.marker([latitude, longitude])
+        .addTo(map)
+        .bindPopup(`${areaMsg}`)
+        .openPopup();
+    })
+    .catch((error) => {
+      console.log(`Something went wrong: ${error}`);
+    });
 }
 
 // Function to get current locaction coordinate
@@ -83,7 +102,7 @@ function getCurrentCord() {
 }
 
 function displayMap(latitude, longitude) {
-  console.log("2. displayMap() Lati: " + latitude + " \t Long:  " + longitude);
+  // console.log("2. displayMap() Lati: " + latitude + " \t Long:  " + longitude);
   // this will take lati and longi and call
   getLeafletMap(latitude, longitude);
 }
@@ -121,24 +140,18 @@ btnSearch.addEventListener("click", function (e) {
     errorMsgLatitude.innerText = "Plase enter latitude!";
     errorMsgLongitude.innerText = "Plase enter longitude!";
   }
-  console.log(
-    "1. btnSearch Clicked " + inputLatitudeValue,
-    inputLongitudeValue
-  );
   displayMap(inputLatitudeValue, inputLongitudeValue);
   // displayMap(100, 10);
 });
 
 function getMapOnLoad() {
-  console.log(`1a. On load of document`);
-
   // let [latitude, longitude] = getCurrentCord();
   navigator.geolocation.getCurrentPosition(
     function (position) {
       // Destructuring latitude and longitude from the coords object
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
-      console.log(position.coords.latitude, position.coords.longitude);
+      // console.log(position.coords.latitude, position.coords.longitude);
 
       displayMap(latitude, longitude);
 
