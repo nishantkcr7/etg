@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>querySelector vs querySelectorAll</title>
+    <!-- Importing Custome Styling -->
+    <link rel="stylesheet" href="includes/style_map.css" />
+
+    <!-- Importing Core Style -->
+    <link rel="stylesheet" href="../../includes/style.css" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap Icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation Starts -->
+    <section>
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="../../">Nishant Kumar</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav navbar-right">
+              <a class="nav-link" aria-current="page" href="../../">Home</a>
+              <a class="nav-link active" href="../../content/assignment.html"
+                >Assignments</a
+              >
+              <a class="nav-link" href="../../content/about.html">About</a>
+              <a class="nav-link" href="../../content/contact.html">Contact</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+    <!-- Navigation Ends -->
+
+    <!-- Query Selector Heading Starts -->
+    <section class="my-5">
+      <div class="row justify-content-center">
+        <div class="col-2"><hr /></div>
+        <div
+          class="col d-flex align-items-center justify-content-start text-uppercase"
+        >
+          know the difference between
+        </div>
+      </div>
+      <div class="row">
+        <div class="col author-name fs-3">
+          <span class="fs-1 author-name name"
+            ><code>querySelector()</code></span
+          >
+          vs
+          <span class="fs-1 author-name name"
+            ><code>querySelectorAll()</code></span
+          >
+        </div>
+      </div>
+    </section>
+    <!-- Query Selector Heading Ends -->
+
+    <!-- Difference Starts -->
+    <main>
+      <section class="d-flex justify-content-center">
+        <table class="table table-hover w-75">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Query Selector</th>
+              <th scope="col">Query Selector All</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td class="text-justify">
+                <code>querySelector()</code> is jQuery functions which helps the
+                HTML elements to be passed as a parameter by using CSS selectors
+                (‘id’, ‘class’) can be selected.
+              </td>
+              <td>
+                <code>querySelectorAll()</code> is jQuery functions which helps
+                the HTML elements to be passed as a parameter by using CSS
+                selectors (‘id’, ‘class’) can be selected.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>
+                <code>querySelectorAll()</code> method returns all the elements
+                within the document which matches the specified CSS selector(s)
+              </td>
+              <td>
+                <code>querySelector()</code> method returns only the first
+                occurance of the elements within the document.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>
+                It returns all the elements that matches with the selector in
+                the form of a static NodeList object which is a collection of
+                nodes.
+              </td>
+              <td>
+                If multiple elements occurs, then it returns the result for only
+                the first matching element.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>To access each element, we usually use a loop</td>
+              <td>Loop is not needed because there is only one element.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <!-- Difference Ends -->
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
