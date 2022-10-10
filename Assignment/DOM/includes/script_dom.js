@@ -146,13 +146,7 @@ btnAddSkill.addEventListener("click", function () {
   <p class="skill-item" class="fs-4"><input type="checkbox" onclick="emText(this)"  class="form-check-input me-2">${skill}<i onclick="deleteSkill(this)" class="bi bi-patch-minus ms-2 remove-skill cursor-pointer" style="cursor:pointer"></i></p>
   `
   );
-  getTotalSkills();
 });
-
-const getTotalSkills = () => {
-  const skillItems = document.querySelectorAll(".skill-item");
-  skillItems.forEach((skill) => {});
-};
 
 function deleteSkill(t) {
   t.parentElement.parentElement.removeChild(t.parentElement);
