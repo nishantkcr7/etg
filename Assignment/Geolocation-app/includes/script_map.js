@@ -14,10 +14,13 @@ let errorMsgLongitude = document.querySelector(".error-msg-longitude");
 const inputLatitude = document.getElementById("input-latitude");
 const inputLongitude = document.getElementById("input-longitude");
 
+const inputPlace = document.querySelector("#input-place");
+const btnSearchByName = document.querySelector(".btn-search-by-name");
+
 // Getting reference of search button
 const btnSearch = document.querySelector("#btn-search");
 // Getting reference of refresh button
-const buttonRefresh = document.querySelector(".btn-refresh");
+// const buttonRefresh = document.querySelector(".btn-refresh");
 
 /*
 +=============================================================+
@@ -108,17 +111,34 @@ function displayMap(latitude, longitude) {
 }
 
 // Adding event listener on Refresh button to reload the map
-buttonRefresh.addEventListener("click", () => {
-  refreshMap();
-});
+// buttonRefresh.addEventListener("click", () => {
+//   refreshMap();
+// });
 
-function refreshMap() {
-  let container = L.DomUtil.get("map");
-  if (container != null) container._leaflet_id = null;
-  displayMap();
-}
+// function refreshMap() {
+//   let container = L.DomUtil.get("map");
+//   if (container != null) container._leaflet_id = null;
+//   displayMap();
+// }
 
 // displayMap(getCurrentCord().latitude, getCurrentCord().longitude);
+const getCord = async function (placeName) {
+  const response = await fetch(
+    `https://restcountries.com/v3.1/name/${placeName}`
+  );
+  const data = await response.json();
+  return data;
+};
+// Adding event listener to search by name button
+btnSearchByName.addEventListener("click", () => {
+  const placeName = inputPlace.value;
+  if (placeName != "") {
+    console.log(`BTN SEARCH BY NAME CLICKED ${placeName}`);
+
+    // fetch(`https://restcountries.com/v3.1/name/${placeName}`);
+    console.log(getCord(placeName));
+  }
+});
 
 // Adding event listener to search button
 btnSearch.addEventListener("click", function (e) {
@@ -140,7 +160,8 @@ btnSearch.addEventListener("click", function (e) {
     errorMsgLatitude.innerText = "Plase enter latitude!";
     errorMsgLongitude.innerText = "Plase enter longitude!";
   }
-  displayMap(inputLatitudeValue, inputLongitudeValue);
+  // displayMap(inputLatitudeValue, inputLongitudeValue);
+  getLeafletMap(inputLatitudeValue, inputLongitudeValue);
   // displayMap(100, 10);
 });
 
@@ -153,7 +174,8 @@ function getMapOnLoad() {
       let longitude = position.coords.longitude;
       // console.log(position.coords.latitude, position.coords.longitude);
 
-      displayMap(latitude, longitude);
+      // displayMap(latitude, longitude);
+      getLeafletMap(latitude, longitude);
 
       console.log(`Inside getCurrentCord() ${latitude}, ${longitude}`);
     },
