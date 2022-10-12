@@ -6,6 +6,163 @@ sectionCompletedTask = document.querySelector(".section-completed-task");
 
 sectionDeletedTask = document.querySelector(".section-deleted-task");
 
+const permanentDelete = (t) => {
+  console.log(t.parentElement.parentElement);
+  t.parentElement.parentElement.parentElement.removeChild(
+    t.parentElement.parentElement
+  );
+  isDeletedTaskPresent();
+};
+const setDeletedToUpcoming = (t) => {
+  const inputTaskVal =
+    t.parentElement.parentElement.firstChild.nextElementSibling
+      .nextElementSibling.nextElementSibling.value;
+  if (sectionUpcomingTask.childElementCount) {
+    sectionUpcomingTask.removeChild(sectionUpcomingTask.firstChild);
+  }
+  // Moving completed Item to Upcoming Task Section
+  sectionUpcomingTask.insertAdjacentHTML(
+    "afterbegin",
+    `
+    <div class="input-group mb-3 bg-light-yellow">
+      
+      
+      <span class="input-group-text bg-transparent">
+          <input type="checkbox" onclick="setUpcomingToCompleted(this)"  class="form-check-input" />
+      </span>
+      <span class="input-group-text bg-transparent">
+      ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}
+      </span>
+      <input
+          id="input-task"
+          type="text"
+          class="form-control bg-transparent"
+          value="${inputTaskVal}"
+      />
+      <button class="btn btn-outline-dark">
+          <i class="bi bi-trash fs-3"onclick="setUpcomingToDeleted(this)"></i>
+      </button>
+  </div>
+  `
+  );
+  // Removing the completed item to Pending Tasks section
+
+  sectionDeletedTask.removeChild(t.parentElement.parentElement);
+  isDeletedTaskPresent();
+};
+
+const setDeletedToCompleted = (t) => {
+  const inputTaskVal =
+    t.parentElement.parentElement.firstChild.nextElementSibling
+      .nextElementSibling.nextElementSibling.value;
+  if (sectionCompletedTask.childElementCount) {
+    sectionCompletedTask.removeChild(sectionCompletedTask.firstChild);
+  }
+  // Moving completed Item to Upcoming Task Section
+  sectionCompletedTask.insertAdjacentHTML(
+    "afterbegin",
+    `
+    
+    <div class="input-group mb-3 bg-light-green">
+        <span class="input-group-text bg-transparent">
+            <i class="bi bi-check-all fs-5"></i>
+        </span>
+        <span class="input-group-text bg-transparent">${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}</span>
+        <input
+            id="input-task"
+            type="text"
+            class="form-control text-decoration-line-through bg-transparent"
+            value="${inputTaskVal}"
+        />
+        <button class="btn btn-outline-dark">
+            <i class="bi bi-arrow-up fs-5" onclick="setCompletedToUpcoming(this)"></i>
+        </button>
+        <button class="btn btn-outline-dark">
+            <i class="bi bi-trash fs-5" onclick="setCompletedToDeleted(this)"></i>
+        </button>
+    </div>
+    `
+  );
+  // Removing the completed item to Pending Tasks section
+
+  sectionDeletedTask.removeChild(t.parentElement.parentElement);
+  isDeletedTaskPresent();
+};
+
+const setCompletedToDeleted = (t) => {
+  const inputTaskVal =
+    t.parentElement.parentElement.firstChild.nextElementSibling
+      .nextElementSibling.nextElementSibling.value;
+  if (sectionDeletedTask.childElementCount) {
+    sectionDeletedTask.removeChild(sectionDeletedTask.firstChild);
+  }
+  // Moving completed Item to Upcoming Task Section
+  sectionDeletedTask.insertAdjacentHTML(
+    "afterbegin",
+    `
+
+    <div class="input-group mb-3 bg-light-green">
+        <span class="input-group-text bg-transparent">
+            <i class="bi bi-trash fs-5" onclick="permanentDelete(this)"></i>
+        </span>
+        <span class="input-group-text bg-transparent">${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}</span>
+        <input
+            id="input-task"
+            type="text"
+            class="form-control bg-transparent"
+            value="${inputTaskVal}"
+            readonly
+        />
+        <button class="btn btn-outline-dark">
+            <i class="bi bi-arrow-clockwise fs-5" onclick="setDeletedToCompleted(this)"></i>
+        </button>
+    </div>
+    `
+  );
+  // Removing the completed item to Pending Tasks section
+
+  sectionCompletedTask.removeChild(t.parentElement.parentElement);
+  isCompletedTaskPresent();
+};
+const setCompletedToUpcoming = (t) => {
+  const inputTaskVal =
+    t.parentElement.parentElement.firstChild.nextElementSibling
+      .nextElementSibling.nextElementSibling.value;
+  if (sectionUpcomingTask.childElementCount) {
+    sectionUpcomingTask.removeChild(sectionUpcomingTask.firstChild);
+  }
+
+  // Moving completed Item to Upcoming Task Section
+  sectionUpcomingTask.insertAdjacentHTML(
+    "afterbegin",
+    `
+    <div class="input-group mb-3 bg-light-yellow">
+      
+      
+      <span class="input-group-text bg-transparent">
+          <input type="checkbox" onclick="setUpcomingToCompleted(this)"  class="form-check-input bg-transparent" />
+      </span>
+      <span class="input-group-text bg-transparent">
+      ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}
+      </span>
+      <input
+          id="input-task"
+          type="text"
+          class="form-control bg-transparent"
+          value="${inputTaskVal}"
+      />
+      <button class="btn btn-outline-dark">
+          <i class="bi bi-trash fs-3"onclick="setUpcomingToDeleted(this)"></i>
+      </button>
+  </div>
+  `
+  );
+  // Removing the completed item to Pending Tasks section
+
+  sectionCompletedTask.removeChild(t.parentElement.parentElement);
+  isCompletedTaskPresent();
+};
+
 const isUpcomingTaskPresent = () => {
   if (!sectionUpcomingTask.childElementCount) {
     sectionUpcomingTask.innerHTML =
@@ -28,15 +185,13 @@ const isCompletedTaskPresent = () => {
 isUpcomingTaskPresent();
 isCompletedTaskPresent();
 isDeletedTaskPresent();
+
 ////////////////////////////////////////// FUNCTION TO DELETE UPCOMING TASK AND ADDING TO DELETED TASK //////////////////////////////////////////
 
 const setUpcomingToDeleted = (t) => {
-  console.log(
-    t.parentElement.parentElement.firstElementChild.nextElementSibling.value
-  );
-  console.log(sectionUpcomingTask);
   const text =
-    t.parentElement.parentElement.firstElementChild.nextElementSibling.value;
+    t.parentElement.parentElement.firstElementChild.nextElementSibling
+      .nextElementSibling.value;
   //   Removing the checked task from Upcoming task section
   if (sectionDeletedTask.childElementCount) {
     sectionDeletedTask.removeChild(sectionDeletedTask.firstChild);
@@ -44,37 +199,32 @@ const setUpcomingToDeleted = (t) => {
   sectionDeletedTask.insertAdjacentHTML(
     "afterbegin",
     `
-    <div class="row">
-        <div class="col text-small">
-            <span>${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}</span>
-        </div>
-    </div>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text bg-light">
-            <i class="bi bi-trash fs-5"></i>
+    <div class="input-group mb-3 bg-light-yellow">
+        <span class="input-group-text bg-transparent">
+            <i class="bi bi-trash fs-5" onclick="permanentDelete(this)"></i>
         </span>
+        <span class="input-group-text bg-transparent">${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}</span>
         <input
             id="input-task"
             type="text"
-            class="form-control"
+            class="form-control bg-transparent"
             value="${text}"
             readonly
         />
         <button class="btn btn-outline-dark">
-            <i class="bi bi-arrow-clockwise fs-5"></i>
+            <i class="bi bi-arrow-clockwise fs-5" onclick="setDeletedToUpcoming(this)"></i>
         </button>
     </div>
     `
   );
-  sectionUpcomingTask.removeChild(t.parentElement.parentElement.parentElement);
+
+  sectionUpcomingTask.removeChild(t.parentElement.parentElement);
   isUpcomingTaskPresent();
 };
 
 ////////////////////////////////////////// FUNCTION TO CHANGE TASK UPCOMING TO COMPLETED //////////////////////////////////////////
 const setUpcomingToCompleted = (t) => {
-  console.log(t.parentElement.parentElement.firstChild);
-  const text = t.parentElement.nextElementSibling.value;
+  const text = t.parentElement.nextElementSibling.nextElementSibling.value;
   if (sectionCompletedTask.childElementCount) {
     sectionCompletedTask.removeChild(sectionCompletedTask.firstChild);
   }
@@ -82,26 +232,23 @@ const setUpcomingToCompleted = (t) => {
   sectionCompletedTask.insertAdjacentHTML(
     "afterbegin",
     `
-    <div class="row">
-        <div class="col text-small">
-            <span>${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}</span>
-        </div>
-    </div>
-    <div class="input-group mb-3">
-        <span class="input-group-text bg-light">
+    
+    <div class="input-group mb-3 bg-light-green">
+        <span class="input-group-text bg-transparent">
             <i class="bi bi-check-all fs-5"></i>
         </span>
+        <span class="input-group-text bg-transparent">${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}</span>
         <input
             id="input-task"
             type="text"
-            class="form-control text-decoration-line-through"
+            class="form-control text-decoration-line-through bg-transparent"
             value="${text}"
         />
         <button class="btn btn-outline-dark">
-            <i class="bi bi-arrow-up fs-5"></i>
+            <i class="bi bi-arrow-up fs-5" onclick="setCompletedToUpcoming(this)"></i>
         </button>
         <button class="btn btn-outline-dark">
-            <i class="bi bi-trash fs-5"></i>
+            <i class="bi bi-trash fs-5" onclick="setCompletedToDeleted(this)"></i>
         </button>
     </div>
     `
@@ -126,20 +273,17 @@ btnAddTask.addEventListener("click", (e) => {
     sectionUpcomingTask.insertAdjacentHTML(
       "afterbegin",
       `
-      <div class="row">
-      <div class="col text-small">
-          <span>${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}</span>
-      </div>
-  </div>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text bg-light">
-            <input type="checkbox" onclick="setUpcomingToCompleted(this)"  class="form-check-input" />
+      <div class="input-group mb-3 bg-light-yellow">
+        <span class="input-group-text bg-transparent">
+            <input type="checkbox" onclick="setUpcomingToCompleted(this)"  class="form-check-input bg-transparent" />
+        </span>
+        <span class="input-group-text bg-transparent">
+        ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}
         </span>
         <input
             id="input-task"
             type="text"
-            class="form-control"
+            class="form-control bg-transparent"
             value="${inputTaskVal}"
         />
         <button class="btn btn-outline-dark">

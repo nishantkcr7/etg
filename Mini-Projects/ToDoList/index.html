@@ -62,7 +62,7 @@
         </div>
       </section>
       <section class="my-3">
-        <div class="row shadow py-3">
+        <div class="row shadow rounded py-3">
           <div class="col">
             <div class="input-group mb-3">
               <span class="input-group-text bg-light"
@@ -75,7 +75,7 @@
                 class="form-control"
                 placeholder="Add a task"
               />
-              <button class="btn btn-outline-dark fw-bold btn-add-task">
+              <button class="btn btn-info fw-bold btn-add-task">
                 <i class="bi bi-check fs-3"></i>
               </button>
             </div>
@@ -86,10 +86,13 @@
       <!-- Upcoming Tasks Starts -->
       <section class="my-4">
         <div class="row h3 heading">
-          <div class="col">Upcoming Tasks</div>
+          <div class="col">
+            Upcoming Tasks
+            <hr />
+          </div>
         </div>
-        <div class="row">
-          <div class="col-12 shadow py-3 rounded section-upcoming-task">
+        <div class="row overflow-auto" style="max-height: 300px">
+          <div class="col-12 py-3 rounded section-upcoming-task">
             <!-- <div class="input-group mb-3">
               <span class="input-group-text bg-light">
                 <input type="checkbox" name="" id="" class="form-check-input" />
@@ -113,10 +116,13 @@
           <!-- Completed Tasks Starts -->
           <section class="my-4">
             <div class="row h3 heading">
-              <div class="col">Completed Tasks</div>
+              <div class="col">
+                Completed Tasks
+                <hr />
+              </div>
             </div>
-            <div class="row">
-              <div class="col-12 shadow py-3 rounded section-completed-task">
+            <div class="row overflow-auto" style="height: 200px">
+              <div class="col-12 py-3 rounded section-completed-task">
                 <!-- <div class="input-group mb-3">
                   <span class="input-group-text bg-light">
                     <i class="bi bi-check-all fs-5"></i>
@@ -143,12 +149,13 @@
           <!-- Deleted Tasks Starts -->
           <section class="my-4">
             <div class="row h3 heading">
-              <div class="col">Deleted Tasks</div>
+              <div class="col">
+                Deleted Tasks
+                <hr />
+              </div>
             </div>
-            <div class="row">
-              <div
-                class="col-12 shadow py-3 rounded section-deleted-task"
-              ></div>
+            <div class="row overflow-auto" style="height: 200px">
+              <div class="col-12 py-3 rounded section-deleted-task"></div>
             </div>
           </section>
         </div>

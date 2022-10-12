@@ -4,3 +4,14 @@
 .heading {
   font-family: "Libre Baskerville", serif;
 }
+.bg-light-green {
+  background-color: rgb(232, 253, 236);
+}
+.bg-light-yellow {
+  background-color: rgb(249, 255, 219);
+}
+input,
+button,
+.btn {
+  border: 1px solid rgb(195, 194, 194);
+}
