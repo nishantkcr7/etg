@@ -8,7 +8,9 @@ let activePara, inputParaVal;
 let inputParaArr;
 let activeParaArr;
 let isTimerRunning = false;
+let wordFromStory;
 let paraIterator = 0;
+let i = 0;
 const btnReset = document.getElementById("btn-reset");
 const selectDuration = document.getElementById("select-duration");
 const btnNext = document.getElementById("btn-next");
@@ -56,6 +58,8 @@ const setTimer = (t) => {
   timerVal = t.value.slice(-1);
 };
 inputPara.addEventListener("input", (e) => {
+  console.log("I:=> ", i++, "\nChar:=>", e.target.value);
+
   if (selectStory.value === "") {
     selectStory.focus();
     inputPara.value = "";
@@ -69,25 +73,28 @@ inputPara.addEventListener("input", (e) => {
     }
     selectDuration.setAttribute("disabled", "");
     selectStory.setAttribute("disabled", "");
+    // Spliting the story into the array
     activeParaArr = activePara.split(" ");
-    // for (i = 0; i < activeParaArr.length; i++) {
-    //   console.log(activeParaArr[i]);
-    // }
-    console.log(e.target.value);
-    inputParaArr = inputPara.value.split(" ");
-    console.log(inputParaArr);
+    console.log(typeof e.target.value);
+    console.log("e.target.value.slice(-1): " + e.target.value.slice(-1));
 
-    if (e.target.value == " ") {
-      console.log(`Space Bar Clicked`);
-      paraIterator = inputParaArr.length;
-      //   paraIterator++;
+    if (e.target.value.slice(-1) === " ") {
+      console.error("spaceClicked");
+      paraIterator++;
     }
-    console.log(`Inside Input Para, Paraiterator: ${paraIterator}`);
-    console.log(
-      `InputPara.value: ${inputPara.value}\n${activeParaArr[paraIterator]}`
-    );
 
-    checkWord(inputParaArr[paraIterator], activeParaArr[paraIterator]);
+    // Adding the first word of the story in the variable wordFromStory
+    wordFromStory = activeParaArr[paraIterator];
+
+    console.log(
+      "ACTIVE PARA ARR: \n",
+
+      "\nWORD FROM STORY: ",
+      wordFromStory,
+      "\nPARA ITERATOR: ",
+      paraIterator
+    );
+    // checkWord(inputParaArr[paraIterator], activeParaArr[paraIterator]);
   }
 });
 btnReset.addEventListener("click", () => {
@@ -96,12 +103,3 @@ btnReset.addEventListener("click", () => {
 btnNext.addEventListener("click", () => {
   window.location.reload();
 });
-
-const checkWord = (inputWord, actualWord) => {
-  if (inputWord === actualWord) {
-    console.log(`Correct`);
-    console.log(`Text area word: ${activeParaArr[paraIterator]}`);
-    activeParaArr[paraIterator].paraIterator++;
-    console.log(`After Correct, Paraiterator: ${paraIterator}`);
-  }
-};
