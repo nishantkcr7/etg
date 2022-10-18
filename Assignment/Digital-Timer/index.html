@@ -3,10 +3,127 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Digital Timer</title>
+    <title>Digital Timer | Nishant Etg</title>
+    <!-- jQuery JS -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <!-- Importing Core Style -->
+    <link rel="stylesheet" href="../../includes/style.css" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap Icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="includes/style.css" />
+    <style></style>
   </head>
-  <body>
-    <h1>Work yet to start.</h1>
+  <body class="container">
+    <!-- Navigation Starts -->
+    <section>
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="../../">Nishant Kumar</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav navbar-right">
+              <a class="nav-link" aria-current="page" href="../../">Home</a>
+              <a class="nav-link active" href="../../content/assignment.html"
+                >Assignments</a
+              >
+              <a class="nav-link" href="../../content/about.html">About</a>
+              <a class="nav-link" href="../../content/contact.html">Contact</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+    <!-- Navigation Ends -->
+
+    <section class="my-5">
+      <div class="row justify-content-center">
+        <div class="col-2"><hr /></div>
+        <div
+          class="col d-flex align-items-center justify-content-start text-uppercase"
+        >
+          manage your time
+        </div>
+      </div>
+      <div class="row">
+        <div class="col author-name fs-3">
+          with user friendly
+          <span class="fs-1 author-name name">Digital Timer</span>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section>
+        <div
+          class="row d-flex shadow timer-counter--container justify-content-center"
+        >
+          <!-- Timer Container -->
+          <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+            <div class="row rounded">
+              <!-- Hour -->
+              <div class="col-4 text-end">
+                <div class="timer-counter">
+                  <span class="d-hour">00</span>
+                </div>
+                <div class="me-3 timer-caption--name">Hour</div>
+              </div>
+              <!-- Hour Ends -->
+              <!-- Minute -->
+              <div class="col-4 text-center">
+                <div class="timer-counter">
+                  <span class="d-min">00</span>
+                </div>
+                <div class="timer-caption--name">Min</div>
+              </div>
+              <!-- Minute Ends -->
+              <!-- Second -->
+              <div class="col-4 text-start">
+                <div class="timer-counter">
+                  <span class="d-sec">00</span>
+                </div>
+                <div class="ms-3 timer-caption--name">Sec</div>
+              </div>
+              <!-- Second Ends -->
+            </div>
+            <div class="row mt-3">
+              <div class="col text-center d-today--container">
+                Today: <span class="d-today"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custome JS -->
+    <script src="includes/script.js "></script>
   </body>
 </html>
