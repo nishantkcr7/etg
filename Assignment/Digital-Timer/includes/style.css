@@ -11,9 +11,56 @@
   font-size: 20px;
   font-weight: bold;
 }
+.timer-counter--buttons {
+  margin-top: 24px;
+  border-radius: 15px;
+  padding: 20px;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+}
 .timer-counter--container {
+  border-radius: 15px;
+  padding: 20px;
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+.timer-counter--setting {
+  border-radius: 15px;
+  padding: 20px;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+i {
+  margin: 0px 5px;
+  padding: 5px;
+  font-size: 32px;
+}
+.timer-button--container {
+  padding-top: 18px;
+}
+.ttimer-set--duration {
+  position: relative;
+  top: 50%;
+  left: 50%;
   border: 2px solid black;
-  border-radius: 20px;
-  padding: 18px;
-  box-shadow: 2px 2px rgb(180, 176, 176);
+  transform: translate(-50, -50);
+}
+
+.timer-button--minus,
+.timer-button--plus {
+  border: 0;
+  background-color: transparent;
+}
+.timer-input--min {
+  height: 50px;
+  width: 120%;
+}
+i {
+  cursor: pointer;
 }
