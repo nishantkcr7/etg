@@ -1,8 +1,20 @@
+$(".btn-hi").click(function (e) {
+  console.log(`Hi clicked`);
+  console.log(`Now you cant click the button any more`);
+  $(this).attr("disabled", true);
+});
+/*
+==========================================================================
+Rough
+==========================================================================
+*/
+
 $("main").hide().fadeIn(1500);
 $(".alert-msg").hide();
 let currentDate = new Date();
 let isTimerRunning = false;
-let x;
+let x,
+  timerPausedAt = 0;
 const weekDays = [
   "Sunday",
   "Monday",
@@ -26,57 +38,6 @@ const months = [
   "Nov",
   "Dec",
 ];
-function stopTimer(action) {
-  clearInterval(x);
-  if (action === "stop") {
-    $(".d-min").text("00");
-    $(".d-sec").text("00");
-  }
-}
-
-// Timer function
-const startTimer = (min) => {
-  if (!isTimerRunning) {
-    isTimerRunning = !isTimerRunning;
-    let deadline = new Date(new Date().getTime() + min * 60000).getTime();
-
-    x = setInterval(function () {
-      let now = new Date().getTime();
-      let t = deadline - now;
-      let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((t % (1000 * 60)) / 1000);
-      if (minutes < 10) {
-        minutes = "0" + minutes;
-        $(".d-min").text(minutes);
-      }
-      if (seconds < 10) {
-        seconds = "0" + seconds;
-        $(".d-min").text(seconds);
-      }
-      $(".d-min").text(minutes);
-      $(".d-sec").text(seconds);
-      //   document.getElementById("remaining-time").innerText = `${minutes}m ${seconds}s
-      if (t <= 1) {
-        stopTimer("stop");
-      }
-    }, 1000);
-  }
-};
-
-var span = document.getElementById("newdate");
-
-function getCurrentDateTime() {
-  var d = new Date();
-  var s = d.getSeconds();
-  var m = d.getMinutes();
-  var h = d.getHours();
-  span.textContent =
-    ("0" + h).substr(-2) +
-    ":" +
-    ("0" + m).substr(-2) +
-    ":" +
-    ("0" + s).substr(-2);
-}
 
 setInterval(getCurrentDateTime, 1000);
 
@@ -96,38 +57,57 @@ function getCurrentDateTime() {
   $(".d-today").text(currentDateTime);
 }
 
+// Changing the timer display value on input of duration
+$(".timer-input--min").bind("input", function () {
+  $(".d-min").text("00");
+  if ($(this).val() > 0 && $(this).val() <= 60) $(".d-min").text($(this).val());
+  else
+    $(".alert-msg")
+      .text("Duration can't be more than 1 hour 💀")
+      .fadeIn()
+      .fadeOut(1500);
+});
+
 // Starting the timer on the click of Start Timer Button
 $(".timer-button--start").click(function () {
-  // Getting the value of Timer Duration in minute
-  const inputTimerDuration = $(".timer-input--min").val();
-  if (inputTimerDuration == "") {
-    $(".alert-msg").text("🚫Please input duration💀").fadeIn().fadeOut(500);
-    $(".timer-input--min").focus();
-  } else if (inputTimerDuration < 1) {
-    $(".alert-msg")
-      .text("🚫Please input positive number💀")
-      .fadeIn()
-      .fadeOut(500);
+  // If timer is already running so no need to take the input again
+  if (!isTimerRunning) {
+    // Getting the value of Timer Duration in minute
+    const inputTimerDuration = $(".timer-input--min").val();
+    if (inputTimerDuration == "") {
+      $(".alert-msg").text("🚫Please input duration💀").fadeIn().fadeOut(500);
+      $(".timer-input--min").focus();
+    } else if (inputTimerDuration < 1) {
+      $(".alert-msg")
+        .text("🚫Please input positive number💀")
+        .fadeIn()
+        .fadeOut(500);
+      $(".timer-input--min").val("");
+      $(".timer-input--min").focus();
+    } else {
+      console.log(inputTimerDuration);
+      start_timer();
+      // startTimer(inputTimerDuration);
+    }
+    // Clearing the input value of input duration
     $(".timer-input--min").val("");
-    $(".timer-input--min").focus();
   } else {
-    console.log(inputTimerDuration);
-    startTimer(inputTimerDuration);
+    start_timer();
   }
-  // Clearing the input value of input duration
-  $(".timer-input--min").val("");
 });
 
 // Reseting the timer on the click of Stop Timer Button
 $(".timer-button--stop").click(function () {
-  stopTimer("stop");
+  // stopTimer("stop");
+  reset_timer();
   isTimerRunning = !isTimerRunning;
 });
 
 // Pausing the timer on the click of Pause Timer Button
 $(".timer-button--pause").click(function () {
-  stopTimer("pause");
+  // stopTimer("pause");
   isTimerRunning = !isTimerRunning;
+  stop_timer();
 });
 
 // Decrementing the input value on click of 'Timer - ' button
@@ -140,3 +120,80 @@ $(".timer-button--minus").bind("click", function () {
 $(".timer-button--plus").bind("click", function () {
   $(".timer-input--min").val(Number($(".timer-input--min").val()) + 1);
 });
+// Changing timer duration display on click of Button 'SET'
+$(".btn-set--duration").click(function () {
+  if ($(".timer-input--min").val() > 0 || $(".timer-input--min").val() != "") {
+    $(".d-min").text($(".timer-input--min").val());
+  }
+});
+
+// Timer Function Starts
+function start_timer() {
+  isTimerRunning = true;
+  var hour = $(".d-hour");
+  var mins = $(".d-min");
+  var secs = $(".d-sec");
+  console.log(`start_timer()
+  ${hour.text()}:${mins.text()}:${secs.text()}
+  `);
+
+  hour.text(hour.text());
+  mins.text(mins.text());
+  secs.text(secs.text());
+  resume_timer();
+}
+
+function resume_timer() {
+  var time = $(".time").text();
+  interval = setInterval(function () {
+    let hour = $(".d-hour").text();
+    let min = $(".d-min").text();
+    let sec = $(".d-sec").text();
+    var counter = $(".timer").find("span");
+    counter.eq(0).text(hour);
+    counter.eq(1).text(min);
+    counter.eq(2).text(sec);
+    if (hour == 0 && min == 0) {
+      $(".timer").css("color", "red");
+    }
+    if (sec == 0) {
+      if (min != 0) {
+        $(".d-min").text(min--);
+        sec = 59;
+      } else if (min == 0 && hour != 0) {
+        $(".d-hour").text(hour--);
+        $(".d-min").text(min--);
+        sec = 59;
+      } else if (hour == 0 && min == 0 && sec == 0) {
+        counter.eq(2).text(0);
+        $(".d-sec").text("0");
+      }
+      if (hour == 0 && min == 0) {
+        $(".timer").css("color", "red");
+      }
+    }
+    $(".d-hour").text(hour);
+    $(".d-min").text(min);
+    $(".d-sec").text(--sec);
+    if (hour == 0 && min == 0 && sec == 0) {
+      clearInterval(interval);
+      alert("Time Up");
+    }
+  }, 1000);
+}
+
+function stop_timer() {
+  clearInterval(interval);
+  console.log(`Stop timer called, clearInter() up. isTimerRunning=true down`);
+
+  isTimerRunning = true;
+}
+
+function reset_timer() {
+  clearInterval(interval);
+  $(".d-hour").text("00");
+  $(".d-min").text("00");
+  $(".d-sec").text("00");
+  $(".timer").css("color", "black");
+}
+// Timer Function Ends

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A Simple Countdown Timer</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <style type="text/css">
+      body {
+        margin: 0;
+      }
+      .timer-wrap {
+        width: 100%;
+        float: left;
+        background-color: #34495e;
+        padding: 20px 0px;
+      }
+      .timer-wrap h1 {
+        text-align: center;
+        font: bold 16px calibri;
+        padding: 5px;
+        background-color: #2c3e50;
+        color: #ffffff;
+      }
+      .timer-wrap .time {
+        display: none;
+      }
+      .timer-wrap .timer {
+        font: bold 55px "times new roman";
+        color: #ffffff;
+        margin: 10px auto 0px;
+        text-align: center;
+      }
+    </style>
+    <script src="jquery.js"></script>
+  </head>
+  <body>
+    <div class="timer-wrap" style="margin-bottom: 20px">
+      <h1>A Simple Countdown Timer</h1>
+      <i class="time">0:0:0</i>
+      <div class="timer"><span>0</span> : <span>0</span> : <span>0</span></div>
+    </div>
+    <center>
+      <label for="hour">Hours</label>
+      <input type="number" min="0" max="24" id="hour" value="0" /><br />
+      <label for="mins">Minutes</label>
+      <input type="number" min="0" max="60" id="mins" value="0" /><br />
+      <label for="secs">Seconds</label>
+      <input type="number" min="0" max="60" id="secs" value="0" /><br />
+      <br />
+      <br />
+      <button type="button" id="start">Start</button>
+      <button type="button" id="stop">Stop</button>
+      <button type="button" id="reset">Reset</button>
+    </center>
+
+    <script type="text/javascript">
+      function start_timer() {
+        var hour = $("#hour");
+        var mins = $("#mins");
+        var secs = $("#secs");
+
+        if (hour.val() == "" && mins.val() == "" && secs.val() == "") {
+          alert("Please fill in some values");
+        } else {
+          $(".time").text(hour.val() + ":" + mins.val() + ":" + secs.val());
+          resume_timer();
+        }
+      }
+
+      function resume_timer() {
+        var time = $(".time").text();
+        interval = setInterval(function () {
+          var count = time.split(":");
+          var hour = count[0];
+          var min = count[1];
+          var sec = count[2];
+          var counter = $(".timer").find("span");
+          counter.eq(0).text(hour);
+          counter.eq(1).text(min);
+          counter.eq(2).text(sec);
+          if (hour == 0 && min == 0) {
+            $(".timer").css("color", "red");
+          }
+          if (sec == 0) {
+            if (min != 0) {
+              counter.eq(1).text(min--);
+              sec = 59;
+            } else if (min == 0 && hour != 0) {
+              counter.eq(0).text(hour--);
+              counter.eq(1).text((min = 59));
+              sec = 59;
+            } else if (hour == 0 && min == 0 && sec == 0) {
+              counter.eq(2).text(0);
+            }
+            if (hour == 0 && min == 0) {
+              $(".timer").css("color", "red");
+            }
+          }
+          counter.eq(0).text(hour);
+          counter.eq(1).text(min);
+          counter.eq(2).text(--sec);
+          time =
+            counter.eq(0).text() +
+            ":" +
+            counter.eq(1).text() +
+            ":" +
+            counter.eq(2).text();
+          $(".time").text(time);
+          if (hour == 0 && min == 0 && sec == 0) {
+            clearInterval(interval);
+            alert("Time Up");
+          }
+        }, 1000);
+      }
+
+      function stop_timer() {
+        clearInterval(interval);
+      }
+
+      function reset_timer() {
+        clearInterval(interval);
+        $(".time").text("0:0:0");
+        var counter = $(".timer").find("span");
+        counter.eq(0).text("0");
+        counter.eq(1).text("0");
+        counter.eq(2).text("0");
+        $("#start").text("Start");
+        $(".timer").css("color", "white");
+      }
+
+      $(document).ready(function () {
+        var interval;
+        $("#start").click(function () {
+          if ($(this).text() == "Start") {
+            start_timer();
+            $(this).text("Resume");
+          } else {
+            resume_timer();
+          }
+        });
+        $("#stop").click(function () {
+          stop_timer();
+        });
+        $("#reset").click(function () {
+          reset_timer();
+        });
+      });
+    </script>
+  </body>
+</html>

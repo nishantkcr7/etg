@@ -1,72 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8" />
-    <title>jQuery timer example</title>
-
+    <!-- jQuery JS -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script>
-      $(document).ready(() => {
-        const startTimer = (min) => {
-          var deadline = new Date(new Date().getTime() + min * 60000).getTime();
 
-          var x = setInterval(function () {
-            console.log(`TIMER WORKER TILL NOW`);
-            var now = new Date().getTime();
-            var t = deadline - now;
-            var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((t % (1000 * 60)) / 1000);
-            $("#hours").text(minutes);
-            $("#mins").text(seconds);
-            //   document.getElementById("remaining-time").innerText = `${minutes}m ${seconds}s
-            if (t < 0) {
-              clearInterval(x);
-              document.getElementById("remaining-time").innerText = "00m 00s";
-            }
-          }, 1000);
-        };
-        $("#startbtn").click(function () {
-          console.log(`Start button clicked`);
-          startTimer(5);
-        });
-      });
-    </script>
     <style>
-      #divstyle {
-        margin-left: 300px;
-        margin-top: 100px;
-        background-color: lightslategrey;
-        width: 450px;
-        height: 180px;
-      }
-      #timer {
-        font-size: 100px;
-        padding-left: 30px;
-        width: 1000px;
-      }
-      #buttons {
-        padding-top: 20px;
-        padding-left: 100px;
-        width: 600px;
-      }
-      #buttons button {
-        font-size: 24px;
-        color: brown;
+      body {
+        background-color: rgba(0, 0, 0, 0.3);
       }
     </style>
   </head>
   <body>
-    <div id="divstyle">
-      <div id="timer">
-        <span id="hours">00:</span>
-        <span id="mins">00:</span>
-        <span id="seconds">00</span>
-      </div>
-      <div id="buttons">
-        <button id="startbtn">Start</button>
-        <button id="stopbtn">Stop</button>
-        <button id="resetbtn">Reset</button>
-      </div>
-    </div>
+    <center>
+      <span class="hr">0</span>: <span class="min">0</span>:
+      <span class="sec">2</span>
+    </center>
+    <center>
+      <button>4m 4sec Timer</button>
+      <button class="btn-stop">Stop</button>
+    </center>
+    <script>
+      function dec_hr() {
+        hr = parseInt($(".hr").html());
+        if (hr !== 0) {
+          $(".hr").html(hr - 1);
+          $(".min").html(59);
+          $(".sec").html(59);
+        } else {
+          pass;
+        }
+      }
+      function dec_min() {
+        min = parseInt($(".min").html());
+        if (min !== 0) {
+          $(".min").html(min - 1);
+          $(".sec").html(59);
+        } else {
+          dec_hr();
+        }
+      }
+      $(document).ready(function () {
+        let Update;
+        // Stop Button
+        $(".btn-stop").click(function () {
+          $(".hr").text("0");
+          $(".min").text("0");
+          $(".sec").text("0");
+          clearInterval(Update);
+        });
+        // Start Button
+        $("button").click(function () {
+          $(".hr").text("0");
+          $(".min").text("4");
+          $(".sec").text("4");
+          Update = function () {
+            $(".sec").each(function () {
+              var count = parseInt($(this).html());
+              if (count !== 0) {
+                $(this).html(count - 1);
+              } else {
+                dec_min();
+              }
+            });
+          };
+          setInterval(Update, 1000);
+        });
+      });
+    </script>
   </body>
 </html>
