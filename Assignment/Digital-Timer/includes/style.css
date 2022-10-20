@@ -57,6 +57,17 @@ i {
   border: 0;
   background-color: transparent;
 }
+.timer-button--btns {
+  border-bottom: none;
+  border-top: 1px solid;
+  border-radius: 8px;
+}
+.timer-button--btns:hover {
+  background-color: #fff;
+}
+.timer-button--btns:last-child {
+  border-bottom: 1px solid;
+}
 .timer-input--min {
   height: 50px;
   width: 120%;

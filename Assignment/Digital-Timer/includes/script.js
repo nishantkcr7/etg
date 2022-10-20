@@ -1,14 +1,34 @@
 $(".btn-hi").click(function (e) {
   console.log(`Hi clicked`);
-  console.log(`Now you cant click the button any more`);
-  $(this).attr("disabled", true);
+});
+$(".btn-hi").click(function () {
+  $(this).off();
+});
+
+$(".btn-disable").click(() => {
+  disableClick($(".btn-hi"));
+});
+$(".btn-enable").click(() => {
+  enableClick($(".btn-hi"));
 });
 /*
 ==========================================================================
 Rough
 ==========================================================================
 */
-
+// Function to disable the click event
+const disableClick = (el) => {
+  // el: It takes element as an argument
+  el.off();
+  console.log(el);
+  console.log(`Disabled...`);
+};
+// Function to disable the click event
+const enableClick = (el) => {
+  // el: It takes element as an argument
+  console.log(el);
+  console.log(`Enabled...`);
+};
 $("main").hide().fadeIn(1500);
 $(".alert-msg").hide();
 let currentDate = new Date();

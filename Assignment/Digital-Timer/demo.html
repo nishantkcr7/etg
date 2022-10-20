@@ -1,68 +1,51 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <!-- jQuery JS -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
+    <meta charset="utf-8" />
+    <title>off demo</title>
     <style>
-      body {
-        background-color: rgba(0, 0, 0, 0.3);
+      button {
+        margin: 5px;
       }
     </style>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
   </head>
   <body>
-    <center>
-      <span class="hr">0</span>: <span class="min">0</span>:
-      <span class="sec">2</span>
-    </center>
-    <center>
-      <button>4m 4sec Timer</button>
-      <button class="btn-stop">Stop</button>
-    </center>
+    <br />
+    <button class="sayhi">Cannot Click!</button>
+    <button class="btn-d">Disable Hi</button>
+    <button class="btn-e">Enable Hi</button>
+    <br />
+    <div style="display: none">Click!</div>
+
     <script>
-      function dec_hr() {
-        hr = parseInt($(".hr").html());
-        if (hr !== 0) {
-          $(".hr").html(hr - 1);
-          $(".min").html(59);
-          $(".sec").html(59);
-        } else {
-          pass;
-        }
+      /*
+      function flash() {
+        console.log(`Hi there`);
       }
-      function dec_min() {
-        min = parseInt($(".min").html());
-        if (min !== 0) {
-          $(".min").html(min - 1);
-          $(".sec").html(59);
-        } else {
-          dec_hr();
-        }
-      }
-      $(document).ready(function () {
-        let Update;
-        // Stop Button
-        $(".btn-stop").click(function () {
-          $(".hr").text("0");
-          $(".min").text("0");
-          $(".sec").text("0");
-          clearInterval(Update);
-        });
-        // Start Button
-        $("button").click(function () {
-          $(".hr").text("0");
-          $(".min").text("4");
-          $(".sec").text("4");
-          Update = function () {
-            $(".sec").each(function () {
-              var count = parseInt($(this).html());
-              if (count !== 0) {
-                $(this).html(count - 1);
-              } else {
-                dec_min();
-              }
-            });
-          };
-          setInterval(Update, 1000);
+
+      $(".btn-d").click(function () {
+        $("body")
+          .off("click", ".sayhi", function () {
+            console.log(`You blocked the click event!`);
+          })
+          .find(".sayhi")
+          .text("Cannot Click!");
+      });
+      $(".btn-e").click(function () {
+        $("body")
+          .on("click", ".sayhi", function () {
+            console.log(`You enabled the click event!`);
+          })
+          .find(".sayhi")
+          .text("Can Click!");
+      });*/
+      document.querySelector(".sayhi").addEventListener("click", () => {
+        console.log(`Clicked`);
+      });
+      document.querySelector(".btn-d").addEventListener("click", function () {
+        document.querySelector(".sayhi").removeEventListener("click", () => {
+          console.log(`hi`);
         });
       });
     </script>
