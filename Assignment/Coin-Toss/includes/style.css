@@ -1,0 +1,11 @@
+.coin {
+  position: relative;
+  bottom: -85%;
+}
+.toss-container {
+  border: 2px solid black;
+  height: 50vh;
+  margin-left: 45%;
+  text-align: center;
+  width: fit-content;
+}
