@@ -101,3 +101,26 @@ i {
   font-size: 38px;
   font-family: monospace;
 }
+/* fjldsjdsflk */
+* {
+  color: rgb(46, 33, 33);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+body,
+nav {
+  background: linear-gradient(to right, #fff, rgba(255, 173, 21, 0.1));
+  box-shadow: none;
+}
+.author-name {
+  font-family: "Aclonica", sans-serif;
+}
+.name {
+  color: rgb(255, 173, 21);
+}
+hr {
+  position: relative;
+  border: none;
+  height: 3px;
+  opacity: 1;
+  background: rgb(255, 173, 21);
+}
