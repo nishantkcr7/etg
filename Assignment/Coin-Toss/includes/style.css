@@ -11,6 +11,11 @@
   text-align: center;
   width: fit-content;
 }
+.flip-coin {
+  padding: 8px 16px;
+  font-size: 24px;
+  font-weight: bolder;
+}
 .input-toss--div {
   display: flex;
   font-size: 24px;
