@@ -22,10 +22,8 @@ $(".flip-coin").click(function () {
     $(".computer-select--value").text(computerText);
 
     if (randomOutcome === 1 && $(".input-toss.checked").text() === "Head") {
-      console.log(`WIN`);
       $(".result").text("You Won 🏆").fadeOut(3000);
     } else {
-      console.log(`LOSS`);
       $(".result").text("You Lost 😭").fadeOut(3000);
     }
   }, 2000);
