@@ -1,117 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Coin Toss | Nishant Etg</title>
-    <!-- jQuery JS -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
-    <!-- Importing Core Style -->
-    <link rel="stylesheet" href="../../includes/style.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Coin Toss | Nishant Etg</title>
+  <!-- jQuery JS -->
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-      crossorigin="anonymous"
-    />
+  <!-- Importing Core Style -->
+  <link rel="stylesheet" href="../../includes/style.css" />
 
-    <!-- Bootstrap Icon -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" href="includes/style.css" />
-    <style></style>
-  </head>
-  <body class="container">
-    <!-- Navigation Starts -->
-    <section>
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="../../">Nishant Kumar</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav navbar-right">
-              <a class="nav-link" aria-current="page" href="../../">Home</a>
-              <a class="nav-link active" href="../../content/assignment.html"
-                >Assignments</a
-              >
-              <a class="nav-link" href="../../content/about.html">About</a>
-              <a class="nav-link" href="../../content/contact.html">Contact</a>
-            </div>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+
+  <!-- Bootstrap Icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+
+  <!-- Custome CSS -->
+  <link rel="stylesheet" href="includes/style.css">
+</head>
+
+<body class="container">
+  <!-- Navigation Starts -->
+  <section>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../../">Nishant Kumar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav navbar-right">
+            <a class="nav-link" aria-current="page" href="../../">Home</a>
+            <a class="nav-link active" href="../../content/assignment.html">Assignments</a>
+            <a class="nav-link" href="../../content/about.html">About</a>
+            <a class="nav-link" href="../../content/contact.html">Contact</a>
           </div>
         </div>
-      </nav>
-    </section>
-    <!-- Navigation Ends -->
+      </div>
+    </nav>
+  </section>
+  <!-- Navigation Ends -->
 
-    <section class="my-5">
-      <div class="row justify-content-center">
-        <div class="col-2"><hr /></div>
-        <div
-          class="col d-flex align-items-center justify-content-start text-uppercase"
-        >
-          try a luck
-        </div>
+  <section class="my-5">
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <hr />
       </div>
-      <div class="row">
-        <div class="col author-name fs-3">
-          toss a
-          <span class="fs-1 author-name name">Coin</span>
-        </div>
+      <div class="col d-flex align-items-center justify-content-start text-uppercase">
+        try a luck
       </div>
-    </section>
-    <style></style>
+    </div>
+    <div class="row">
+      <div class="col author-name fs-3">
+        toss a
+        <span class="fs-1 author-name name">Coin</span>
+      </div>
+    </div>
+  </section>
+  <style></style>
 
-    <main>
-      <!-- Container for fliping the coin -->
-      <div class="row toss-container">
-        <h1>
-          <i
-            class="fa-brands fa-bitcoin fa-2xl coin"
-            style="--fa-flip-x: 1; --fa-flip-y: 0"
-          ></i>
-        </h1>
+  <main>
+    <!-- Container for fliping the coin -->
+    <div class="row toss-container">
+      <i class="fa-brands fa-bitcoin fa-2xl coin" style="--fa-flip-x: 1; --fa-flip-y: 0; font-size: 5em"></i>
+    </div>
+    <!-- Selecting Your Toss -->
+    <div class="s mt-5 mb-3 text-center  input-toss--div">
+      <div class="input-toss head ">Head</div>
+      <div class="input-toss tail">Tail</div>
+    </div>
+    <!-- Display Result -->
+    <div class="row my-3 text-danger result-win">
+      <div class="col-6 text-end user-select">You 👤: 
+        <span class="user-select--value">None</span>
       </div>
-      <!-- Selecting Your Toss -->
-      <div class="row my-5 text-center border">
-        <div class="col text-end">Head</div>
-        <div class="col text-start">Coin</div>
+      <div class="col-6 text-start computer-select">Computer 🖥️: 
+        <span class="computer-select--value">None</span>
       </div>
+    </div>
 
-      <!-- Triggering Toss -->
-      <div class="row text-center">
-        <div class="col border">
-          <button class="btn btn-outline-primary flip-coin">Toss</button>
-        </div>
+    <!-- Triggering Toss -->
+    <div class="row text-center">
+      <div class="col-12">
+        <input type="button" class="btn btn-outline-primary flip-coin" value="Toss">
+        </input>
       </div>
-    </main>
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    <!-- Bootstrap JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Font Awesome JS -->
-    <script
-      src="https://kit.fontawesome.com/322291a9a2.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Custome JS -->
-    <script src="includes/script.js "></script>
-  </body>
+      <div class="col-12 text-center result">
+      </div>
+    </div>
+  </main>
+  <br /><br /><br /><br /><br /><br /><br />
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+  <!-- Font Awesome JS -->
+  <script src="https://kit.fontawesome.com/322291a9a2.js" crossorigin="anonymous"></script>
+  <!-- Custome JS -->
+  <script src="includes/script.js"></script>
+</body>
 </html>

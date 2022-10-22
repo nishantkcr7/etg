@@ -1,11 +1,49 @@
 .coin {
   position: relative;
-  bottom: -85%;
+  bottom: -90%;
+  font-size: 3rem;
 }
+
 .toss-container {
-  border: 2px solid black;
-  height: 50vh;
+  position: relative;
+  height: 40vh;
   margin-left: 45%;
   text-align: center;
   width: fit-content;
+}
+.input-toss--div {
+  display: flex;
+  font-size: 24px;
+  align-content: space-around;
+  justify-content: center;
+}
+.input-toss {
+  border: 2px solid black;
+  padding: 4px 16px;
+  border-radius: 8px;
+  font-weight: bolder;
+  margin: 0 2px;
+  cursor: pointer;
+}
+.input-toss:hover {
+  color: white;
+  background-color: black;
+}
+.checked {
+  padding: 4px 16px;
+  border-radius: 8px;
+  font-weight: bolder;
+  margin: 0 2px;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+}
+.result-win {
+  color: green;
+  font-weight: bolder;
+}
+.result {
+  font-weight: bolder;
+  padding: 8px 0;
+  font-size: 34px;
 }
