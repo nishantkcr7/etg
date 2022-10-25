@@ -1,0 +1,15 @@
+* {
+}
+.d-para {
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+.correct {
+  color: green;
+}
+.incorrect {
+  color: red;
+  text-decoration: underline;
+}

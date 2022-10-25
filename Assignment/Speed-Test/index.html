@@ -3,10 +3,196 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Speed Typing Test | Nishant EGT</title>
+    <title>Typing Speed Test | Nishant Etg</title>
+    <!-- jQuery JS -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <!-- Importing Core Style -->
+    <link rel="stylesheet" href="../../includes/style.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap Icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="includes/style.css" />
   </head>
-  <body>
-    <h1>Work yet to start</h1>
+
+  <body class="container">
+    <!-- Navigation Starts -->
+    <section>
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="../../">Nishant Kumar</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav navbar-right">
+              <a class="nav-link" aria-current="page" href="../../">Home</a>
+              <a class="nav-link active" href="../../content/assignment.html"
+                >Assignments</a
+              >
+              <a class="nav-link" href="../../content/about.html">About</a>
+              <a class="nav-link" href="../../content/contact.html">Contact</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+    <!-- Navigation Ends -->
+
+    <section class="my-5">
+      <div class="row justify-content-center">
+        <div class="col-2">
+          <hr />
+        </div>
+        <div
+          class="col d-flex align-items-center justify-content-start text-uppercase"
+        >
+          check your speed
+        </div>
+      </div>
+      <div class="row">
+        <div class="col author-name fs-3">
+          try
+          <span class="fs-1 author-name name">Typing Speed Test</span>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section>
+        <!-- First Row Start -->
+        <div class="row">
+          <!-- Select Story Starts -->
+          <div class="col-6">
+            <div class="form-floating">
+              <select
+                class="form-select"
+                id="select-story"
+                aria-label="Floating label select example"
+              >
+                <option value="story-n">Below are the stories...</option>
+              </select>
+
+              <label for="select-story">Select Your Story</label>
+            </div>
+          </div>
+          <!-- Select Story Ends -->
+          <!-- Select Timing Starts -->
+          <div class="col-4">
+            <div class="form-floating">
+              <select
+                class="form-select"
+                id="select-duration"
+                aria-label="Floating label select example"
+              >
+                <option value="min-0">Select here...</option>
+                <option value="min-1">1 minute</option>
+                <option value="min-2">2 minute</option>
+                <option value="min-5">5 mintute</option>
+              </select>
+              <label for="select-duration">Select Test Duration</label>
+            </div>
+          </div>
+          <!-- Select Timing Ends -->
+          <!-- Time Counter Starts -->
+          <div class="col-2">
+            <div class="row form-control">
+              <div class="col text-center">
+                <span id="remaining-time">0m 0s</span>
+              </div>
+            </div>
+          </div>
+          <!-- Time Counter Ends -->
+        </div>
+        <!-- First Row Ends -->
+      </section>
+      <section>
+        <!-- Second Row Starts -->
+        <div class="row">
+          <div class="col text-uppercase">Speed</div>
+          <div class="col text-uppercase">Accuracy</div>
+          <div class="col text-uppercase">Score</div>
+        </div>
+        <div class="row">
+          <div class="col text-uppercase">
+            <span class="val-speed">0</span>
+            wpm
+          </div>
+          <div class="col text-uppercase">
+            <span class="val-accuracy">0</span>
+            %
+          </div>
+          <div class="col text-uppercase">
+            <span class="val-score">0</span>
+            awpm
+          </div>
+        </div>
+        <!-- Second Row Ends -->
+      </section>
+      <section>
+        <!-- Third Row Starts -->
+        <div class="story-para row">
+          <div class="col-12 py-3 d-para">
+            Select the story to begin the test...
+          </div>
+        </div>
+        <!-- Third Row Ends -->
+      </section>
+      <section>
+        <div class="row my-3">
+          <input type="text" id="input-para" class="form-control" />
+        </div>
+      </section>
+      <section>
+        <div class="row">
+          <div class="col offset-8 text-end">
+            <input
+              type="button"
+              value="Reset"
+              id="btn-reset"
+              class="btn btn-outline-danger"
+            />
+            <input
+              type="button"
+              value="Next"
+              id="btn-next"
+              class="btn btn-outline-success"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+    <br /><br /><br /><br /><br /><br /><br />
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Font Awesome JS -->
+    <script
+      src="https://kit.fontawesome.com/322291a9a2.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="includes/script.js"></script>
   </body>
 </html>
