@@ -6,9 +6,21 @@ const stories = {
   4: "An example of mystic India, Panchatantra tales are the oldest  surviving stories of mankind, surviving for centuries, from  mouth to mouth, before they were documented. You will love the  lucid pace of the stories, and they always make for great  bedtime or story telling sessions. Share them will all story  lovers, and let them enjoy the light, enchanting life of the  stories. These Indian panchatantra stories are translated into  simple English, and thus they serve as great material for short  Indian stories for children. Ancient fables, still relevant for  today's hi tech lifestyle They are actually documented versions  of oral stories that ran across generations before. Even today,  they are favored stories across India and other parts of the  world. We are proud to bring you a collection of the most  popular Panchatantra stories to you, for they are loved by  adults and kids alike. They give the kids an early footing onto  moral and social values, shaping the young minds into an ethical  future. Read these stories to your kids and learn something new  from every Panchatantra story! Most of the stories come with  videos after the text, to provide you with an all round  experience. Enjoy them, with your kids, and share them with everyone, and help build a more beautiful world.",
 };
 let isTimerRunning = false;
-let arrayStory;
+let arrayStory,
+  count = 0,
+  countIncorrect;
 
 // Functions
+const countTotalWords = () => {
+  words = 0;
+  arrayStory.forEach((ch) => {
+    if (ch.innerText === " ") {
+      words++;
+    }
+  });
+  return words;
+};
+
 // jQuery Starts
 $(document).ready(() => {
   // Focusing on 'Select Your Story' dropdown
@@ -25,9 +37,9 @@ $(document).ready(() => {
       )}...</option>`
     );
   });
-
   // Getting selected Story from the dropdown
   $("#select-story").change(function () {
+    countIncorrect = 0;
     // Getting Story number in a letiable
     const selectedStoryNumber = $(this)
       .find(":selected")
@@ -54,6 +66,7 @@ $(document).ready(() => {
     arrayStory = document.querySelectorAll(".d-para span");
   };
   // Start Typing
+
   $("#input-para").bind({
     click: function () {
       // Checking if the story is selected, if not selected focus will transfered to 'Select Your Story' dropdown
@@ -63,6 +76,7 @@ $(document).ready(() => {
       if ($("#select-duration").find(":selected").attr("value") === "min-0") {
         $("#select-duration").focus();
       }
+      countIncorrectWords();
     },
     input: function () {
       const timerDuration = $("#remaining-time").text().slice(0, 1);
@@ -74,7 +88,7 @@ $(document).ready(() => {
       const arrayInput = $("#input-para").val().split("");
       arrayStory.forEach((el, i) => {
         character = el.innerText;
-        console.log(`${character} === ${arrayInput[i]}`);
+        // console.log(`${character} === ${arrayInput[i]}`);
 
         if (arrayInput[i] == undefined) {
           el.classList.remove("correct");
@@ -84,7 +98,7 @@ $(document).ready(() => {
           el.classList.remove("incorrect");
         } else {
           el.classList.add("incorrect");
-          el.classList.remove("correct");
+          countIncorrect++;
         }
       });
     },
@@ -119,7 +133,30 @@ const startTimer = (min) => {
     if (t < 0) {
       clearInterval(x);
       $("#remaining-time").text(`0m 0s`);
-      alert("Time Up! Time Up!");
+      // Disabling the inputbox
+      $("#input-para").attr("readonly", true);
+      // Checking total word typed
+      const wpm =
+        $("#input-para").val().split(" ").length /
+        $("#select-duration").find(":selected").attr("value");
+      $("#input-para").val().split(" ").length /
+        $(".val-speed").text(wpm).css({
+          fontWeight: "bolder",
+        });
+      // Calculating Accuracy: percentage of total character - correct characters
+      const countTotalCharTyped = $("#input-para").val().split("").length;
+      const percentageIncorrect = Math.round(
+        (countIncorrectWords() / countTotalCharTyped) * 100
+      );
+      $(".val-accuracy")
+        .text(percentageIncorrect)
+        .css({ fontWeight: "bolder" });
+      // Calculating Average Word Per Min
+      const awpm = Math.round(wpm - wpm * (percentageIncorrect / 100));
+      $(".val-score").text(awpm);
     }
   }, 1000);
+};
+const countIncorrectWords = () => {
+  return $(".d-para span.incorrect").length;
 };
