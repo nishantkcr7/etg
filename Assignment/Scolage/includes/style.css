@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: rgb(115, 7, 115);
 }
 .yellow {
   background-color: rgb(251, 230, 7);
@@ -11,9 +12,28 @@
   justify-content: end;
   align-items: center;
 }
-.brand {
-}
 .brand-img {
-  width: 160px;
+  width: 15%;
   padding: 8px 0px 8px 32px;
+}
+.hero {
+  height: 90vh;
+  background-image: url("../img/top-banner.png");
+  background-size: cover;
+}
+.hero-text {
+  padding-left: 32px;
+}
+.hero-text--heading {
+  font-size: 64px;
+  font-weight: bolder;
+}
+.btn-know-more {
+  border-radius: 32px;
+  outline: none;
+  border: 0;
+  color: black;
+  font-weight: bold;
+  padding: 8px 32px;
+  text-transform: uppercase;
 }
