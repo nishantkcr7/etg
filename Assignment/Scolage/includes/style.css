@@ -28,6 +28,23 @@
   font-size: 64px;
   font-weight: bolder;
 }
+.btn-register {
+  margin-top: 42px;
+  background-color: rgb(115, 7, 115);
+  border-radius: 12px;
+  border: 0;
+  font-weight: bold;
+  padding: 8px 40px;
+}
+.btn-register--large,
+.btn-register--small {
+  color: rgb(251, 230, 7);
+  font-weight: lighter;
+}
+.btn-register--large {
+  text-transform: uppercase;
+  font-size: 24px;
+}
 .btn-know-more {
   border-radius: 32px;
   outline: none;
@@ -36,4 +53,39 @@
   font-weight: bold;
   padding: 8px 32px;
   text-transform: uppercase;
+}
+.admission,
+.admission-footer {
+  background-image: url("../img/doodle.png");
+  background-size: cover;
+}
+.admission-head {
+  padding: 58px 28px;
+  font-weight: bolder;
+}
+.admission-head--yellow {
+  color: rgb(255, 234, 5);
+}
+.admission-body--text {
+  font-size: 32px;
+  margin-top: 16px;
+  font-weight: bold;
+
+  line-height: 33px;
+}
+.admission-footer {
+  padding-bottom: 80px;
+}
+.admission-head--large,
+.why-head--large {
+  font-weight: bolder;
+}
+.why-head--small {
+  font-size: 25px;
+  font-style: italic;
+  padding: 0 28px;
+}
+.why-body {
+  background-image: url("../img/gradient.png");
+  background-size: cover;
 }
