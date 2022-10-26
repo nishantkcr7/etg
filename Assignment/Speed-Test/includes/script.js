@@ -79,6 +79,8 @@ $(document).ready(() => {
       countIncorrectWords();
     },
     input: function () {
+      console.log($("#select-duration").find(":selected").attr("value"));
+
       const timerDuration = $("#remaining-time").text().slice(0, 1);
       // Starting the timer
       if (!isTimerRunning) {
@@ -138,21 +140,23 @@ const startTimer = (min) => {
       // Checking total word typed
       const wpm =
         $("#input-para").val().split(" ").length /
-        $("#select-duration").find(":selected").attr("value");
+        $("#select-duration").find(":selected").attr("value").slice(-1);
       $("#input-para").val().split(" ").length /
         $(".val-speed").text(wpm).css({
           fontWeight: "bolder",
         });
       // Calculating Accuracy: percentage of total character - correct characters
       const countTotalCharTyped = $("#input-para").val().split("").length;
-      const percentageIncorrect = Math.round(
-        (countIncorrectWords() / countTotalCharTyped) * 100
-      );
+      const percentageIncorrect =
+        100 - Math.round((countIncorrectWords() / countTotalCharTyped) * 100);
       $(".val-accuracy")
         .text(percentageIncorrect)
         .css({ fontWeight: "bolder" });
-      // Calculating Average Word Per Min
-      const awpm = Math.round(wpm - wpm * (percentageIncorrect / 100));
+      // Calculating Average Word Per Min: (Total character typed - Total incorrect character) / speed
+      const awpm =
+        wpm -
+        Math.round((countIncorrectWords() / countTotalCharTyped) * 100) / 100;
+
       $(".val-score").text(awpm);
     }
   }, 1000);
