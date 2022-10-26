@@ -164,3 +164,20 @@ const startTimer = (min) => {
 const countIncorrectWords = () => {
   return $(".d-para span.incorrect").length;
 };
+// Reset button
+$("#btn-reset").click(function () {
+  // Selecting the default option of 'Select Your Story' dropdown
+  $("#select-story").val("story-n").attr("selected", true);
+  // Selecting the default option of 'Select Test duration' dropdown
+  $("#select-duration")
+    .val("min-0")
+    .attr("selected", true)
+    .attr("disabled", true);
+  // Changing the time 0m 0s
+  $("#remaining-time").text("0m 0s");
+  // Removing the texts from the display story and adding default texts
+  $(".d-para").empty().text("Select the story to begin the test...");
+  // Clearing the inputed values in the input box
+  $("#input-para").val("");
+  isTimerRunning = false;
+});
