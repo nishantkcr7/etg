@@ -8,7 +8,8 @@ const stories = {
 let isTimerRunning = false;
 let arrayStory,
   count = 0,
-  countIncorrect;
+  countIncorrect,
+  x;
 
 // Functions
 const countTotalWords = () => {
@@ -79,6 +80,8 @@ $(document).ready(() => {
       countIncorrectWords();
     },
     input: function () {
+      $("#select-story").attr("disabled", true);
+      $("#select-duration").attr("disabled", true);
       console.log($("#select-duration").find(":selected").attr("value"));
 
       const timerDuration = $("#remaining-time").text().slice(0, 1);
@@ -125,7 +128,7 @@ $(document).ready(() => {
 const startTimer = (min) => {
   let deadline = new Date(new Date().getTime() + min * 60000).getTime();
 
-  let x = setInterval(function () {
+  x = setInterval(function () {
     let now = new Date().getTime();
     let t = deadline - now;
     let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
@@ -133,31 +136,7 @@ const startTimer = (min) => {
 
     $("#remaining-time").text(`${minutes}m ${seconds}s`);
     if (t < 0) {
-      clearInterval(x);
-      $("#remaining-time").text(`0m 0s`);
-      // Disabling the inputbox
-      $("#input-para").attr("readonly", true);
-      // Checking total word typed
-      const wpm =
-        $("#input-para").val().split(" ").length /
-        $("#select-duration").find(":selected").attr("value").slice(-1);
-      $("#input-para").val().split(" ").length /
-        $(".val-speed").text(wpm).css({
-          fontWeight: "bolder",
-        });
-      // Calculating Accuracy: percentage of total character - correct characters
-      const countTotalCharTyped = $("#input-para").val().split("").length;
-      const percentageIncorrect =
-        100 - Math.round((countIncorrectWords() / countTotalCharTyped) * 100);
-      $(".val-accuracy")
-        .text(percentageIncorrect)
-        .css({ fontWeight: "bolder" });
-      // Calculating Average Word Per Min: (Total character typed - Total incorrect character) / speed
-      const awpm =
-        wpm -
-        Math.round((countIncorrectWords() / countTotalCharTyped) * 100) / 100;
-
-      $(".val-score").text(awpm);
+      testStopped();
     }
   }, 1000);
 };
@@ -166,6 +145,7 @@ const countIncorrectWords = () => {
 };
 // Reset button
 $("#btn-reset").click(function () {
+  $("#select-story").attr("disabled", false);
   // Selecting the default option of 'Select Your Story' dropdown
   $("#select-story").val("story-n").attr("selected", true);
   // Selecting the default option of 'Select Test duration' dropdown
@@ -180,4 +160,37 @@ $("#btn-reset").click(function () {
   // Clearing the inputed values in the input box
   $("#input-para").val("");
   isTimerRunning = false;
+  // Clearing resutls
+  $(".val-speed").text("0");
+  $(".val-accuracy").text("0");
+  $(".val-score").text("0");
 });
+// Stop Test Button
+$("#btn-stop").click(function () {
+  if (isTimerRunning) testStopped();
+});
+const testStopped = () => {
+  clearInterval(x);
+  $("#remaining-time").text(`0m 0s`);
+  // Disabling the inputbox
+  $("#input-para").attr("readonly", true);
+  // Checking total word typed
+  const wpm =
+    $("#input-para").val().split(" ").length /
+    $("#select-duration").find(":selected").attr("value").slice(-1);
+  $("#input-para").val().split(" ").length /
+    $(".val-speed").text(wpm).css({
+      fontWeight: "bolder",
+    });
+  // Calculating Accuracy: percentage of total character - correct characters
+  const countTotalCharTyped = $("#input-para").val().split("").length;
+  const percentageIncorrect =
+    100 - Math.round((countIncorrectWords() / countTotalCharTyped) * 100);
+  $(".val-accuracy").text(percentageIncorrect).css({ fontWeight: "bolder" });
+  // Calculating Average Word Per Min: (Total character typed - Total incorrect character) / speed
+  const awpm =
+    wpm - Math.round((countIncorrectWords() / countTotalCharTyped) * 100) / 100;
+
+  $(".val-score").text(awpm);
+  isTimerRunning = false;
+};
