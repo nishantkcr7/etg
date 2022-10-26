@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.yellow {
+  background-color: rgb(251, 230, 7);
+}
+.nav-top {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.brand {
+}
+.brand-img {
+  width: 160px;
+  padding: 8px 0px 8px 32px;
+}
