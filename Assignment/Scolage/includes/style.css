@@ -112,8 +112,8 @@ hr {
   background-size: cover;
 }
 .contact-body {
-  background-image: url("../img/doodle.png"), url("../img/6/student.png"),
-    url("../img/6/Rectangle\ 11.png");
+  background-image: url("../img/doodle.png"), url("../img/student.png"),
+    url("../img/Rectangle\ 11.png");
   background-size: contain;
   background-position: bottom left;
   background-repeat: no-repeat;
@@ -143,7 +143,7 @@ hr {
 }
 .story-card {
   margin: 5% 20%;
-  border-radius: 5%;
+  border-radius: 15px;
 }
 .contact-footer {
   position: absolute;
