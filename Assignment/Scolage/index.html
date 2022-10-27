@@ -231,7 +231,7 @@
     <!-- Why Scolage Ends -->
     <!-- How Scolage Works Starts -->
     <section>
-      <div class="how-works mt-5">
+      <div class="how-works mt-5 container">
         <!-- How Head Starts -->
         <div class="how-head text-center">
           <div class="how-head--large h1">How scolage works?</div>
@@ -287,7 +287,7 @@
         </div>
         <!-- How body ends -->
         <!-- How Footer Starts -->
-        <div class="how-footer -fluid row text-center my-5">
+        <div class="how-footer -fluid row text-center py-5 my-5">
           <div class="how-footer--item col flex-column align-items-center">
             <div class="how-footer--icon">
               <img src="img/0/easyadmission.png" alt="" />
@@ -626,14 +626,114 @@
     <!-- Contact Us Starts -->
     <section>
       <div class="contact">
-        <div class="contact-head">
-          <h1 class="contact-head--large h1">get in touch with us</h1>
+        <div class="contact-head row">
+          <h1 class="contact-head--large h1 col text-center text-uppercase">
+            get in touch with us
+          </h1>
+          <hr class="hr-contact text-center" />
         </div>
-        <hr class="hr-contact" />
-        <div class="contact-body">
-          <div class="contact-body--img">Img</div>
-          <div class="contact-body--form">Form</div>
+
+        <div class="contact-body row">
+          <div class="contact-body--img"></div>
+          <div
+            class="col-lg-4 col offset-md-7 offset-lg-7 col-md-7 shadow pe-5 bg-light mb-5 col-4 offset-3"
+          >
+            <div class="contact-body--form py-5">
+              <form>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control bg-light fw-bold w-75"
+                    placeholder="Name"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="number"
+                    class="form-control bg-light fw-bold w-75"
+                    placeholder="Phone"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="number"
+                    class="form-control bg-light fw-bold w-75"
+                    placeholder="Alternative no. (optional)"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="email"
+                    class="form-control bg-light fw-bold w-75"
+                    placeholder="Email id"
+                  />
+                </div>
+                <div class="mb-3">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-light w-75 text-start dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Gender
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <option value="" class="dropdown-item">Male</option>
+                      </li>
+                      <li>
+                        <option value="" class="dropdown-item">Female</option>
+                      </li>
+                      <li>
+                        <option value="" class="dropdown-item">Other</option>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="number"
+                    class="form-control bg-light fw-bold w-75"
+                    min="0"
+                    placeholder="Age"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control bg-light fw-bold w-75"
+                    placeholder="School"
+                  />
+                </div>
+                <div class="mb-3">
+                  <div class="w-75 bg-light fw-bold text-dark ps-1 py-2 pe-3">
+                    Top 3 junior colleges in Huderabad that you would like to
+                    attend?
+                  </div>
+                </div>
+                <div class="mb-3 fw-bold">
+                  <span class="d-block">NOTE</span>
+                  <div class="text-dark">
+                    1. The Mobile App will be live soon
+                  </div>
+                  <div class="text-dark">
+                    2. Students registering today will be eligible for a fees
+                    discount through the app
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-warning fw-bolder my-1 px-4"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
+        <div class="contact-footer"></div>
       </div>
     </section>
     <!-- Contact Us Ends -->
