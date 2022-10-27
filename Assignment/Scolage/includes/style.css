@@ -5,7 +5,7 @@
   color: rgb(115, 7, 115);
 }
 hr {
-  background: linear-gradient(to right, red, yellow);
+  background: linear-gradient(to right, rgb(62, 39, 239), yellow);
   border-style: none;
   height: 10px;
   width: 10%;
