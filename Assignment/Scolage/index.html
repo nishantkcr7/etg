@@ -660,7 +660,7 @@
                 <div class="mb-3">
                   <input
                     type="text"
-                    class="form-control bg-light fw-bold w-75"
+                    class="form-control bg-light fw-bold w-75 inputname"
                     placeholder="Name"
                   />
                 </div>
@@ -759,5 +759,12 @@
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
+    <script>
+      document
+        .querySelector(".inputname")
+        .addEventListener("input", function (e) {
+          console.log(e);
+        });
+    </script>
   </body>
 </html>

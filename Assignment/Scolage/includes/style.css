@@ -36,15 +36,12 @@ hr {
   padding: 8px 0px 8px 32px;
 }
 .hero {
-  height: 50vh;
-  width: 100vw;
-  background-image: linear-gradient(
-      to right,
-      rgba(37, 37, 37, 0.2),
-      rgba(37, 37, 37, 0.4)
-    ),
-    url("../img/top-banner.png");
-  background-size: cover;
+  width: 100%;
+  padding: 10% 0;
+
+  background-image: url("../img/top-banner.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .hero-text {
   padding-left: 32px;
