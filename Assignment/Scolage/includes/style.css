@@ -4,6 +4,18 @@
   box-sizing: border-box;
   color: rgb(115, 7, 115);
 }
+.a-phone,
+.a-email {
+  text-decoration: none;
+  color: rgb(115, 7, 115);
+}
+.a-phone:visited,
+.a-email:visited,
+.a-phone:hover,
+.a-email:hover {
+  text-decoration: none;
+  color: rgb(115, 7, 115);
+}
 hr {
   background: linear-gradient(to right, rgb(62, 39, 239), yellow);
   border-style: none;
