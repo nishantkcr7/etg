@@ -7,8 +7,8 @@
 hr {
   background: linear-gradient(to right, red, yellow);
   border-style: none;
-  height: 20px;
-  width: 50%;
+  height: 10px;
+  width: 10%;
   opacity: 1;
 }
 .yellow {
