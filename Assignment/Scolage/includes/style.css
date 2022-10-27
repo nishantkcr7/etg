@@ -17,7 +17,8 @@
   padding: 8px 0px 8px 32px;
 }
 .hero {
-  height: 90vh;
+  height: 50vh;
+  width: 100vw;
   background-image: url("../img/top-banner.png");
   background-size: cover;
 }
@@ -28,7 +29,8 @@
   font-size: 64px;
   font-weight: bolder;
 }
-.btn-register {
+.btn-register,
+.btn-choose {
   margin-top: 42px;
   background-color: rgb(115, 7, 115);
   border-radius: 12px;
@@ -55,7 +57,8 @@
   text-transform: uppercase;
 }
 .admission,
-.admission-footer {
+.admission-footer,
+.choose {
   background-image: url("../img/doodle.png");
   background-size: cover;
 }
@@ -63,7 +66,8 @@
   padding: 58px 28px;
   font-weight: bolder;
 }
-.admission-head--yellow {
+.admission-head--yellow,
+.choose-head--yellow {
   color: rgb(255, 234, 5);
 }
 .admission-body--text {
@@ -78,7 +82,9 @@
 }
 .admission-head--large,
 .why-head--large,
-.how-head--large {
+.how-head--large,
+.choose-head--large,
+.stories-head--large {
   font-weight: bolder;
 }
 .why-head--small {
@@ -87,7 +93,8 @@
   padding: 0 28px;
 }
 .why-body,
-.how-footer {
+.how-footer,
+.stories {
   background-image: url("../img/gradient.png");
   background-size: cover;
 }
@@ -97,11 +104,24 @@
 .bgyellow {
   background-color: rgb(239, 227, 91);
 }
-.how-footer--icon {
+.how-footer--icon img {
   background-color: rgb(126, 126, 235);
   border-radius: 50%;
-  width: fit-content;
-  padding: 20px;
+  padding: 45px;
 }
-.how-footer--icon img {
+
+.btn-explore--large {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: rgb(251, 230, 7);
+  font-size: 24px;
+}
+.college-crousel--img {
+  background-color: rgb(222, 145, 203);
+  border-radius: 20px;
+  width: 50%;
+}
+.story-card {
+  margin: 5% 20%;
+  border-radius: 5%;
 }
