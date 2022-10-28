@@ -2,29 +2,29 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: rgb(115, 7, 115);
+  color: #60269e;
 }
 .a-phone,
 .a-email {
   text-decoration: none;
-  color: rgb(115, 7, 115);
+  color: #60269e;
 }
 .a-phone:visited,
 .a-email:visited,
 .a-phone:hover,
 .a-email:hover {
   text-decoration: none;
-  color: rgb(115, 7, 115);
+  color: #60269e;
 }
 hr {
-  background: linear-gradient(to right, rgb(62, 39, 239), yellow);
+  background: linear-gradient(to right, rgb(62, 39, 239), gold);
   border-style: none;
   height: 10px;
-  width: 10%;
+  width: 5%;
   opacity: 1;
 }
 .yellow {
-  background-color: rgb(251, 230, 7);
+  background-color: gold;
 }
 .nav-top {
   display: flex;
@@ -38,8 +38,11 @@ hr {
 .hero {
   width: 100%;
   padding: 10% 0;
-
-  background-image: url("../img/top-banner.png");
+  background-image: linear-gradient(
+      rgba(37, 37, 37, 0.4),
+      rgba(37, 37, 37, 0.4)
+    ),
+    url("../img/top-banner.png");
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -50,21 +53,29 @@ hr {
   font-size: 64px;
   font-weight: bolder;
 }
-.btn-register,
+.btn-register {
+  background-color: #60269e;
+  width: 50%;
+  text-align: center;
+  margin: 42px 25% 50px;
+  border-radius: 15px;
+  padding: 10px 25px;
+}
 .btn-choose {
-  margin-top: 42px;
-  background-color: rgb(115, 7, 115);
-  border-radius: 12px;
-  border: 0;
-  font-weight: bold;
-  padding: 8px 40px;
+  background-color: #60269e;
+  border-radius: 15px;
+  width: 30%;
+  margin: 0 35%;
+  padding: 10px 25px;
 }
-.btn-register--large,
-.btn-register--small {
-  color: rgb(251, 230, 7);
-  font-weight: lighter;
+.btn-text--small {
+  color: gold;
+  font-weight: light;
+  font-size: 20px;
 }
-.btn-register--large {
+.btn-text--large {
+  color: gold;
+  font-weight: bolder;
   text-transform: uppercase;
   font-size: 24px;
 }
@@ -89,13 +100,11 @@ hr {
 }
 .admission-head--yellow,
 .choose-head--yellow {
-  color: rgb(255, 234, 5);
+  color: gold;
 }
 .admission-body--text {
-  font-size: 32px;
+  font-size: 30px;
   margin-top: 16px;
-  font-weight: bold;
-
   line-height: 33px;
 }
 .admission-footer {
@@ -108,20 +117,22 @@ hr {
 .stories-head--large,
 .contact-head--large {
   font-weight: bolder;
+  font-size: 47px;
+  font-weight: bold;
 }
 .why-head--small {
   font-size: 25px;
   font-style: italic;
   padding: 0 28px;
 }
-.why-body,
-.how-footer,
-.stories {
+.why-body-section,
+.how-footer-section,
+.stories-section {
   background-image: url("../img/gradient.png");
   background-size: cover;
 }
 .contact-body {
-  background-image: url("../img/doodle.png"), url("../img/student.png"),
+  background-image: url("../img/student.png"), url("../img/doodle.png"),
     url("../img/Rectangle\ 11.png");
   background-size: contain;
   background-position: bottom left;
@@ -131,18 +142,19 @@ hr {
   background-color: rgb(162, 162, 241);
 }
 .bgyellow {
-  background-color: rgb(239, 227, 91);
+  background-color: gold;
 }
 .how-footer--icon img {
   background-color: rgb(126, 126, 235);
   border-radius: 50%;
+  color: gold;
   padding: 45px;
 }
 
 .btn-explore--large {
   text-transform: uppercase;
   font-weight: bold;
-  color: rgb(251, 230, 7);
+  color: gold;
   font-size: 24px;
 }
 .college-crousel--img {
@@ -160,4 +172,9 @@ hr {
   height: 50px;
   z-index: -1;
   background-color: violet;
+}
+.admission-head--small {
+  font-weight: lighter;
+  font-size: 32px;
+  line-height: 40px;
 }
