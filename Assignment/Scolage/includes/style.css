@@ -4,6 +4,39 @@
   box-sizing: border-box;
   color: #60269e;
 }
+
+@media (max-width: 75em) {
+  .card-text {
+    font-size: 20px;
+  }
+}
+@media (max-width: 55em) {
+  .card-text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 35em) {
+  .card-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 75em) {
+  .why-body--head {
+    font-size: 1rem;
+    background-color: red;
+  }
+}
+@media (max-width: 48em) {
+  .why-body--head {
+    font-size: 0.9rem;
+    background-color: red;
+  }
+  .why-head--small {
+    font-size: 0.2rem;
+  }
+}
 .a-phone,
 .a-email {
   text-decoration: none;
@@ -43,8 +76,9 @@ hr {
       rgba(37, 37, 37, 0.4)
     ),
     url("../img/top-banner.png");
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 .hero-text {
   padding-left: 32px;
@@ -121,7 +155,7 @@ hr {
   font-weight: bold;
 }
 .why-head--small {
-  font-size: 25px;
+  font-size: 1.5rem;
   font-style: italic;
   padding: 0 28px;
 }
@@ -131,12 +165,20 @@ hr {
   background-image: url("../img/gradient.png");
   background-size: cover;
 }
+.contact-section {
+  background-image: url("../img/doodle.png");
+  background-position: center;
+  background-size: cover;
+}
 .contact-body {
-  background-image: url("../img/student.png"), url("../img/doodle.png"),
-    url("../img/Rectangle\ 11.png");
+  background-image: url("../img/student.png"), url("../img/Rectangle\ 11.png");
   background-size: contain;
   background-position: bottom left;
   background-repeat: no-repeat;
+}
+input,
+select {
+  background-color: #f2f2f2 !important;
 }
 .bgblue {
   background-color: rgb(162, 162, 241);
