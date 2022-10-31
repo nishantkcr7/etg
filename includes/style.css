@@ -40,5 +40,13 @@ tbody a {
   color: rgb(74, 74, 230);
 }
 .author-img {
-  width: 15%;
+  width: 10%;
+}
+@media (max-width: 30em) {
+  .author-img {
+    width: 7%;
+  }
+  .author-designation {
+    font-size: 8px;
+  }
 }
