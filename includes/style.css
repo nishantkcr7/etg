@@ -39,3 +39,6 @@ a:hover {
 tbody a {
   color: rgb(74, 74, 230);
 }
+.author-img {
+  width: 15%;
+}
