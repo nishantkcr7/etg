@@ -7,7 +7,7 @@
 
 .error {
   border-color: #fd3737;
-  box-shadow: 0 0 0 0.1rem #fa6262;
+  /* box-shadow: 0 0 0 0.1rem #fa6262; */
 }
 
 .msg-error {
