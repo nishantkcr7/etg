@@ -17,16 +17,16 @@ const inputCourse = document.querySelector("#course");
 const inputMobile = document.querySelector("#mobile");
 const btnReset = document.querySelector("#reset");
 const btnSubmit = document.querySelector("#submit");
-
+let countError = 0;
 // Adding event listner on click of submit button
 btnSubmit.addEventListener("click", function () {
   isSubmitClicked = !isSubmitClicked;
   validateForm();
   activateBlur();
-  if (hasError) {
-    btnSubmit.setAttribute("disabled", true);
+  if (countError == 0) {
+    btnSubmit.removeAttribute("disabled");
   } else {
-    btnSubmit.setAttribute("disabled", false);
+    btnSubmit.setAttribute("disabled", true);
   }
 });
 
@@ -44,10 +44,12 @@ const removeErrorMsg = (el) => {
 
 // Function to validate form
 const validateForm = () => {
+  countError = 0;
   hasError = false;
   //   Validating Name
   if (inputName.value === "") {
     dErrorMsg(inputName, "Name can't be empty");
+    countError++;
     hasError = true;
   } else {
     removeErrorMsg(inputName);
@@ -56,6 +58,7 @@ const validateForm = () => {
   //   Validating DOB
   if (inputDOB.value === "") {
     dErrorMsg(inputDOB, "DOB can't be empty");
+    countError++;
     hasError = true;
   } else {
     removeErrorMsg(inputDOB);
@@ -66,6 +69,7 @@ const validateForm = () => {
 
   if (document.querySelector("input[name='sex']:checked") == null) {
     dErrorMsg(inputSex, "Please choose your gender");
+    countError++;
     hasError = true;
   } else {
     removeErrorMsg(inputSex);
@@ -75,6 +79,7 @@ const validateForm = () => {
   //   Validating Email
   if (inputEmail.value === "") {
     dErrorMsg(inputEmail, "Email can't be empty.");
+    countError++;
     hasError = true;
   } else {
     removeErrorMsg(inputEmail);
@@ -84,6 +89,7 @@ const validateForm = () => {
   //   Validating Address
   if (inputAddress.value === "") {
     dErrorMsg(inputAddress, "Address can't be empty");
+    countError++;
     hasError = true;
   } else {
     removeErrorMsg(inputAddress);
@@ -92,6 +98,7 @@ const validateForm = () => {
   //   Validating School
   if (inputSchool.value === "none") {
     dErrorMsg(inputSchool, "Please select school");
+    countError++;
     hasError = true;
   } else {
     removeErrorMsg(inputSchool);
@@ -100,6 +107,7 @@ const validateForm = () => {
   //   Validating Department
   if (inputDepartment.value === "none") {
     dErrorMsg(inputDepartment, "Please select department");
+    countError++;
     hasError = true;
   } else {
     removeErrorMsg(inputDepartment);
@@ -108,6 +116,7 @@ const validateForm = () => {
   //   Validating Course
   if (inputCourse.value === "none") {
     dErrorMsg(inputCourse, "Please select course");
+    countError++;
     hasError = true;
   } else {
     removeErrorMsg(inputCourse);
@@ -116,13 +125,16 @@ const validateForm = () => {
   //   Validating Mobile
   if (inputMobile.value === "") {
     dErrorMsg(inputMobile, "Mobile can't be empty");
+    countError++;
     hasError = true;
   } else {
     removeErrorMsg(inputMobile);
     hasError = false;
   }
-  if (hasError == false) {
-    btnSubmit.setAttribute("disabled", false);
+  if (countError == 0) {
+    btnSubmit.removeAttribute("disabled");
+  } else {
+    btnSubmit.setAttribute("disabled", true);
   }
   console.log(hasError);
 };
