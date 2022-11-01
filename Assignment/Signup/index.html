@@ -16,7 +16,7 @@
 
   <body class="d-flex justify-content-center align-items-center">
     <main>
-      <div class="form mt-5">
+      <div class="form mt-5 px-3">
         <!-- Signup page header -->
         <div class="row">
           <div class="col text-uppercase text-center">
@@ -32,26 +32,26 @@
         <!-- Form Body Starts -->
         <!-- Name -->
         <div class="row my-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label for="name">Name:</label>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <input class="form-control" type="text" name="name" id="name" />
           </div>
         </div>
         <!-- DOB -->
         <div class="row my-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label for="dob">DOB:</label>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <input class="form-control" type="date" name="dob" id="dob" />
           </div>
         </div>
         <!-- SEX -->
         <div class="row my-3">
-          <div class="col-6">Sex:</div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">Sex:</div>
+          <div class="col-12 col-md-6">
             <input class="form-check-input" type="radio" name="sex" id="male" />
             <label for="male">Male</label>
             <input
@@ -61,23 +61,24 @@
               id="female"
             />
             <label for="female">Female</label>
+            <input type="hidden" id="inputSex" />
           </div>
         </div>
         <!-- EMAIL -->
         <div class="row my-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label for="email">Email:</label>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <input class="form-control" type="email" name="email" id="email" />
           </div>
         </div>
         <!-- address -->
         <div class="row my-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label for="address">Address:</label>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <input
               class="form-control"
               type="text"
@@ -88,10 +89,10 @@
         </div>
         <!-- school -->
         <div class="row my-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label for="school">School:</label>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <select class="form-select" name="school" id="school">
               <option value="none">Select..</option>
               <option value="primary">Primary</option>
@@ -103,10 +104,10 @@
 
         <!-- Department -->
         <div class="row my-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label for="department">Department:</label>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <select class="form-select" name="department" id="department">
               <option value="none">Select..</option>
               <option value="cs">Computer Science</option>
@@ -117,10 +118,10 @@
         </div>
         <!-- course -->
         <div class="row my-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label for="course">Course:</label>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <select class="form-select" name="course" id="course">
               <option value="none">Select..</option>
               <option value="eng">Engineering</option>
@@ -130,19 +131,23 @@
         </div>
         <!-- mobile -->
         <div class="row my-3">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <label for="mobile">Mobile Number:</label>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <input class="form-control" type="text" name="mobile" id="mobile" />
           </div>
         </div>
         <div class="row my-3">
           <div class="col-6">
-            <button type="reset" class="btn btn-danger">Reset</button>
+            <button type="reset" id="reset" class="btn btn-danger">
+              Reset
+            </button>
           </div>
           <div class="col-6">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" id="submit" class="btn btn-success">
+              Submit
+            </button>
           </div>
         </div>
         <!-- Form Body Ends -->

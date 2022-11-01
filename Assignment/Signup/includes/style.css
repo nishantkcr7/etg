@@ -1,1 +1,17 @@
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 0.2rem rgb(239, 219, 239);
+}
 
+.error {
+  border-color: #fd3737;
+  box-shadow: 0 0 0 0.1rem #fa6262;
+}
+
+.msg-error {
+  color: #fa6262;
+  font-size: small;
+  font-weight: bold;
+}
