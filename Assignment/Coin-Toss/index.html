@@ -78,43 +78,37 @@
         </div>
       </div>
     </section>
-    <style></style>
 
-    <main>
-      <!-- Container for fliping the coin -->
-      <div class="row toss-container">
-        <i
-          class="fa-brands fa-bitcoin fa-2xl coin"
-          style="--fa-flip-x: 1; --fa-flip-y: 0; font-size: 5em"
-        ></i>
+    <!-- Display Result -->
+    <div class="row my-3 text-danger result-win">
+      <div class="col-6 text-end user-select">
+        You 👤:
+        <span class="user-select--value">None</span>
       </div>
-      <!-- Selecting Your Toss -->
-      <div class="s mt-5 mb-3 text-center input-toss--div">
-        <div class="input-toss head">Head</div>
-        <div class="input-toss tail">Tail</div>
+      <div class="col-6 text-start computer-select">
+        Computer 🖥️:
+        <span class="computer-select--value">None</span>
       </div>
-      <!-- Display Result -->
-      <div class="row my-3 text-danger result-win">
-        <div class="col-6 text-end user-select">
-          You 👤:
-          <span class="user-select--value">None</span>
-        </div>
-        <div class="col-6 text-start computer-select">
-          Computer 🖥️:
-          <span class="computer-select--value">None</span>
-        </div>
-      </div>
+    </div>
 
-      <!-- Triggering Toss -->
-      <div class="row text-center">
-        <div class="col-12">
-          <button class="btn btn-outline-primary flip-coin">
-            Toss
-          </button>
-        </div>
-        <div class="col-12 text-center result"></div>
-      </div>
-    </main>
+    <!-- Selecting Your Toss -->
+    <div class="s mt-5 mb-3 text-end input-toss--div">
+      <div class="input-toss head">Head</div>
+      <div class="input-toss tail">Tail</div>
+      <button class="btn btn-outline-primary flip-coin">Toss</button>
+    </div>
+
+    <!-- Container for fliping the coin -->
+    <div class="row toss-container">
+      <i
+        class="fa-brands fa-bitcoin fa-2xl coin"
+        style="--fa-flip-x: 1; --fa-flip-y: 0; font-size: 5em"
+      ></i>
+    </div>
+    <!-- Triggering Toss -->
+    <div class="row text-center">
+      <div class="col-12 text-center result"></div>
+    </div>
     <br /><br /><br /><br /><br /><br /><br />
     <!-- Bootstrap JS -->
     <script
