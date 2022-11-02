@@ -107,3 +107,16 @@ inputLname.addEventListener("keydown", preventNumber);
 btnReset.addEventListener("click", () => {
   location.reload();
 });
+
+// Preventing the user from selecting previous dates
+currentDate = new Date();
+let date = currentDate.getDate();
+let month = currentDate.getMonth() + 1;
+let year = currentDate.getFullYear();
+if (String(date).length == 1) {
+  date = "0" + date;
+}
+if (String(month).length == 1) {
+  month = "0" + month;
+}
+inputDOB.setAttribute("min", year + "-" + month + "-" + date);
