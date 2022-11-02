@@ -6,12 +6,12 @@
 }
 
 .error {
-  border-color: #fd3737;
+  border-color: #ff0000;
   /* box-shadow: 0 0 0 0.1rem #fa6262; */
 }
 
 .msg-error {
-  color: #fa6262;
+  color: #ffffff;
   font-size: small;
   font-weight: bold;
 }
@@ -19,4 +19,13 @@ h1 {
   font-family: "Libre Baskerville", serif;
   font-family: "Miss Fajardose", cursive;
   font-family: "Sawarabi Gothic", sans-serif;
+}
+.form {
+  background-color: #993333;
+  border-radius: 12px;
+}
+body {
+  font-weight: bolder;
+  color: white;
+  background-color: black;
 }
