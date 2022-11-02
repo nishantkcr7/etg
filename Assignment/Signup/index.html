@@ -10,6 +10,13 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Miss+Fajardose&family=Sawarabi+Gothic&display=swap"
+      rel="stylesheet"
+    />
     <!-- Custome CSS -->
     <link rel="stylesheet" href="includes/style.css" />
   </head>
@@ -32,28 +39,48 @@
         <!-- Form Body Starts -->
         <!-- Name -->
         <div class="row my-3">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-3">
             <label for="name">Name:</label>
           </div>
-          <div class="col-12 col-md-6">
-            <input class="form-control" type="text" name="name" id="name" />
-            <span class="msg-error"></span>
+          <div class="col-12 col-md-9">
+            <div class="row">
+              <div class="col-6">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="fname"
+                  id="fname"
+                  placeholder="First Name"
+                />
+                <span class="msg-error"></span>
+              </div>
+              <div class="col-6">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="lname"
+                  id="lname"
+                  placeholder="Last Name"
+                />
+                <span class="msg-error"></span>
+              </div>
+            </div>
           </div>
         </div>
         <!-- DOB -->
         <div class="row my-3">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-3">
             <label for="dob">DOB:</label>
           </div>
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-9">
             <input class="form-control" type="date" name="dob" id="dob" />
             <span class="msg-error"></span>
           </div>
         </div>
         <!-- SEX -->
         <div class="row my-3">
-          <div class="col-12 col-md-6">Sex:</div>
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-3">Sex:</div>
+          <div class="col-12 col-md-9">
             <input class="form-check-input" type="radio" name="sex" id="male" />
             <label for="male">Male</label>
             <input
@@ -70,20 +97,20 @@
         </div>
         <!-- EMAIL -->
         <div class="row my-3">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-3">
             <label for="email">Email:</label>
           </div>
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-9">
             <input class="form-control" type="email" name="email" id="email" />
             <span class="msg-error"></span>
           </div>
         </div>
         <!-- address -->
         <div class="row my-3">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-3">
             <label for="address">Address:</label>
           </div>
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-9">
             <input
               class="form-control"
               type="text"
@@ -95,12 +122,12 @@
         </div>
         <!-- school -->
         <div class="row my-3">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-3">
             <label for="school">School:</label>
           </div>
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-9">
             <select class="form-select" name="school" id="school">
-              <option value="none">Select..</option>
+              <option value="" selected disabled>Select..</option>
               <option value="primary">Primary</option>
               <option value="secondary">Secondary</option>
               <option value="highersecondary">Higher Secondary</option></select
@@ -110,12 +137,12 @@
 
         <!-- Department -->
         <div class="row my-3">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-3">
             <label for="department">Department:</label>
           </div>
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-9">
             <select class="form-select" name="department" id="department">
-              <option value="none">Select..</option>
+              <option value="" selected disabled>Select..</option>
               <option value="cs">Computer Science</option>
               <option value="ee">Electrical &amp; Electronics</option>
               <option value="me">Mechanical Engineering</option></select
@@ -124,12 +151,12 @@
         </div>
         <!-- course -->
         <div class="row my-3">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-3">
             <label for="course">Course:</label>
           </div>
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-9">
             <select class="form-select" name="course" id="course">
-              <option value="none">Select..</option>
+              <option value="" selected disabled>Select..</option>
               <option value="eng">Engineering</option>
               <option value="humanity">Humanity</option></select
             ><span class="msg-error"></span>
@@ -137,11 +164,16 @@
         </div>
         <!-- mobile -->
         <div class="row my-3">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-3">
             <label for="mobile">Mobile Number:</label>
           </div>
-          <div class="col-12 col-md-6">
-            <input class="form-control" type="text" name="mobile" id="mobile" />
+          <div class="col-12 col-md-9">
+            <input
+              class="form-control"
+              type="number"
+              name="mobile"
+              id="mobile"
+            />
             <span class="msg-error"></span>
           </div>
         </div>

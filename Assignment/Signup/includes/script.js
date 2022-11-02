@@ -2,9 +2,9 @@
 // Getting reference of all input field and buttons
 
 let isSubmitClicked = false;
-hasError = false;
 
-const inputName = document.querySelector("#name");
+const inputFname = document.querySelector("#fname");
+const inputLname = document.querySelector("#lname");
 const inputDOB = document.querySelector("#dob");
 const inputSexValues = document.querySelectorAll("input[name='sex']");
 const inputSex = document.querySelector("#inputSex");
@@ -25,6 +25,7 @@ btnSubmit.addEventListener("click", function () {
   activateBlur();
   if (countError == 0) {
     btnSubmit.removeAttribute("disabled");
+    alert(`Hi ${inputFname.value}, your form is submitted.`);
   } else {
     btnSubmit.setAttribute("disabled", true);
   }
@@ -32,8 +33,10 @@ btnSubmit.addEventListener("click", function () {
 
 // Function to add error msg
 const dErrorMsg = (el, msg) => {
+  //     msg = msg.style.text-transform = "capitalize";
   el.nextElementSibling.innerText = msg;
   el.classList.add("error");
+  countError++;
 };
 
 // Function to remove error msg
@@ -41,113 +44,66 @@ const removeErrorMsg = (el) => {
   el.nextElementSibling.innerText = "";
   el.classList.remove("error");
 };
-
+inputArray = [
+  inputFname,
+  inputLname,
+  inputDOB,
+  inputEmail,
+  inputAddress,
+  inputSchool,
+  inputDepartment,
+  inputCourse,
+  inputMobile,
+];
 // Function to validate form
 const validateForm = () => {
   countError = 0;
-  hasError = false;
-  //   Validating Name
-  if (inputName.value === "") {
-    dErrorMsg(inputName, "Name can't be empty");
-    countError++;
-    hasError = true;
-  } else {
-    removeErrorMsg(inputName);
-    hasError = false;
-  }
-  //   Validating DOB
-  if (inputDOB.value === "") {
-    dErrorMsg(inputDOB, "DOB can't be empty");
-    countError++;
-    hasError = true;
-  } else {
-    removeErrorMsg(inputDOB);
-    hasError = false;
-  }
-  //   Validating Sex
-  let isGenderChecked = 0;
-
+  //   Validating Gender
   if (document.querySelector("input[name='sex']:checked") == null) {
     dErrorMsg(inputSex, "Please choose your gender");
-    countError++;
-    hasError = true;
   } else {
     removeErrorMsg(inputSex);
-    hasError = false;
   }
-
-  //   Validating Email
-  if (inputEmail.value === "") {
-    dErrorMsg(inputEmail, "Email can't be empty.");
-    countError++;
-    hasError = true;
-  } else {
-    removeErrorMsg(inputEmail);
-    hasError = false;
-  }
-
-  //   Validating Address
-  if (inputAddress.value === "") {
-    dErrorMsg(inputAddress, "Address can't be empty");
-    countError++;
-    hasError = true;
-  } else {
-    removeErrorMsg(inputAddress);
-    hasError = false;
-  }
-  //   Validating School
-  if (inputSchool.value === "none") {
-    dErrorMsg(inputSchool, "Please select school");
-    countError++;
-    hasError = true;
-  } else {
-    removeErrorMsg(inputSchool);
-    hasError = false;
-  }
-  //   Validating Department
-  if (inputDepartment.value === "none") {
-    dErrorMsg(inputDepartment, "Please select department");
-    countError++;
-    hasError = true;
-  } else {
-    removeErrorMsg(inputDepartment);
-    hasError = false;
-  }
-  //   Validating Course
-  if (inputCourse.value === "none") {
-    dErrorMsg(inputCourse, "Please select course");
-    countError++;
-    hasError = true;
-  } else {
-    removeErrorMsg(inputCourse);
-    hasError = false;
-  }
-  //   Validating Mobile
-  if (inputMobile.value === "") {
-    dErrorMsg(inputMobile, "Mobile can't be empty");
-    countError++;
-    hasError = true;
-  } else {
-    removeErrorMsg(inputMobile);
-    hasError = false;
-  }
+  inputArray.forEach((el) => {
+    el.value == ""
+      ? dErrorMsg(el, `${el.name} can't be empty.`)
+      : removeErrorMsg(el);
+  });
   if (countError == 0) {
     btnSubmit.removeAttribute("disabled");
   } else {
     btnSubmit.setAttribute("disabled", true);
   }
-  console.log(hasError);
 };
 
 const activateBlur = () => {
   if (isSubmitClicked) {
-    inputName.addEventListener("blur", validateForm);
-    inputDOB.addEventListener("blur", validateForm);
-    inputEmail.addEventListener("blur", validateForm);
-    inputAddress.addEventListener("blur", validateForm);
-    inputSchool.addEventListener("blur", validateForm);
-    inputDepartment.addEventListener("blur", validateForm);
-    inputCourse.addEventListener("blur", validateForm);
-    inputMobile.addEventListener("blur", validateForm);
+    inputArray.forEach((el) => {
+      el.addEventListener("blur", validateForm);
+    });
   }
 };
+const preventNumber = (event) => {
+  // a-z 97 122
+  if (event.key.charCodeAt() >= 97 && event.key.charCodeAt() <= 122)
+    return true;
+  // A-Z 65 90
+  if (event.key.charCodeAt() >= 65 && event.key.charCodeAt() <= 90) return true;
+  // space
+  if (event.key.charCodeAt() == 32) return true;
+  // backspace
+  if (event.key.charCodeAt() == 66) return true;
+  // tab
+  if (event.key.charCodeAt() == 84) return true;
+  else {
+    event.preventDefault();
+    return false;
+  }
+};
+// Preventing from inputing number inside the name
+inputFname.addEventListener("keydown", preventNumber);
+inputLname.addEventListener("keydown", preventNumber);
+
+btnReset.addEventListener("click", () => {
+  location.reload();
+});
