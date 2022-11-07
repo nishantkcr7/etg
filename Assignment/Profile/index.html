@@ -48,7 +48,7 @@
                 <input
                   class="form-control"
                   type="text"
-                  name="fname"
+                  name="First Name"
                   id="fname"
                   placeholder="First Name"
                 />
@@ -58,7 +58,7 @@
                 <input
                   class="form-control"
                   type="text"
-                  name="lname"
+                  name="Last Name"
                   id="lname"
                   placeholder="Last Name"
                 />
@@ -76,7 +76,7 @@
             <input
               class="form-control"
               type="number"
-              name="mobile"
+              name="Mobile"
               id="mobile"
             />
             <span class="msg-error"></span>
@@ -88,7 +88,7 @@
             <label for="email">Email:</label>
           </div>
           <div class="col-12 col-md-9">
-            <input class="form-control" type="email" name="email" id="email" />
+            <input class="form-control" type="email" name="Email" id="email" />
             <span class="msg-error"></span>
           </div>
         </div>
@@ -103,11 +103,12 @@
                 class="form-control"
                 placeholder="About Yourself"
                 id="summary"
+                name="Summary"
                 style="height: 100px"
               ></textarea>
+              <span class="msg-error"></span>
               <label for="summary">About Yourself</label>
             </div>
-            <span class="msg-error"></span>
           </div>
         </div>
 
@@ -120,16 +121,16 @@
             <label for="english">English</label>
             <input
               type="checkbox"
-              class="me-2 form-check-input"
-              name="language"
+              class="me-2 form-check-input checkLanguage"
+              name="Language"
               id="english"
               value="english"
             />
             <label for="hindi">Hindi</label>
             <input
               type="checkbox"
-              class="me-2 form-check-input"
-              name="language"
+              class="me-2 form-check-input checkLanguage"
+              name="Language"
               id="hindi"
               value="hindi"
             />
@@ -137,9 +138,9 @@
             <label for="telegu">Telegu</label>
             <input
               type="checkbox"
-              class="me-2 form-check-input"
-              name="language"
-              id="telegu"
+              class="me-2 form-check-input checkLanguage"
+              name="Language"
+              id="language"
               value="telegu"
             />
             <span class="msg-error"></span>
@@ -155,7 +156,7 @@
             <input
               type="radio"
               class="me-2 form-check-input"
-              name="language"
+              name="Education"
               id="undergraduate"
               value="undergraduate"
             />
@@ -163,7 +164,7 @@
             <input
               type="radio"
               class="me-2 form-check-input"
-              name="language"
+              name="Education"
               id="graduate"
               value="graduate"
             />
@@ -176,9 +177,9 @@
             <label for="movie">Movies Watched:</label>
           </div>
           <div class="col-12 col-md-9">
-            <select name="movie" id="movie" class="form-control">
+            <select name="Watched Movie" id="movie" class="form-control">
               <option class="dropdown-item" value="" selected disabled>
-                Select Movies
+                Select Movies...
               </option>
               <option class="dropdown-item" value="black_mirror">
                 Black Mirror
@@ -200,30 +201,124 @@
             <label for="dob">DOB:</label>
           </div>
           <div class="col-12 col-md-9">
-            <input type="date" name="dob" id="dob" class="form-control" />
+            <input type="date" name="DOB" id="dob" class="form-control" />
             <span class="msg-error"></span>
           </div>
         </div>
 
-        <div class="row my-3 pb-5">
+        <div class="row my-4 pb-5">
           <div class="col-6">
             <button type="reset" id="reset" class="btn btn-danger">
               Reset
             </button>
           </div>
           <div class="col-6">
-            <button type="submit" id="submit" class="btn btn-success">
+            <button
+              type="submit"
+              id="submit"
+              class="btn btn-success"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+            >
               Submit
             </button>
           </div>
         </div>
         <!-- Form Body Ends -->
+        <!-- Modal Starts -->
+        <div
+          class="modal fade"
+          id="staticBackdrop"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                  Nishant Kumar
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <!-- Modal Body Starts -->
+              <div class="modal-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Name</th>
+                      <td class="dName"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Mobile</th>
+                      <td class="dMobile"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Email</th>
+                      <td class="dEmail"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Summary</th>
+                      <td class="dSummary"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Language</th>
+                      <td class="dLanguage"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Education</th>
+                      <td class="dEducation"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Movies Watched</th>
+                      <td class="dWatched"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Date of Birth</th>
+                      <td class="dBirth"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Modal Body Ends -->
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal Ends -->
       </div>
     </main>
-
+    <!-- Bootstrap JS CDN -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+    <!-- jQuery JS CDN -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
       crossorigin="anonymous"
     ></script>
     <!-- Custome JS -->
