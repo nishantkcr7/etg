@@ -18,7 +18,8 @@ const btnReset = document.querySelector("#reset");
 const btnSubmit = document.querySelector("#submit");
 let isSubmitClicked = false;
 let countError = 0;
-
+btnSubmit.removeAttribute("data-bs-target");
+btnSubmit.removeAttribute("data-bs-toggle");
 inputArray = [
   inputFname,
   inputLname,
@@ -34,6 +35,8 @@ $("#submit").click(() => {
   activateBlur();
   if (countError == 0) {
     btnSubmit.removeAttribute("disabled");
+    btnSubmit.setAttribute("data-bs-target", "#staticBackdrop");
+    btnSubmit.setAttribute("data-bs-toggle", "modal");
   } else {
     btnSubmit.setAttribute("disabled", true);
   }
@@ -84,6 +87,9 @@ function validateForm() {
     : removeErrorMsg(inputMovie);
 
   if (countError == 0) {
+    btnSubmit.setAttribute("data-bs-target", "#staticBackdrop");
+    btnSubmit.setAttribute("data-bs-toggle", "modal");
+
     displayDetails();
     btnSubmit.removeAttribute("disabled");
   } else {
@@ -114,6 +120,8 @@ function removeErrorMsg(el) {
 
 // Function to display values
 function displayDetails() {
+  document.querySelector("#staticBackdropLabel").innerText =
+    "Hi " + inputFname.value;
   // Getting Radio value
   let education = $("input[type='radio'][name='Education']:checked");
   if (education.length > 0) {
@@ -140,5 +148,4 @@ function displayDetails() {
   document.querySelector(".dEducation").innerText = education;
   document.querySelector(".dWatched").innerText = inputMovie.value;
   document.querySelector(".dBirth").innerText = inputDOB.value;
-  console.log($(".dName").val());
 }
