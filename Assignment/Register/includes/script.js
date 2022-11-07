@@ -55,6 +55,65 @@ form.appendChild(headerRow);
 form.appendChild(headerSec);
 
 // Name
+rowName = element("div");
+addclass(rowName, "row my-3");
+
+// Name lable
+colNameLabel = element("div");
+addclass(colNameLabel, "col-12 col-md-3");
+
+colNameLabelNode = element("label");
+colNameLabelNode.setAttribute("for", "name");
+
+colNameLabel.appendChild(colNameLabelNode);
+colNameLabelNode.appendChild(text("Name:"));
+
+// Name Input
+colNameInput = element("div");
+addclass(colNameInput, "col-12 col-md-9");
+
+colNameInputRow = element("div");
+addclass(colNameInputRow, "row");
+colNameInputRowCol = element("div");
+addclass(colNameInputRowCol, "col-6");
+colNameInputRow.appendChild(colNameInputRowCol);
+
+colNameInputRowColInput = element("input");
+addclass(colNameInputRowColInput, "form-control");
+colNameInputRowColInput.setAttribute("type", "text");
+colNameInputRowColInput.setAttribute("name", "fname");
+colNameInputRowColInput.setAttribute("id", "fname");
+colNameInputRowColInput.setAttribute("placeholder", "First Name");
+colNameInputRowCol.appendChild(colNameInputRowColInput);
+
+colNameInputRowColSpan = element("span");
+addclass(colNameInputRowColSpan, "msg-error");
+colNameInputRowCol.appendChild(colNameInputRowColSpan);
+
+// Here
+colNameInputRowCol2 = element("div");
+addclass(colNameInputRowCol2, "col-6");
+colNameInputRow.appendChild(colNameInputRowCol2);
+
+colNameInputRowCol2Input = element("input");
+addclass(colNameInputRowCol2Input, "form-control");
+colNameInputRowCol2Input.setAttribute("type", "text");
+colNameInputRowCol2Input.setAttribute("name", "lname");
+colNameInputRowCol2Input.setAttribute("id", "lname");
+colNameInputRowCol2Input.setAttribute("placeholder", "Last Name");
+colNameInputRowCol2.appendChild(colNameInputRowCol2Input);
+
+colNameInputRowCol2Span = element("span");
+addclass(colNameInputRowCol2Span, "msg-error");
+colNameInputRowCol2.appendChild(colNameInputRowCol2Span);
+
+// There
+colNameInput.appendChild(colNameInputRow);
+
+rowName.appendChild(colNameLabel);
+rowName.appendChild(colNameInput);
+
+form.appendChild(rowName);
 
 main.appendChild(form);
 body.appendChild(main);
