@@ -47,9 +47,9 @@ btnReset.addEventListener("click", resetForm);
 
 function resetForm() {
   //   Input fields: Name, Mobile, Email, DOB
-  $("input").val("");
+  $("input").val("").removeClass("error").next().text("");
   //   Text Area: Summary
-  $("#summary").val("");
+  $("#summary").val("").removeClass("error").next().text("");
   //   Radio Buttons: Education
   if ($("input:radio[name='Education']").is(":checked")) {
     $("input:radio[name='Education']").prop("checked", false);
@@ -59,7 +59,7 @@ function resetForm() {
     $("input:checkbox[name='Language']").prop("checked", false);
   }
   //   Select: Movies
-  $("#movie").val("");
+  $("#movie").val("").removeClass("error").next().text("");
 }
 
 // Function to validate form
