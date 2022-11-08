@@ -34,9 +34,9 @@ $("#submit").click(() => {
   validateForm();
   activateBlur();
   if (countError == 0) {
-    btnSubmit.removeAttribute("disabled");
     btnSubmit.setAttribute("data-bs-target", "#staticBackdrop");
     btnSubmit.setAttribute("data-bs-toggle", "modal");
+    btnSubmit.removeAttribute("disabled");
   } else {
     btnSubmit.setAttribute("disabled", true);
   }
@@ -71,6 +71,7 @@ function validateForm() {
       ? dErrorMsg(el, `${el.name} can't be empty.`)
       : removeErrorMsg(el);
   });
+
   //   Radio Buttons: Education
   $("input:radio[name='Education']").is(":checked")
     ? removeErrorMsg(inputEducation)
