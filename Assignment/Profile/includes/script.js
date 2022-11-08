@@ -149,3 +149,28 @@ function displayDetails() {
   document.querySelector(".dWatched").innerText = inputMovie.value;
   document.querySelector(".dBirth").innerText = inputDOB.value;
 }
+
+if (isSubmitClicked) {
+  languages = document.querySelectorAll(".checkLanguage");
+  languages.forEach((el) => {
+    el.addEventListener("change", validateForm);
+  });
+  inputMovie.addEventListener("change", validateForm);
+  console.log();
+  document.getElementsByName("Education").forEach((el) => {
+    el.addEventListener("change", validateForm);
+  });
+}
+
+// Validate email ID
+const validateEmail = (email) => {
+  console.log(`Validate Email Called`);
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+};
+inputEmail.addEventListener("blur", () => {
+  validateEmail(inputEmail.value)
+    ? removeErrorMsg(inputEmail)
+    : dErrorMsg(inputEmail, "Email is not valid");
+});
