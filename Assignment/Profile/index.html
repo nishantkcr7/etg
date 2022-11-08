@@ -76,283 +76,274 @@
     </section>
 
     <main class="container">
-      <div class="form mt-5 px-3">
-        <!-- Secondary Header -->
-        <div class="row mt-3">
-          <div class="col text-start">
-            <span class="text-danger">* </span> All fields are mandatory
-          </div>
+      <!-- Secondary Header -->
+      <div class="row mt-3">
+        <div class="col text-start">
+          <span class="text-danger">* </span> All fields are mandatory
         </div>
-        <!-- Form Body Starts -->
-        <!-- Name -->
-        <div class="row my-3">
-          <div class="col-12 col-md-3">
-            <label for="fname">Name:</label>
-          </div>
-          <div class="col-12 col-md-9">
-            <div class="row">
-              <div class="col-6">
-                <input
-                  class="form-control"
-                  type="text"
-                  name="First Name"
-                  id="fname"
-                  placeholder="First Name"
-                />
-                <span class="msg-error"></span>
-              </div>
-              <div class="col-6">
-                <input
-                  class="form-control"
-                  type="text"
-                  name="Last Name"
-                  id="lname"
-                  placeholder="Last Name"
-                />
-                <span class="msg-error"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- mobile -->
-        <div class="row my-3">
-          <div class="col-12 col-md-3">
-            <label for="mobile">Mobile Number:</label>
-          </div>
-          <div class="col-12 col-md-9">
-            <input
-              class="form-control"
-              type="number"
-              name="Mobile"
-              id="mobile"
-            />
-            <span class="msg-error"></span>
-          </div>
-        </div>
-        <!-- EMAIL -->
-        <div class="row my-3">
-          <div class="col-12 col-md-3">
-            <label for="email">Email:</label>
-          </div>
-          <div class="col-12 col-md-9">
-            <input class="form-control" type="email" name="Email" id="email" />
-            <span class="msg-error"></span>
-          </div>
-        </div>
-        <!-- Summary -->
-        <div class="row my-3">
-          <div class="col-12 col-md-3">
-            <label for="summary">Summary:</label>
-          </div>
-          <div class="col-12 col-md-9">
-            <div class="form-floating">
-              <textarea
-                class="form-control"
-                placeholder="About Yourself"
-                id="summary"
-                name="Summary"
-                style="height: 100px"
-              ></textarea>
-              <span class="msg-error"></span>
-              <label for="summary">About Yourself</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Language -->
-        <div class="row my-3">
-          <div class="col-12 col-md-3">
-            <label for="english">Language:</label>
-          </div>
-          <div class="col-12 col-md-9">
-            <label for="english">English</label>
-            <input
-              type="checkbox"
-              class="me-2 form-check-input checkLanguage"
-              name="Language"
-              id="english"
-              value="english"
-            />
-            <label for="hindi">Hindi</label>
-            <input
-              type="checkbox"
-              class="me-2 form-check-input checkLanguage"
-              name="Language"
-              id="hindi"
-              value="hindi"
-            />
-
-            <label for="telegu">Telegu</label>
-            <input
-              type="checkbox"
-              class="me-2 form-check-input checkLanguage"
-              name="Language"
-              id="language"
-              value="telegu"
-            />
-            <span class="msg-error"></span>
-          </div>
-        </div>
-        <!-- Education -->
-        <div class="row my-3">
-          <div class="col-12 col-md-3">
-            <label for="undergraduate">Education:</label>
-          </div>
-          <div class="col-12 col-md-9">
-            <label for="undergraduate">Under Graduate</label>
-            <input
-              type="radio"
-              class="me-2 form-check-input"
-              name="Education"
-              id="undergraduate"
-              value="undergraduate"
-            />
-            <label for="graduate">Graduate</label>
-            <input
-              type="radio"
-              class="me-2 form-check-input"
-              name="Education"
-              id="graduate"
-              value="graduate"
-            />
-            <span class="msg-error"></span>
-          </div>
-        </div>
-        <!-- Movies Watched -->
-        <div class="row my-3">
-          <div class="col-12 col-md-3">
-            <label for="movie">Movies Watched:</label>
-          </div>
-          <div class="col-12 col-md-9">
-            <select name="Watched Movie" id="movie" class="form-control">
-              <option class="dropdown-item" value="" selected disabled>
-                Select Movies...
-              </option>
-              <option class="dropdown-item" value="black_mirror">
-                Black Mirror
-              </option>
-              <option class="dropdown-item" value="mr_robot">Mr Robot</option>
-              <option class="dropdown-item" value="silicon_valley">
-                Silicon Valley
-              </option>
-              <option class="dropdown-item" value="transcendence">
-                Transcendence
-              </option>
-            </select>
-            <span class="msg-error"></span>
-          </div>
-        </div>
-        <!-- DOB -->
-        <div class="row my-3">
-          <div class="col-12 col-md-3">
-            <label for="dob">DOB:</label>
-          </div>
-          <div class="col-12 col-md-9">
-            <input type="date" name="DOB" id="dob" class="form-control" />
-            <span class="msg-error"></span>
-          </div>
-        </div>
-
-        <div class="row my-4 pb-5">
-          <div class="col-6">
-            <button type="reset" id="reset" class="btn btn-danger">
-              Reset
-            </button>
-          </div>
-          <div class="col-6">
-            <button
-              type="submit"
-              id="submit"
-              class="btn btn-success"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-            >
-              Submit
-            </button>
-          </div>
-        </div>
-        <!-- Form Body Ends -->
-        <!-- Modal Starts -->
-        <div
-          class="modal fade"
-          id="staticBackdrop"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabindex="-1"
-          aria-labelledby="staticBackdropLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <!-- Modal Body Starts -->
-              <div class="modal-body">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Details</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">Name</th>
-                      <td class="dName"></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Mobile</th>
-                      <td class="dMobile"></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Email</th>
-                      <td class="dEmail"></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Summary</th>
-                      <td class="dSummary"></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Language</th>
-                      <td class="dLanguage"></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Education</th>
-                      <td class="dEducation"></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Movies Watched</th>
-                      <td class="dWatched"></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Date of Birth</th>
-                      <td class="dBirth"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- Modal Body Ends -->
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Modal Ends -->
       </div>
+      <!-- Form Body Starts -->
+      <!-- Name -->
+      <div class="row my-3">
+        <div class="col-12 col-md-3">
+          <label for="fname">Name:</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <div class="row">
+            <div class="col-6">
+              <input
+                class="form-control"
+                type="text"
+                name="First Name"
+                id="fname"
+                placeholder="First Name"
+              />
+              <span class="msg-error"></span>
+            </div>
+            <div class="col-6">
+              <input
+                class="form-control"
+                type="text"
+                name="Last Name"
+                id="lname"
+                placeholder="Last Name"
+              />
+              <span class="msg-error"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- mobile -->
+      <div class="row my-3">
+        <div class="col-12 col-md-3">
+          <label for="mobile">Mobile Number:</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <input class="form-control" type="number" name="Mobile" id="mobile" />
+          <span class="msg-error"></span>
+        </div>
+      </div>
+      <!-- EMAIL -->
+      <div class="row my-3">
+        <div class="col-12 col-md-3">
+          <label for="email">Email:</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <input class="form-control" type="email" name="Email" id="email" />
+          <span class="msg-error"></span>
+        </div>
+      </div>
+      <!-- Summary -->
+      <div class="row my-3">
+        <div class="col-12 col-md-3">
+          <label for="summary">Summary:</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <div class="form-floating">
+            <textarea
+              class="form-control"
+              placeholder="About Yourself"
+              id="summary"
+              name="Summary"
+              style="height: 100px"
+            ></textarea>
+            <span class="msg-error"></span>
+            <label for="summary">About Yourself</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language -->
+      <div class="row my-3">
+        <div class="col-12 col-md-3">
+          <label for="english">Language:</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <label for="english">English</label>
+          <input
+            type="checkbox"
+            class="me-2 form-check-input checkLanguage"
+            name="Language"
+            id="english"
+            value="english"
+          />
+          <label for="hindi">Hindi</label>
+          <input
+            type="checkbox"
+            class="me-2 form-check-input checkLanguage"
+            name="Language"
+            id="hindi"
+            value="hindi"
+          />
+
+          <label for="telegu">Telegu</label>
+          <input
+            type="checkbox"
+            class="me-2 form-check-input checkLanguage"
+            name="Language"
+            id="language"
+            value="telegu"
+          />
+          <span class="msg-error"></span>
+        </div>
+      </div>
+      <!-- Education -->
+      <div class="row my-3">
+        <div class="col-12 col-md-3">
+          <label for="undergraduate">Education:</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <label for="undergraduate">Under Graduate</label>
+          <input
+            type="radio"
+            class="me-2 form-check-input"
+            name="Education"
+            id="undergraduate"
+            value="undergraduate"
+          />
+          <label for="graduate">Graduate</label>
+          <input
+            type="radio"
+            class="me-2 form-check-input"
+            name="Education"
+            id="graduate"
+            value="graduate"
+          />
+          <span class="msg-error"></span>
+        </div>
+      </div>
+      <!-- Movies Watched -->
+      <div class="row my-3">
+        <div class="col-12 col-md-3">
+          <label for="movie">Movies Watched:</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <select name="Watched Movie" id="movie" class="form-control">
+            <option class="dropdown-item" value="" selected disabled>
+              Select Movies...
+            </option>
+            <option class="dropdown-item" value="black_mirror">
+              Black Mirror
+            </option>
+            <option class="dropdown-item" value="mr_robot">Mr Robot</option>
+            <option class="dropdown-item" value="silicon_valley">
+              Silicon Valley
+            </option>
+            <option class="dropdown-item" value="transcendence">
+              Transcendence
+            </option>
+          </select>
+          <span class="msg-error"></span>
+        </div>
+      </div>
+      <!-- DOB -->
+      <div class="row my-3">
+        <div class="col-12 col-md-3">
+          <label for="dob">DOB:</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <input type="date" name="DOB" id="dob" class="form-control" />
+          <span class="msg-error"></span>
+        </div>
+      </div>
+
+      <div class="row my-4 pb-5">
+        <div class="col-6">
+          <button type="reset" id="reset" class="btn btn-danger">Reset</button>
+        </div>
+        <div class="col-6">
+          <button
+            type="submit"
+            id="submit"
+            class="btn btn-success"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+      <!-- Form Body Ends -->
+      <!-- Modal Starts -->
+      <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <!-- Modal Body Starts -->
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Name</th>
+                    <td class="dName"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Mobile</th>
+                    <td class="dMobile"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Email</th>
+                    <td class="dEmail"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Summary</th>
+                    <td class="dSummary"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Language</th>
+                    <td class="dLanguage"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Education</th>
+                    <td class="dEducation"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Movies Watched</th>
+                    <td class="dWatched"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Date of Birth</th>
+                    <td class="dBirth"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- Modal Body Ends -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Ends -->
     </main>
     <!-- Bootstrap JS CDN -->
     <script
