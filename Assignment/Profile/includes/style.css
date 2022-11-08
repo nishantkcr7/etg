@@ -1,4 +1,4 @@
-.form-control:focus,
+/* .form-control:focus,
 .form-select:focus,
 .form-check-input:focus {
   border-color: #ffffff;
@@ -7,7 +7,6 @@
 
 .error {
   border-color: #ff0000;
-  /* box-shadow: 0 0 0 0.1rem #fa6262; */
 }
 
 .msg-error {
@@ -28,4 +27,4 @@ body {
   font-weight: bolder;
   color: white;
   background-color: black;
-}
+} */

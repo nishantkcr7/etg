@@ -129,10 +129,10 @@ function displayDetails() {
   }
   //   Getting Checkbox value
   var selectedLang = "";
-  var n = $(".checkLang:checked").length;
+  var n = $(".checkLanguage:checked").length;
   if (n > 0) {
-    $(".checkLang:checked").each(function () {
-      selectedLang += $(".checkLang:checked").val() + " ";
+    $(".checkLanguage:checked").each(function () {
+      selectedLang += $(".checkLanguage").val() + " ";
     });
   }
   document.querySelector(".dName").innerText =
