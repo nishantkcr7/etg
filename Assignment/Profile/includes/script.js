@@ -108,14 +108,14 @@ const activateBlur = () => {
 // Function to add error msg
 function dErrorMsg(el, msg) {
   //     msg = msg.style.text-transform = "capitalize";
-  el.nextElementSibling.innerText = msg;
+  el.parentNode.lastElementChild.innerText = msg;
   el.classList.add("error");
   countError++;
 }
 
 // Function to remove error msg
 function removeErrorMsg(el) {
-  el.nextElementSibling.innerText = "";
+  el.parentNode.lastElementChild.innerText = "";
   el.classList.remove("error");
 }
 
