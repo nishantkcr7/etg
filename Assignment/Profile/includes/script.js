@@ -47,17 +47,16 @@ btnReset.addEventListener("click", resetForm);
 
 function resetForm() {
   //   Input fields: Name, Mobile, Email, DOB
-  $("input").val("").removeClass("error").next().text("");
+  $("input[name='First Name']").val("").removeClass("error").next().text("");
+  $("input[name='Last Name']").val("").removeClass("error").next().text("");
+  $("input[name='Mobile']").val("").removeClass("error").next().text("");
+  $("input[name='Email']").val("").removeClass("error").next().text("");
+  $("input[name='Summary']").val("").removeClass("error").next().text("");
+  $("input[name='DOB']").val("").removeClass("error").next().text("");
+  $("input[value='telegu']").val("").removeClass("error").next().text("");
+  $("input[value='graduate']").val("").removeClass("error").next().text("");
   //   Text Area: Summary
   $("#summary").val("").removeClass("error").next().text("");
-  //   Radio Buttons: Education
-  if ($("input:radio[name='Education']").is(":checked")) {
-    $("input:radio[name='Education']").prop("checked", false);
-  }
-  //   Checkbox: Language
-  if ($("input:checkbox[name='Language']").is(":checked")) {
-    $("input:checkbox[name='Language']").prop("checked", false);
-  }
   //   Select: Movies
   $("#movie").val("").removeClass("error").next().text("");
 }
