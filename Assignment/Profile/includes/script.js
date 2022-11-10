@@ -34,8 +34,6 @@ $("#submit").click(() => {
   validateForm();
   activateBlur();
   if (countError == 0) {
-    btnSubmit.setAttribute("data-bs-target", "#staticBackdrop");
-    btnSubmit.setAttribute("data-bs-toggle", "modal");
     btnSubmit.removeAttribute("disabled");
   } else {
     btnSubmit.setAttribute("disabled", true);
@@ -59,6 +57,7 @@ function resetForm() {
   $("#summary").val("").removeClass("error").next().text("");
   //   Select: Movies
   $("#movie").val("").removeClass("error").next().text("");
+  btnSubmit.removeAttribute("disabled");
 }
 
 // Function to validate form
