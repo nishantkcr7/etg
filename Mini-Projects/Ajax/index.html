@@ -62,20 +62,33 @@
       <!-- AJAX Call Buttons Starts -->
       <div class="row my-5">
         <div class="col text-center">
+          <button class="btn btn-outline-primary fw-bold btn-fetch-api">
+            Fetch API
+          </button>
           <button class="btn btn-outline-primary fw-bold btn-fetch-text">
             Fetch Text
           </button>
           <button class="btn btn-outline-primary fw-bold btn-fetch-json">
             Fetch JSON
           </button>
-          <button class="btn btn-outline-primary fw-bold btn-fetch-api">
-            Fetch API
-          </button>
         </div>
       </div>
       <!-- AJAX Call Buttons Ends -->
+
       <!-- Text Card Starts -->
       <div class="row">
+        <!-- API Card Starts -->
+        <div class="col my-3 col-md-4 d-flex justify-content-center">
+          <div class="card" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title text-center h2 fw-bold">API Text</h5>
+              <hr />
+            </div>
+            <div class="card-body response-api"></div>
+          </div>
+        </div>
+        <!-- API Card Ends -->
+
         <!-- Text Card Starts -->
         <div class="col my-3 col-md-4 d-flex justify-content-center">
           <div class="card" style="width: 18rem">
@@ -99,18 +112,6 @@
           </div>
         </div>
         <!-- JSON Card Ends -->
-        <!-- API Card Starts -->
-
-        <div class="col my-3 col-md-4 d-flex justify-content-center">
-          <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title text-center h2 fw-bold">API Text</h5>
-              <hr />
-            </div>
-            <div class="card-body response-api"></div>
-          </div>
-        </div>
-        <!-- API Card Ends -->
       </div>
       <!-- Text Card Ends -->
     </main>
