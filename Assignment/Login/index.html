@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Cookie in JS | Nishant Etg</title>
+    <title>User Login | Nishant Etg</title>
     <!-- jQuery JS -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
@@ -64,92 +64,89 @@
         <div
           class="col d-flex align-items-center justify-content-start text-uppercase"
         >
-          understanding more
+          you are most important to us
         </div>
       </div>
       <div class="row">
         <div class="col author-name fs-3">
-          about javaScript
-          <span class="fs-1 author-name name">Cookie</span>
+          <span class="welcomeMsg">to continue please</span>
+          <span class="fs-1 author-name name pageStatus">Login</span>
         </div>
       </div>
     </section>
     <!-- Main Starts -->
     <main>
-        <section class="container my-5">
-            <!-- Assignment Intro Starts -->
-            <div class="row col">
-                <div class="h3">Assignment Introduction</div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <ul class="ul">
-                        <li class="li">
-                            When you visit the page for the first time, it will ask some of your basic details.
-                        </li>
-                        <li class="li">
-                            After filling your details, a greeting message will appear for you.
-                        </li>
-                        <li class="li">
-                            Your basic detials will be saved as <code>Cookie</code>.
-                        </li>
-                        <li class="li">
-                            Your details will be available for only 1min.
-                        </li>
-                        <li>
-                            Visiting the page after your cookie deadline will again ask you to fill the basic detail form.
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Assignment Intro Ends -->
-        </section>
-
         <!-- Existing User Starts -->
-        <section class="container my-5 d-none">
+        <section class="container my-5 dLogin">
             <div class="row fs-3">
                 <div class="col">
-                    Welcome back Nishant 🙋‍♂️
+                  Fill Your Credential
                 </div>
             </div>
-            <div class="row fs-4">
-                <div class="col">
-                    You are <code>Associate Software Enginner</code>, how's your job going ?
-                </div>
+            <div class="row">
+              <div class="col mb-3">
+                <code>*</code> All fields are required
+                <br>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col my-2">
+                <input type="text" name="username" id="username" class="form-control" placeholder="Enter Your Username">
+                <div class="mt-2 text-danger fw-bold d-none">Please enter username</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col my-2">
+                <input type="number" name="phone" id="phone" class="form-control" placeholder="Enter Your Phone">
+                <div class="mt-2 text-danger fw-bold d-none">Please enter phone number</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col my-2">
+                <button class="btn btn-outline-success btnSubmit">Login</button>
+              </div>
             </div>
         </section>
         <!-- Existing User Ends -->
-        <!-- New User Starts -->
-        <section class="container my-5">
-            <div class="row fs-3">
-                <div class="col">
-                    Welcome User 👤
+
+        <section class="container my-5 dAccount d-none">
+          <div class="row">
+            <div class="col">
+              <div class="card" style="width: 18rem;">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Hi <span class="userName">Nishant</span> 🙋‍♂️</h5>
+                  <p class="card-text">
+                    Your Details
+                  </p>
+                  <div class="card-text">
+                    <table class="table">
+                      <tr>
+                        <td>Name:</td>
+                        <td>
+                          <input type="text" id="" value="Nishant Kumar" class="inputDisplayName" readonly>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Phone:</td>
+                        <td>
+                          <input type="text" id="" class="inputDisplayMobile" value="7870506090" readonly>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <button class="btn btn-outline-primary me-2 btnEdit">
+                    Edit
+                  </button>
+                  <button class="btn btn-outline-danger ms-2 btnDelete">
+                    Delete Account
+                  </button>
                 </div>
+              </div>
             </div>
-            <div class="row fs-4">
-                <div class="col mb-3">
-                    Please let us know somting about you.
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col">
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Your Name">
-                    <span class="text-danger d-none fw-bold">Please Enter Your Name</span>
-                </div>
-                <div class="col">
-                    <input type="text" name="job" id="job" class="form-control" placeholder="Your Job">
-                    <span class="text-danger d-none fw-bold">Please Enter Your Job</span>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col text-center">
-                    <div class="btn btn-outline-info btnSubmit">
-                        Submit
-                    </div>
-                </div>
-            </div>
+          </div>
         </section>
-        <!-- New User Ends -->
     </main>
     <!-- Main Ends -->
     
