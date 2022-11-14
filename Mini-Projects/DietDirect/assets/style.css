@@ -1,0 +1,25 @@
+.header-top {
+  font-size: 0.5rem;
+  padding: 0.45rem;
+}
+.header-top--link,
+.header-top--link:hover,
+.header-top--link:visited {
+  text-decoration: none;
+  color: #fff;
+}
+.navbar-logo {
+  width: 20%;
+}
+.navbar-left--link,
+.navbar-left--link:hover,
+.navbar-left--link:active {
+  text-decoration: none;
+  color: black;
+}
+.hero {
+  height: 200px;
+  background-image: url("../img/promotion/hero.jpg");
+  background-size: auto;
+  background-repeat: no-repeat;
+}

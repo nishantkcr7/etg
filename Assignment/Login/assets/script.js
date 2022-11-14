@@ -8,6 +8,7 @@ const pageStatus = document.querySelector(".pageStatus");
 const welcomeMsg = document.querySelector(".welcomeMsg");
 const btnEdit = document.querySelector(".btnEdit");
 const btnDelete = document.querySelector(".btnDelete");
+const dUserName = document.querySelector(".dUserName");
 const inputDisplayName = document.querySelector(".inputDisplayName");
 const inputDisplayMobile = document.querySelector(".inputDisplayMobile");
 let isSubmitClicked = false;
@@ -62,6 +63,7 @@ function enableBtn() {
 function showAccount() {
   inputDisplayMobile.value = inputNumber.value;
   inputDisplayName.value = inputUsername.value;
+  dUserName.innerText = inputUsername.value.split(" ")[0];
   // inputDisplayMobile.value = userCookieObj.username;
   // inputDisplayName.value = userCookieObj.usermobile;
 
