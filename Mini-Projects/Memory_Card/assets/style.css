@@ -1,0 +1,11 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.card-front {
+  background-color: rgb(237, 228, 237);
+  border-radius: 10px;
+  border: 1px solid rgb(230, 155, 230);
+}
