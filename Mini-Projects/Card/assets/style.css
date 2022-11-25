@@ -39,6 +39,9 @@ html {
   width: 125px;
   position: relative;
 }
+.card:hover {
+  cursor: pointer;
+}
 .card-face {
   position: absolute;
   width: 100%;
@@ -49,10 +52,10 @@ html {
   backface-visibility: hidden;
   transition: transform 500ms ease-in-out;
 }
-.card.visible:hover .card-back {
+.card.visible .card-back {
   transform: rotateY(-180deg);
 }
-.card.visible:hover .card-front {
+.card.visible .card-front {
   transform: rotateY(0);
 }
 .card-front {
@@ -69,9 +72,18 @@ html {
     transform: rotate(0);
   }
   25% {
-    rotate: (-30deg);
+    transform: rotate(-25deg);
   }
   75% {
-    rotate: (30deg);
+    transform: rotate(25deg);
+  }
+}
+@media (max-width: 600px) {
+  .game-container {
+    grid-template-columns: repeat(2, auto);
+  }
+  .game-info-container {
+    flex-direction: column;
+    align-items: center;
   }
 }
