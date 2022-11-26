@@ -1,29 +1,35 @@
 const moves = document.getElementById("moves-count");
 const timeValue = document.getElementById("time");
+const highScore = document.getElementById("highScore");
 const startButton = document.getElementById("start");
 const stopButton = document.getElementById("stop");
+const errorMsg = document.querySelector(".error-msg");
 const gameContainer = document.querySelector(".game-container");
+const inputUserName = document.getElementById("username");
 const result = document.getElementById("result");
 const controls = document.querySelector(".controls-container");
 let cards;
+let playerName;
 let interval;
 let firstCard = false;
 let secondCard = false;
+let secondsValue;
+let minutesValue;
 
 //Items array
 const items = [
   { name: "ace", image: "assets/img/ace.png" },
   { name: "jack", image: "assets/img/jack.png" },
-  { name: "joker", image: "assets/img/joker.png" },
+  { name: "joker", image: "assets/img/jocker.png" },
   { name: "king", image: "assets/img/king.png" },
   { name: "queen", image: "assets/img/queen.png" },
-  { name: "monkey", image: "assets/img/aspade.png" },
-  { name: "chameleon", image: "assets/img/aheart.png" },
-  { name: "piranha", image: "assets/img/2heart.png" },
-  { name: "anaconda", image: "assets/img/2spade.png" },
-  { name: "sloth", image: "assets/img/3heart.png" },
-  { name: "cockatoo", image: "assets/img/3spade.png" },
-  { name: "toucan", image: "assets/img/4heart.png" },
+  { name: "aspade", image: "assets/img/aspade.png" },
+  { name: "aheart", image: "assets/img/aheart.png" },
+  { name: "2heart", image: "assets/img/2heart.png" },
+  { name: "2spade", image: "assets/img/2spade.png" },
+  { name: "3heart", image: "assets/img/3heart.png" },
+  { name: "3spade", image: "assets/img/3spade.png" },
+  { name: "4heart", image: "assets/img/4heart.png" },
 ];
 
 //Initial Time
@@ -42,9 +48,9 @@ const timeGenerator = () => {
     seconds = 0;
   }
   //format time before displaying
-  let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
-  let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
-  timeValue.innerHTML = `<span>Time:</span>${minutesValue}:${secondsValue}`;
+  secondsValue = seconds < 10 ? `0${seconds}` : seconds;
+  minutesValue = minutes < 10 ? `0${minutes}` : minutes;
+  timeValue.innerHTML = `<span>Time: </span>${minutesValue}:${secondsValue}`;
 };
 
 //For calculating moves
@@ -126,8 +132,15 @@ const matrixGenerator = (cardValues, size = 4) => {
             winCount += 1;
             //check if winCount ==half of cardValues
             if (winCount == Math.floor(cardValues.length / 2)) {
+              // Saving player score
+              localStorage.setItem(
+                playerName,
+                minutesValue + ":" + secondsValue
+              );
               result.innerHTML = `<h2>You Won</h2>
             <h4>Moves: ${movesCount}</h4>`;
+              // Change button name from 'Start game' to 'Play Again'
+              startButton.innerText = "Play Again";
               stopGame();
             }
           } else {
@@ -149,24 +162,36 @@ const matrixGenerator = (cardValues, size = 4) => {
 
 //Start game
 startButton.addEventListener("click", () => {
-  movesCount = 0;
-  seconds = 0;
-  minutes = 0;
-  //controls amd buttons visibility
-  controls.classList.add("hide");
-  stopButton.classList.remove("hide");
-  startButton.classList.add("hide");
-  //Start timer
-  interval = setInterval(timeGenerator, 1000);
-  //initial moves
-  moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
-  initializer();
+  // Checking if player name is filled?
+  if (inputUserName.value.trim() != "") {
+    movesCount = 0;
+    playerName = inputUserName.value;
+    seconds = 0;
+    minutes = 0;
+    //controls amd buttons visibility
+    controls.classList.add("hide");
+    stopButton.classList.remove("hide");
+    startButton.classList.add("hide");
+    //Start timer
+    interval = setInterval(timeGenerator, 1000);
+    //initial moves lora
+    moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
+    highScore.innerHTML = `<span>High Score:</span> ${
+      getHighScore().bestScore
+    } (${getHighScore().bestPlayer})`;
+    initializer();
+  } else {
+    errorMsg.innerText = "Please enter your name";
+  }
+  inputUserName.value = "";
 });
 
 //Stop game
 stopButton.addEventListener(
   "click",
   (stopGame = () => {
+    // Setting 'Start Game' button name to 'Play Game'
+    startButton.innerText = "Start Game";
     controls.classList.remove("hide");
     stopButton.classList.add("hide");
     startButton.classList.remove("hide");
@@ -182,3 +207,15 @@ const initializer = () => {
   console.log(cardValues);
   matrixGenerator(cardValues);
 };
+function getHighScore() {
+  let bestScore = "99:99";
+  let bestPlayer = "";
+  for (const [playerName, playerScore] of Object.entries(localStorage)) {
+    if (playerScore < bestScore) {
+      bestScore = playerScore;
+      bestPlayer = playerName;
+    }
+  }
+  return { bestPlayer, bestScore };
+}
+console.log(getHighScore());
