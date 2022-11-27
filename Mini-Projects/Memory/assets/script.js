@@ -6,6 +6,7 @@ const stopButton = document.getElementById("stop");
 const errorMsg = document.querySelector(".error-msg");
 const sectionGame = document.querySelector(".section-game");
 const sectionInput = document.querySelector(".section-input");
+const resultTable = document.querySelector(".resultTable");
 const gameContainer = document.querySelector(".game-container");
 const inputUserName = document.getElementById("username");
 const result = document.getElementById("result");
@@ -110,7 +111,7 @@ const matrixGenerator = (cardValues, size = 4) => {
   // if (query.matches) {
   //   gameContainer.style.gridTemplateColumns = `repeat(${size / 2}, auto)`;
   //   gameContainer.style.alignContent = `center`;
-  // }  
+  // }
 
   //Cards
   cards = document.querySelectorAll(".card-container");
@@ -144,8 +145,8 @@ const matrixGenerator = (cardValues, size = 4) => {
             if (winCount == Math.floor(cardValues.length / 2)) {
               // Saving player score
               localStorage.setItem(
-                playerName,
-                minutesValue + ":" + secondsValue
+                minutesValue + ":" + secondsValue,
+                playerName
               );
               result.innerHTML = `<h2>You Won</h2>
             <h4>Moves: ${movesCount}</h4>`;
@@ -234,3 +235,34 @@ function getHighScore() {
   }
   return { bestPlayer, bestScore };
 }
+
+function displayResult() {
+  let minScore = "";
+  // console.log(localStorage);
+  let sortedLeaderBoard = {};
+  // console.log(Object.entries(localStorage));
+  for ([playerName, playerScore] of Object.entries(localStorage)) {
+    // console.log(playerName, playerScore);
+  }
+}
+displayResult();
+
+newObj = {};
+Object.entries(localStorage).forEach((e) => {
+  newObj[e[1]] = e[0];
+});
+
+console.log(newObj);
+Object.entries(newObj).forEach((el, i) => {
+  console.log(el);
+  resultTable.insertAdjacentHTML(
+    "beforebegin",
+    `
+<tr>
+  <td>#${i + 1}</td>
+  <td>${el[1]}</td>
+  <td>${el[0]}</td>
+</tr>
+  `
+  );
+});

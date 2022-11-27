@@ -7,7 +7,11 @@
     <title>Demo</title>
   </head>
   <body>
+    <input type="text" placeholder="Hello" />
     <script>
+      const input = document.querySelector("input");
+      input.insertAdjacentHTML("beforebegin", `<span> Error msg </span>`);
+      input.insertAdjacentHTML("afterend", `<span> Error msg </span>`);
       const items = [
         { name: "ace", image: "assets/img/ace.png" },
         { name: "jack", image: "assets/img/jack.png" },

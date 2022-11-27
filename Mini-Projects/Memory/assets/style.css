@@ -129,3 +129,7 @@ input {
     gap: 0.6em;
   }
 }
+.light-dark {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+}
