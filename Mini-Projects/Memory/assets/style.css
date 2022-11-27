@@ -5,34 +5,27 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  background-color: #6deae5;
+  background-color: #5f5d63;
 }
-.wrapper {
+.wrappere {
   box-sizing: content-box;
   width: 26.87em;
   padding: 2.5em 3em;
   background-color: #ffffff;
   position: absolute;
-  transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
   border-radius: 0.6em;
   box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
 }
 .game-container {
-  position: relative;
-  width: 100%;
-  display: grid;
   gap: 0.6em;
-}
-.stats-container {
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  align-content: space-between;
-  margin-bottom: 1.2em;
-}
-.stats-container span {
-  font-weight: 600;
+  grid-template-columns: repeat(4, auto);
+  align-content: center;
+  margin: rem;
+  position: relative;
+  justify-content: space-around;
 }
 .card-container {
   position: relative;
@@ -129,4 +122,10 @@ input {
 #result h4 {
   font-size: 1.8em;
   margin: 0.6em 0 1em 0;
+}
+@media (max-width: 600px) {
+  .game-container {
+    grid-template-columns: repeat(2, auto);
+    gap: 0.6em;
+  }
 }

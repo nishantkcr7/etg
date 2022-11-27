@@ -4,6 +4,8 @@ const highScore = document.getElementById("highScore");
 const startButton = document.getElementById("start");
 const stopButton = document.getElementById("stop");
 const errorMsg = document.querySelector(".error-msg");
+const sectionGame = document.querySelector(".section-game");
+const sectionInput = document.querySelector(".section-input");
 const gameContainer = document.querySelector(".game-container");
 const inputUserName = document.getElementById("username");
 const result = document.getElementById("result");
@@ -50,13 +52,13 @@ const timeGenerator = () => {
   //format time before displaying
   secondsValue = seconds < 10 ? `0${seconds}` : seconds;
   minutesValue = minutes < 10 ? `0${minutes}` : minutes;
-  timeValue.innerHTML = `<span>Time: </span>${minutesValue}:${secondsValue}`;
+  timeValue.innerHTML = `${minutesValue}:${secondsValue}`;
 };
 
 //For calculating moves
 const movesCounter = () => {
   movesCount += 1;
-  moves.innerHTML = `<span>Moves:</span>${movesCount}`;
+  moves.innerHTML = `${movesCount}`;
 };
 
 //Pick random objects from the items array
@@ -92,15 +94,23 @@ const matrixGenerator = (cardValues, size = 4) => {
     gameContainer.innerHTML += `
      <div class="card-container" data-card-value="${cardValues[i].name}">
         <div class="card-before">
-            <img src="assets/img/card.png" class="image"/>
+          <img src="assets/img/card.png" class="image"/>
         </div>
         <div class="card-after">
-        <img src="${cardValues[i].image}" class="image"/></div>
+          <img src="${cardValues[i].image}" class="image"/>
+        </div>
      </div>
      `;
   }
-  //Grid
-  gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
+
+  //Grid lora
+  // gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
+  // gameContainer.style.alignContent = `center`;
+  // let query = window.matchMedia("(max-width: 600px)");
+  // if (query.matches) {
+  //   gameContainer.style.gridTemplateColumns = `repeat(${size / 2}, auto)`;
+  //   gameContainer.style.alignContent = `center`;
+  // }  
 
   //Cards
   cards = document.querySelectorAll(".card-container");
@@ -164,22 +174,27 @@ const matrixGenerator = (cardValues, size = 4) => {
 startButton.addEventListener("click", () => {
   // Checking if player name is filled?
   if (inputUserName.value.trim() != "") {
+    sectionInput.classList.add("d-none");
     movesCount = 0;
     playerName = inputUserName.value;
     seconds = 0;
     minutes = 0;
-    //controls amd buttons visibility
+    //controls and buttons visibility
+    sectionGame.classList.remove("d-none");
     controls.classList.add("hide");
     stopButton.classList.remove("hide");
     startButton.classList.add("hide");
     //Start timer
     interval = setInterval(timeGenerator, 1000);
-    //initial moves lora
-    moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
-    highScore.innerHTML = `<span>High Score:</span> ${
-      getHighScore().bestScore
-    } (${getHighScore().bestPlayer})`;
+    //initial moves
+    moves.innerHTML = `${movesCount}`;
+    highScore.innerHTML = `${getHighScore().bestScore} (${
+      getHighScore().bestPlayer
+    })`;
     initializer();
+    errorMsg.innerText = "";
+    // Scroll to game section
+    sectionGame.scrollIntoView({ behavior: "smooth" });
   } else {
     errorMsg.innerText = "Please enter your name";
   }
@@ -191,6 +206,8 @@ stopButton.addEventListener(
   "click",
   (stopGame = () => {
     // Setting 'Start Game' button name to 'Play Game'
+    sectionInput.classList.remove("d-none");
+    sectionGame.classList.add("d-none");
     startButton.innerText = "Start Game";
     controls.classList.remove("hide");
     stopButton.classList.add("hide");
@@ -204,7 +221,6 @@ const initializer = () => {
   result.innerText = "";
   winCount = 0;
   let cardValues = generateRandom();
-  console.log(cardValues);
   matrixGenerator(cardValues);
 };
 function getHighScore() {
@@ -218,4 +234,3 @@ function getHighScore() {
   }
   return { bestPlayer, bestScore };
 }
-console.log(getHighScore());
