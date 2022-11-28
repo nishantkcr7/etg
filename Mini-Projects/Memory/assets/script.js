@@ -6,11 +6,13 @@ const stopButton = document.getElementById("stop");
 const errorMsg = document.querySelector(".error-msg");
 const sectionGame = document.querySelector(".section-game");
 const sectionInput = document.querySelector(".section-input");
+const sectionGameResult = document.querySelector(".section-game-result");
 const resultTable = document.querySelector(".resultTable");
 const gameContainer = document.querySelector(".game-container");
 const inputUserName = document.getElementById("username");
 const result = document.getElementById("result");
 const controls = document.querySelector(".controls-container");
+
 let cards;
 let playerName;
 let interval;
@@ -146,13 +148,15 @@ const matrixGenerator = (cardValues, size = 4) => {
               // Saving player score
               localStorage.setItem(
                 minutesValue + ":" + secondsValue,
-                playerName
+                "score-" + playerName
               );
-              result.innerHTML = `<h2>You Won</h2>
-            <h4>Moves: ${movesCount}</h4>`;
-              // Change button name from 'Start game' to 'Play Again'
-              startButton.innerText = "Play Again";
-              stopGame();
+              result.innerHTML = `
+                <h2>You Won</h2>
+                <h4>Moves: ${movesCount}</h4>`;
+              setTimeout(() => {
+                stopGame();
+                displayResult();
+              }, 1000);
             }
           } else {
             //if the cards dont match
@@ -200,6 +204,7 @@ startButton.addEventListener("click", () => {
     errorMsg.innerText = "Please enter your name";
   }
   inputUserName.value = "";
+  sectionGameResult.classList.add("d-none");
 });
 
 //Stop game
@@ -237,32 +242,21 @@ function getHighScore() {
 }
 
 function displayResult() {
-  let minScore = "";
-  // console.log(localStorage);
-  let sortedLeaderBoard = {};
-  // console.log(Object.entries(localStorage));
-  for ([playerName, playerScore] of Object.entries(localStorage)) {
-    // console.log(playerName, playerScore);
-  }
+  sortedScores = Object.entries(localStorage)
+    .filter((el) => {
+      return el[1].split("score-").length == 2;
+    })
+    .sort();
+  sortedScores.forEach((score, i) => {
+    console.log(score);
+    resultTable.insertAdjacentHTML(
+      "beforeend",
+      `<tr>
+      <td>#${i + 1}</td>
+      <td>${score[1].split("score-")[1]}</td>
+      <td>${score[0]}</td>
+    </tr>`
+    );
+  });
+  sectionGameResult.classList.remove("d-none");
 }
-displayResult();
-
-newObj = {};
-Object.entries(localStorage).forEach((e) => {
-  newObj[e[1]] = e[0];
-});
-
-console.log(newObj);
-Object.entries(newObj).forEach((el, i) => {
-  console.log(el);
-  resultTable.insertAdjacentHTML(
-    "beforebegin",
-    `
-<tr>
-  <td>#${i + 1}</td>
-  <td>${el[1]}</td>
-  <td>${el[0]}</td>
-</tr>
-  `
-  );
-});
