@@ -272,8 +272,15 @@ btnShare.addEventListener("click", function () {
     alert("Your browser don't have option to share.");
     return;
   }
-  navigator.share({
-    text: "Please look at 'Memory Card Game' developed by Nishant Kumar (ETG Digital)",
-    url: "https://nishantkcr7.github.io/etg/Mini-Projects/Memory/",
-  });
+  navigator
+    .share({
+      text: "Please look at 'Memory Card Game' developed by Nishant Kumar (ETG Digital)",
+      url: "https://nishantkcr7.github.io/etg/Mini-Projects/Memory/",
+    })
+    .then(() => {
+      console.log(`Thanks for sharing`);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
