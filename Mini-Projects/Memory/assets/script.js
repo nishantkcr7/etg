@@ -254,14 +254,25 @@ function displayResult() {
   resultTable.innerHTML = "";
   let sortedScores = getSortedScores();
   sortedScores.forEach((score, i) => {
-    resultTable.insertAdjacentHTML(
-      "beforeend",
-      `<tr>
+    if (score[1].split("score-")[1] == playerName) {
+      resultTable.insertAdjacentHTML(
+        "beforeend",
+        `<tr class="light-dark">
+        <td>#${i + 1}</td>
+        <td>${score[1].split("score-")[1]}</td>
+        <td>${score[0]}</td>
+      </tr>`
+      );
+    } else {
+      resultTable.insertAdjacentHTML(
+        "beforeend",
+        `<tr>
       <td>#${i + 1}</td>
       <td>${score[1].split("score-")[1]}</td>
       <td>${score[0]}</td>
     </tr>`
-    );
+      );
+    }
   });
   sectionGameResult.classList.remove("d-none");
 }
