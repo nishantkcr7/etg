@@ -284,3 +284,7 @@ btnShare.addEventListener("click", function () {
       console.log(err);
     });
 });
+
+document.querySelector("body").addEventListener("dblclick", function (e) {
+  e.preventDefault();
+});

@@ -4,6 +4,11 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+.game-header {
+  font-family: "Odibee Sans", cursive;
+  font-size: 45px;
+  font-weight: 600;
+}
 body {
   background-color: #5f5d63;
 }
@@ -88,13 +93,6 @@ input {
   text-align: center;
   cursor: initial;
 }
-#stop {
-  font-size: 1.1em;
-  display: block;
-  margin: 1.1em auto 0 auto;
-  background-color: #000000;
-  color: #ffffff;
-}
 .hide {
   display: none;
 }
@@ -112,6 +110,9 @@ input {
   .game-container {
     grid-template-columns: repeat(2, auto);
     gap: 0.6em;
+  }
+  .game-header {
+    font-size: 30px;
   }
 }
 .light-dark {
