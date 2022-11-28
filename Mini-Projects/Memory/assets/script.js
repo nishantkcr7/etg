@@ -44,7 +44,7 @@ let seconds = 0,
 let movesCount = 0,
   winCount = 0;
 
-//For timer
+//FUNCTION: timeGenerator() will be called on each 1000ms to display the running time.
 function timeGenerator() {
   seconds += 1;
   //minutes logic
@@ -76,17 +76,21 @@ function generateRandom(size = 4) {
   for (let i = 0; i < size; i++) {
     const randomIndex = Math.floor(Math.random() * tempArray.length);
     cardValues.push(tempArray[randomIndex]);
-    //once selected remove the object from temp array
+    //once selected remove the object from temp array so that it will not come again
     tempArray.splice(randomIndex, 1);
   }
+
   return cardValues;
 }
 
 function matrixGenerator(cardValues, size = 4) {
   gameContainer.innerHTML = "";
   cardValues = [...cardValues, ...cardValues];
+
   //simple shuffle
-  cardValues.sort(() => Math.random() - 0.5);
+  cardValues = shuffleArray(cardValues);
+  // cardValues.sort(() => Math.random() - 0.5);
+
   for (let i = 0; i < size * size; i++) {
     /*
         Create Cards
@@ -111,15 +115,19 @@ function matrixGenerator(cardValues, size = 4) {
   cards.forEach((card) => {
     card.addEventListener("click", () => {
       //If selected card is not matched yet then only run (i.e already matched card when clicked would be ignored)
+
       if (!card.classList.contains("matched")) {
         //flip the cliked card
         card.classList.add("flipped");
         //if it is the firstcard (!firstCard since firstCard is initially false)
+
         if (!firstCard) {
           //so current card will become firstCard
           firstCard = card;
+
           //current cards value becomes firstCardValue
           firstCardValue = card.getAttribute("data-card-value");
+          movesCounter();
         } else {
           //increment moves since user selected second card
           movesCounter();
@@ -243,6 +251,7 @@ function getSortedScores() {
 
 // FUNCTION: displayResult() will fetch best record from the localStorage and display in UI rank wise.
 function displayResult() {
+  resultTable.innerHTML = "";
   let sortedScores = getSortedScores();
   sortedScores.forEach((score, i) => {
     resultTable.insertAdjacentHTML(
@@ -288,3 +297,25 @@ btnShare.addEventListener("click", function () {
 document.querySelector("body").addEventListener("dblclick", function (e) {
   e.preventDefault();
 });
+
+cardVal = [
+  { name: "ace", image: "assets/img/ace.png" },
+  { name: "jack", image: "assets/img/jack.png" },
+  { name: "joker", image: "assets/img/jocker.png" },
+  { name: "king", image: "assets/img/king.png" },
+  { name: "queen", image: "assets/img/queen.png" },
+  { name: "aspade", image: "assets/img/aspade.png" },
+  { name: "aheart", image: "assets/img/aheart.png" },
+  { name: "2heart", image: "assets/img/2heart.png" },
+];
+
+function shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    // Generate random number
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
