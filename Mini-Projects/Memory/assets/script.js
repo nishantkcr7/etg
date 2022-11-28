@@ -12,7 +12,7 @@ const gameContainer = document.querySelector(".game-container");
 const inputUserName = document.getElementById("username");
 const result = document.getElementById("result");
 const controls = document.querySelector(".controls-container");
-
+const btnShare = document.querySelector(".btn-share");
 let cards;
 let playerName;
 let interval;
@@ -45,7 +45,7 @@ let movesCount = 0,
   winCount = 0;
 
 //For timer
-const timeGenerator = () => {
+function timeGenerator() {
   seconds += 1;
   //minutes logic
   if (seconds >= 60) {
@@ -56,16 +56,16 @@ const timeGenerator = () => {
   secondsValue = seconds < 10 ? `0${seconds}` : seconds;
   minutesValue = minutes < 10 ? `0${minutes}` : minutes;
   timeValue.innerHTML = `${minutesValue}:${secondsValue}`;
-};
+}
 
 //For calculating moves
-const movesCounter = () => {
+function movesCounter() {
   movesCount += 1;
   moves.innerHTML = `${movesCount}`;
-};
+}
 
 //Pick random objects from the items array
-const generateRandom = (size = 4) => {
+function generateRandom(size = 4) {
   //temporary array
   let tempArray = [...items];
   //initializes cardValues array
@@ -80,9 +80,9 @@ const generateRandom = (size = 4) => {
     tempArray.splice(randomIndex, 1);
   }
   return cardValues;
-};
+}
 
-const matrixGenerator = (cardValues, size = 4) => {
+function matrixGenerator(cardValues, size = 4) {
   gameContainer.innerHTML = "";
   cardValues = [...cardValues, ...cardValues];
   //simple shuffle
@@ -105,15 +105,6 @@ const matrixGenerator = (cardValues, size = 4) => {
      </div>
      `;
   }
-
-  //Grid lora
-  // gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
-  // gameContainer.style.alignContent = `center`;
-  // let query = window.matchMedia("(max-width: 600px)");
-  // if (query.matches) {
-  //   gameContainer.style.gridTemplateColumns = `repeat(${size / 2}, auto)`;
-  //   gameContainer.style.alignContent = `center`;
-  // }
 
   //Cards
   cards = document.querySelectorAll(".card-container");
@@ -150,9 +141,6 @@ const matrixGenerator = (cardValues, size = 4) => {
                 minutesValue + ":" + secondsValue,
                 "score-" + playerName
               );
-              result.innerHTML = `
-                <h2>You Won</h2>
-                <h4>Moves: ${movesCount}</h4>`;
               setTimeout(() => {
                 stopGame();
                 displayResult();
@@ -173,7 +161,7 @@ const matrixGenerator = (cardValues, size = 4) => {
       }
     });
   });
-};
+}
 
 //Start game
 startButton.addEventListener("click", () => {
@@ -186,15 +174,14 @@ startButton.addEventListener("click", () => {
     minutes = 0;
     //controls and buttons visibility
     sectionGame.classList.remove("d-none");
-    controls.classList.add("hide");
     stopButton.classList.remove("hide");
     startButton.classList.add("hide");
     //Start timer
     interval = setInterval(timeGenerator, 1000);
     //initial moves
     moves.innerHTML = `${movesCount}`;
-    highScore.innerHTML = `${getHighScore().bestScore} (${
-      getHighScore().bestPlayer
+    highScore.innerHTML = `${getHighScore().bestScorerTiming} (${
+      getHighScore().bestScorerName
     })`;
     initializer();
     errorMsg.innerText = "";
@@ -208,47 +195,56 @@ startButton.addEventListener("click", () => {
 });
 
 //Stop game
-stopButton.addEventListener(
-  "click",
-  (stopGame = () => {
-    // Setting 'Start Game' button name to 'Play Game'
-    sectionInput.classList.remove("d-none");
-    sectionGame.classList.add("d-none");
-    startButton.innerText = "Start Game";
-    controls.classList.remove("hide");
-    stopButton.classList.add("hide");
-    startButton.classList.remove("hide");
-    clearInterval(interval);
-  })
-);
+stopButton.addEventListener("click", stopGame);
 
 //Initialize values and func calls
-const initializer = () => {
-  result.innerText = "";
+function initializer() {
+  // result.innerText = "";
   winCount = 0;
   let cardValues = generateRandom();
   matrixGenerator(cardValues);
-};
-function getHighScore() {
-  let bestScore = "99:99";
-  let bestPlayer = "";
-  for (const [playerName, playerScore] of Object.entries(localStorage)) {
-    if (playerScore < bestScore) {
-      bestScore = playerScore;
-      bestPlayer = playerName;
-    }
-  }
-  return { bestPlayer, bestScore };
 }
 
-function displayResult() {
-  sortedScores = Object.entries(localStorage)
+// FUNCTION stopGame() will clear the timer, and bring back the game in initial mode
+function stopGame() {
+  sectionInput.classList.remove("d-none");
+  sectionGame.classList.add("d-none");
+  startButton.innerText = "Start Game";
+  // controls.classList.remove("hide");
+  stopButton.classList.add("hide");
+  startButton.classList.remove("hide");
+  clearInterval(interval);
+}
+
+// FUNCTION: getHighScore() will get the best scorer and return the player name and player timing in the form of object
+function getHighScore() {
+  let bestScorerName;
+  let bestScorerTiming;
+  if (isScoreAvailable()) {
+    const bestScorer = getSortedScores()[0];
+    bestScorerTiming = bestScorer[0];
+    bestScorerName = bestScorer[1];
+    bestScorerName = bestScorerName.split("-")[1];
+  } else {
+    bestScorerName = "NA";
+    bestScorerTiming = "NA";
+  }
+  return { bestScorerName, bestScorerTiming };
+}
+
+// FUNCTION: getSortedScores() will sort the scores present in localStorage and return sorted object
+function getSortedScores() {
+  return Object.entries(localStorage)
     .filter((el) => {
       return el[1].split("score-").length == 2;
     })
     .sort();
+}
+
+// FUNCTION: displayResult() will fetch best record from the localStorage and display in UI rank wise.
+function displayResult() {
+  let sortedScores = getSortedScores();
   sortedScores.forEach((score, i) => {
-    console.log(score);
     resultTable.insertAdjacentHTML(
       "beforeend",
       `<tr>
@@ -260,3 +256,24 @@ function displayResult() {
   });
   sectionGameResult.classList.remove("d-none");
 }
+
+// This function will check is player record is available in local storage
+function isScoreAvailable() {
+  let scoreAvailable = false;
+  Object.entries(localStorage).forEach((el) => {
+    if (el[1].split("score-").length == 2) {
+      scoreAvailable = true;
+    }
+  });
+  return scoreAvailable;
+}
+btnShare.addEventListener("click", function () {
+  if (!navigator.share) {
+    alert("Your browser don't have option to share.");
+    return;
+  }
+  navigator.share({
+    text: "Please look at 'Memory Card Game' developed by Nishant Kumar (ETG Digital)",
+    url: "https://nishantkcr7.github.io/etg/Mini-Projects/Memory/",
+  });
+});

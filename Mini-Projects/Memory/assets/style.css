@@ -70,17 +70,6 @@ body {
 .card-container.flipped .card-after {
   transform: rotateY(0deg);
 }
-.controls-container {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  background-color: #f4c531;
-  top: 0;
-}
 button {
   border: none;
   border-radius: 0.3em;
@@ -105,10 +94,6 @@ input {
   margin: 1.1em auto 0 auto;
   background-color: #000000;
   color: #ffffff;
-}
-.controls-container button {
-  font-size: 1.3em;
-  box-shadow: 0 0.6em 2em rgba(86, 66, 0, 0.2);
 }
 .hide {
   display: none;
