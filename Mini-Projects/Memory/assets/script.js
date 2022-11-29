@@ -10,9 +10,15 @@ const sectionGameResult = document.querySelector(".section-game-result");
 const resultTable = document.querySelector(".resultTable");
 const gameContainer = document.querySelector(".game-container");
 const inputUserName = document.getElementById("username");
-const result = document.getElementById("result");
-const controls = document.querySelector(".controls-container");
 const btnShare = document.querySelector(".btn-share");
+const btnShowLeaderboard = document.getElementById("showLeaderboard");
+const btnClearLB = document.querySelector(".btnClearLB");
+const inputPassword = document.getElementById("input-password");
+const errorMsgPassword = document.querySelector(".error-msg-password");
+const sectionClearLB = document.querySelector(".section-clear-lb");
+const sectionClearLBInput = document.querySelector(".section-clear-lb--input");
+const sectionBtnClearLB = document.querySelector(".section-btnClearLB");
+let toggleBtnLeaderboard = true;
 let cards;
 let playerName;
 let interval;
@@ -36,6 +42,18 @@ const items = [
   { name: "3spade", image: "assets/img/3spade.png" },
   { name: "4heart", image: "assets/img/4heart.png" },
 ];
+
+// Displaying leaderboard
+btnShowLeaderboard.addEventListener("click", function toggleLeaderboard() {
+  if (toggleBtnLeaderboard) {
+    this.innerText = "Hide Leaderboard";
+    displayResult();
+  } else {
+    this.innerText = "Show Leaderboard";
+    sectionGameResult.classList.add("d-none");
+  }
+  toggleBtnLeaderboard = !toggleBtnLeaderboard;
+});
 
 //Initial Time
 let seconds = 0,
@@ -89,15 +107,8 @@ function matrixGenerator(cardValues, size = 4) {
 
   //simple shuffle
   cardValues = shuffleArray(cardValues);
-  // cardValues.sort(() => Math.random() - 0.5);
 
   for (let i = 0; i < size * size; i++) {
-    /*
-        Create Cards
-        before => front side (contains question mark)
-        after => back side (contains actual image);
-        data-card-values is a custom attribute which stores the names of the cards to match later
-      */
     gameContainer.innerHTML += `
      <div class="card-container" data-card-value="${cardValues[i].name}">
         <div class="card-before">
@@ -127,10 +138,7 @@ function matrixGenerator(cardValues, size = 4) {
 
           //current cards value becomes firstCardValue
           firstCardValue = card.getAttribute("data-card-value");
-          movesCounter();
         } else {
-          //increment moves since user selected second card
-          movesCounter();
           //secondCard and value
           secondCard = card;
           let secondCardValue = card.getAttribute("data-card-value");
@@ -152,6 +160,9 @@ function matrixGenerator(cardValues, size = 4) {
               setTimeout(() => {
                 stopGame();
                 displayResult();
+                btnShowLeaderboard.innerText = "Hide Leaderboard";
+                toggleBtnLeaderboard = !toggleBtnLeaderboard;
+                // sectionBtnClearLB.classList.remove("d-none");
               }, 1000);
             }
           } else {
@@ -166,15 +177,32 @@ function matrixGenerator(cardValues, size = 4) {
             }, 900);
           }
         }
+        movesCounter();
       }
     });
   });
 }
 
+// FUNCTION: shuffleArray() will take an array and return shuffled array
+function shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    // Generate random number
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
+
 //Start game
 startButton.addEventListener("click", () => {
+  toggleBtnLeaderboard = true;
   // Checking if player name is filled?
-  if (inputUserName.value.trim() != "") {
+  if (
+    inputUserName.value.trim() != "" &&
+    !(inputUserName.value[0] >= 0 || inputUserName.value[0] < 0)
+  ) {
     sectionInput.classList.add("d-none");
     movesCount = 0;
     playerName = inputUserName.value;
@@ -218,7 +246,6 @@ function stopGame() {
   sectionInput.classList.remove("d-none");
   sectionGame.classList.add("d-none");
   startButton.innerText = "Start Game";
-  // controls.classList.remove("hide");
   stopButton.classList.add("hide");
   startButton.classList.remove("hide");
   clearInterval(interval);
@@ -251,42 +278,71 @@ function getSortedScores() {
 
 // FUNCTION: displayResult() will fetch best record from the localStorage and display in UI rank wise.
 function displayResult() {
-  resultTable.innerHTML = "";
-  let sortedScores = getSortedScores();
-  sortedScores.forEach((score, i) => {
-    if (score[1].split("score-")[1] == playerName) {
+  if (isScoreAvailable()) {
+    resultTable.innerHTML = "";
+    let sortedScores = getSortedScores();
+    sortedScores.forEach((score, i) => {
+      let currentUserClass =
+        score[1].split("score-")[1] == playerName ? "light-dark" : "";
       resultTable.insertAdjacentHTML(
         "beforeend",
-        `<tr class="light-dark">
-        <td>#${i + 1}</td>
-        <td>${score[1].split("score-")[1]}</td>
-        <td>${score[0]}</td>
-      </tr>`
-      );
-    } else {
-      resultTable.insertAdjacentHTML(
-        "beforeend",
-        `<tr>
+        `<tr class=${currentUserClass}>
       <td>#${i + 1}</td>
       <td>${score[1].split("score-")[1]}</td>
       <td>${score[0]}</td>
     </tr>`
       );
-    }
-  });
+    });
+    // sectionBtnClearLB.classList.remove("d-none");
+  } else {
+    resultTable.innerHTML = `<tr><td>No Record Available</td></tr>`;
+    // sectionBtnClearLB.classList.add("d-none");
+  }
   sectionGameResult.classList.remove("d-none");
+}
+
+// Clearing the scores from the leaderboard
+btnClearLB.addEventListener("click", function () {
+  if (this.innerText == "Confirm") {
+    const password = inputPassword.value;
+    clearLeaderBoard(password);
+  }
+  sectionClearLBInput.classList.remove("d-none");
+  this.innerText = "Confirm";
+});
+function clearLeaderBoard(password) {
+  if (isCorrectPassword(password)) {
+    // Remove entries from local storage
+    localStorage.clear();
+    // Hide the delete option
+    sectionClearLB.classList.add("d-none");
+    displayResult();
+  } else {
+    errorMsgPassword.classList.remove("d-none");
+  }
+  inputPassword.addEventListener("input", function () {
+    errorMsgPassword.classList.add("d-none");
+  });
+}
+
+function isCorrectPassword(password) {
+  return password == "etg" ? true : false;
 }
 
 // This function will check is player record is available in local storage
 function isScoreAvailable() {
   let scoreAvailable = false;
+  sectionBtnClearLB.classList.add("d-none");
   Object.entries(localStorage).forEach((el) => {
     if (el[1].split("score-").length == 2) {
+      sectionBtnClearLB.classList.remove("d-none");
       scoreAvailable = true;
     }
   });
   return scoreAvailable;
 }
+
+// Share page with friends
 btnShare.addEventListener("click", function () {
   if (!navigator.share) {
     alert("Your browser don't have option to share.");
@@ -304,29 +360,3 @@ btnShare.addEventListener("click", function () {
       console.log(err);
     });
 });
-
-document.querySelector("body").addEventListener("dblclick", function (e) {
-  e.preventDefault();
-});
-
-cardVal = [
-  { name: "ace", image: "assets/img/ace.png" },
-  { name: "jack", image: "assets/img/jack.png" },
-  { name: "joker", image: "assets/img/jocker.png" },
-  { name: "king", image: "assets/img/king.png" },
-  { name: "queen", image: "assets/img/queen.png" },
-  { name: "aspade", image: "assets/img/aspade.png" },
-  { name: "aheart", image: "assets/img/aheart.png" },
-  { name: "2heart", image: "assets/img/2heart.png" },
-];
-
-function shuffleArray(array) {
-  for (var i = array.length - 1; i > 0; i--) {
-    // Generate random number
-    var j = Math.floor(Math.random() * (i + 1));
-    var temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-  return array;
-}

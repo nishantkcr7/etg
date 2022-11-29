@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../../includes/style.css" />
   </head>
 
-  <body class="">
+  <body class="mb-5">
     <!-- Nav Starts -->
     <section>
       <nav class="navbar navbar-expand-lg bg-light">
@@ -113,10 +113,14 @@
             <button class="btn btn-outline-success" id="start">
               Play Game Now
             </button>
+            <button class="btn btn-outline-dark" id="showLeaderboard">
+              Show Leaderboard
+            </button>
           </div>
         </div>
       </section>
       <!-- Getting User Details Ends -->
+
       <!-- Game Container Starts -->
       <section class="section-game d-none">
         <div class="wrapper">
@@ -142,9 +146,9 @@
 
       <!-- Game Container Ends -->
       <!-- Game Result Starts -->
-      <section class="section-game-result shadow p-5 d-none rounded">
+      <section class="section-game-result shadow pt-5 d-none pb-2 px-3 rounded">
         <div class="row">
-          <div class="col-12 text-center">
+          <div class="col-12 my-3 text-center">
             <h3>Leaderboard 🏆</h3>
           </div>
           <div class="col-12 d-flex justify-content-center">
@@ -155,6 +159,33 @@
                 <th>Time Taken</th>
               </tr>
             </table>
+          </div>
+        </div>
+        <div class="row section-clear-lb">
+          <div class="row section-clear-lb--input d-none">
+            <div class="col-12 text-center">
+              <input
+                type="password"
+                class="form-control"
+                id="input-password"
+                placeholder="Enter Password to clear leaderboard"
+              />
+            </div>
+            <div
+              class="col-12 text-center text-danger fw-bold d-none error-msg-password"
+            >
+              Wrong Password
+            </div>
+            <div class="col-12">
+              <ol>
+                <li>Hint: Your Company Short Name</li>
+              </ol>
+            </div>
+          </div>
+          <div class="col-12 text-end d-none section-btnClearLB">
+            <button class="btn btn-outline-danger btnClearLB w-100">
+              Clear Leaderboard
+            </button>
           </div>
         </div>
       </section>
