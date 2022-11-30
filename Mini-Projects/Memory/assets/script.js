@@ -1,8 +1,8 @@
 const moves = document.getElementById("moves-count");
 const timeValue = document.getElementById("time");
 const highScore = document.getElementById("highScore");
-const startButton = document.getElementById("start");
-const stopButton = document.getElementById("stop");
+const btnStart = document.getElementById("start");
+const btnStop = document.getElementById("stop");
 const errorMsg = document.querySelector(".error-msg");
 const sectionGame = document.querySelector(".section-game");
 const sectionInput = document.querySelector(".section-input");
@@ -53,6 +53,8 @@ btnShowLeaderboard.addEventListener("click", function toggleLeaderboard() {
     sectionGameResult.classList.add("d-none");
   }
   toggleBtnLeaderboard = !toggleBtnLeaderboard;
+  // Scroll to result section
+  sectionGameResult.scrollIntoView({ behavior: "smooth" });
 });
 
 //Initial Time
@@ -196,7 +198,7 @@ function shuffleArray(array) {
 }
 
 //Start game
-startButton.addEventListener("click", () => {
+btnStart.addEventListener("click", () => {
   toggleBtnLeaderboard = true;
   // Checking if player name is filled?
   if (
@@ -210,8 +212,8 @@ startButton.addEventListener("click", () => {
     minutes = 0;
     //controls and buttons visibility
     sectionGame.classList.remove("d-none");
-    stopButton.classList.remove("hide");
-    startButton.classList.add("hide");
+    btnStop.classList.remove("hide");
+    btnStart.classList.add("hide");
     //Start timer
     interval = setInterval(timeGenerator, 1000);
     //initial moves
@@ -231,7 +233,7 @@ startButton.addEventListener("click", () => {
 });
 
 //Stop game
-stopButton.addEventListener("click", stopGame);
+btnStop.addEventListener("click", stopGame);
 
 //Initialize values and func calls
 function initializer() {
@@ -245,9 +247,9 @@ function initializer() {
 function stopGame() {
   sectionInput.classList.remove("d-none");
   sectionGame.classList.add("d-none");
-  startButton.innerText = "Start Game";
-  stopButton.classList.add("hide");
-  startButton.classList.remove("hide");
+  btnStart.innerText = "Start Game";
+  btnStop.classList.add("hide");
+  btnStart.classList.remove("hide");
   clearInterval(interval);
 }
 
@@ -279,7 +281,13 @@ function getSortedScores() {
 // FUNCTION: displayResult() will fetch best record from the localStorage and display in UI rank wise.
 function displayResult() {
   if (isScoreAvailable()) {
-    resultTable.innerHTML = "";
+    resultTable.innerHTML = `
+    <tr>
+      <th>Rank</th>
+      <th>Player Name</th>
+      <th>Time Taken</th>
+    </tr>
+    `;
     let sortedScores = getSortedScores();
     sortedScores.forEach((score, i) => {
       let currentUserClass =
@@ -309,6 +317,7 @@ btnClearLB.addEventListener("click", function () {
   }
   sectionClearLBInput.classList.remove("d-none");
   this.innerText = "Confirm";
+  document.querySelector(".btnClearLB").scrollIntoView({ behavior: "smooth" });
 });
 function clearLeaderBoard(password) {
   if (isCorrectPassword(password)) {
@@ -350,7 +359,7 @@ btnShare.addEventListener("click", function () {
   }
   navigator
     .share({
-      text: "Please look at 'Memory Card Game' developed by Nishant Kumar (ETG Digital)",
+      text: "Please look at *Memory Card Game* developed by Nishant Kumar (ETG Digital)",
       url: "https://nishantkcr7.github.io/etg/Mini-Projects/Memory/",
     })
     .then(() => {

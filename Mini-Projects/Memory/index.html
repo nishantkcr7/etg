@@ -4,6 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Memory Card Game | Nishant ETG</title>
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon/android-chrome-192x192.png"
+    />
     <!-- Bootstrap CDN -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
@@ -76,25 +94,75 @@
       <!-- Project Heading Ends -->
       <!-- Project Description Starts -->
       <section>
-        <h4 class="h4">How to play?</h4>
-        <ul>
-          <li>Click on the card.</li>
-          <li>Remember the card value.</li>
-          <li>Click on the next card.</li>
-          <li>
-            If the previous card and the current card is same, you can take a
-            next chance.
-          </li>
-          <li>If card does not match, you can try your luck in next card.</li>
-          <li>Keep finding all the card until all cards are open.</li>
-          <li>
-            <b>Good Job!</b> You can play again or challenge your friend to get
-            best score.
-            <span class="btn-share bg-light rounded border p-2"
-              >Share Now &nbsp;<i class="bi bi-share-fill"></i
-            ></span>
-          </li>
-        </ul>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <!-- Starting Game -->
+            <h4 class="h4">How to start?</h4>
+            <ul>
+              <li>Click on input box asking for your name.</li>
+              <li>Enter Your Name.</li>
+              <li>Click on <i>'Play Game Now'</i></li>
+            </ul>
+          </div>
+          <div class="col-12 col-md-6">
+            <!-- Playing Game -->
+            <h4 class="h4">How to play?</h4>
+            <ul>
+              <li>Click on the card.</li>
+              <li>Remember the card value.</li>
+              <li>Click on the next card.</li>
+              <li>
+                If the previous card and the current card is same, you can take
+                a next chance.
+              </li>
+              <li>
+                If card does not match, you can try your luck in next card.
+              </li>
+              <li>Keep finding all the card until all cards are open.</li>
+              <li>
+                <b>Good Job!</b> You can play again or challenge your friend to
+                get best score.
+                <span class="btn-share bg-light rounded border p-2"
+                  >Share Now &nbsp;<i class="bi bi-share-fill"></i
+                ></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12 col-md-6">
+            <!-- Checking Leaderboard -->
+            <h4 class="h4">What is Leaderboard?</h4>
+            <ul>
+              <li>Leaderboard is place where you can see your score.</li>
+              <li>Not just that, you can also see your competitor's score.</li>
+
+              <li>
+                Leaderboard contains <b>Rank</b>, <b>Player Name</b> and
+                <b>Time Taken</b>.
+              </li>
+            </ul>
+          </div>
+          <div class="col-12 col-md-6">
+            <!-- Clearing Leaderboard Details -->
+            <h4 class="h4">How to delete leaderboard's record?</h4>
+            <ul>
+              <li>Are you the admin of the site?</li>
+              <li>
+                If yes, click on the <b>Clear Leaderboard</b> button at the
+                bottom.
+              </li>
+              <li>On click of the button, it will ask you the password.</li>
+              <li>
+                Enter the password in the password input box and click on
+                <b>confirm</b> button.
+              </li>
+              <li>
+                <b>Boom!</b> Previous records are deleted. Play fresh now.
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
       <!-- Project Description Ends -->
       <!-- Getting User Details Starts -->
@@ -110,6 +178,8 @@
               placeholder="Enter Your Name"
             />
             <div class="error-msg"></div>
+          </div>
+          <div class="col-12 mt-3">
             <button class="btn btn-outline-success" id="start">
               Play Game Now
             </button>
@@ -146,7 +216,9 @@
 
       <!-- Game Container Ends -->
       <!-- Game Result Starts -->
-      <section class="section-game-result shadow pt-5 d-none pb-2 px-3 rounded">
+      <section
+        class="section-game-result shadow pt-5 pb-4 d-none pb-2 px-3 rounded"
+      >
         <div class="row">
           <div class="col-12 my-3 text-center">
             <h3>Leaderboard 🏆</h3>
@@ -178,7 +250,10 @@
             </div>
             <div class="col-12">
               <ol>
-                <li>Hint: Your Company Short Name</li>
+                <li>
+                  Hint: Enter you company's abbreviation. <br />e.g. Tata
+                  Consultancy Services -> <b>tcs</b>
+                </li>
               </ol>
             </div>
           </div>
