@@ -322,6 +322,7 @@ btnClearLB.addEventListener("click", function () {
   sectionClearLBInput.classList.remove("d-none");
   this.innerText = "Confirm";
   document.querySelector(".btnClearLB").scrollIntoView({ behavior: "smooth" });
+  inputPassword.focus();
 });
 function clearLeaderBoard(password) {
   if (isCorrectPassword(password)) {
