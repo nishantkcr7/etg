@@ -27,6 +27,9 @@ let secondCard = false;
 let secondsValue;
 let minutesValue;
 
+window.onload = () => {
+  inputUserName.focus();
+};
 //Items array
 const items = [
   { name: "ace", image: "assets/img/ace.png" },
