@@ -126,7 +126,8 @@ function matrixGenerator(cardValues, size = 4) {
   //Cards
   cards = document.querySelectorAll(".card-container");
   cards.forEach((card) => {
-    card.addEventListener("click", () => {
+    card.addEventListener("click", function () {
+      if (firstCard == this) return;
       //If selected card is not matched yet then only run (i.e already matched card when clicked would be ignored)
 
       if (!card.classList.contains("matched")) {
