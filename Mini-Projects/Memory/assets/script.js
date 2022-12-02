@@ -168,7 +168,6 @@ function matrixGenerator(cardValues, size = 4) {
                 displayResult();
                 btnShowLeaderboard.innerText = "Hide Leaderboard";
                 toggleBtnLeaderboard = !toggleBtnLeaderboard;
-                // sectionBtnClearLB.classList.remove("d-none");
               }, 1000);
             }
           } else {
@@ -201,14 +200,29 @@ function shuffleArray(array) {
   return array;
 }
 
+function isValidUserName(username = "") {
+  let valid = true;
+  // If username is blank
+  if (username.trim() == "") valid = false;
+  username.split("").forEach((ch) => {
+    if (
+      !(
+        (ch.charCodeAt() >= 65 && ch.charCodeAt() <= 90) ||
+        (ch.charCodeAt() >= 97 && ch.charCodeAt() <= 122) ||
+        ch.charCodeAt() == 95 ||
+        ch.charCodeAt() == 32
+      )
+    )
+      valid = false;
+  });
+  return valid;
+}
+
 //Start game
 btnStart.addEventListener("click", () => {
   toggleBtnLeaderboard = true;
   // Checking if player name is filled?
-  if (
-    inputUserName.value.trim() != "" &&
-    !(inputUserName.value[0] >= 0 || inputUserName.value[0] < 0)
-  ) {
+  if (isValidUserName(inputUserName.value)) {
     sectionInput.classList.add("d-none");
     movesCount = 0;
     playerName = inputUserName.value;
@@ -230,7 +244,7 @@ btnStart.addEventListener("click", () => {
     // Scroll to game section
     sectionGame.scrollIntoView({ behavior: "smooth" });
   } else {
-    errorMsg.innerText = "Please enter your name";
+    errorMsg.innerText = "Not a valid name";
   }
   inputUserName.value = "";
   sectionGameResult.classList.add("d-none");
