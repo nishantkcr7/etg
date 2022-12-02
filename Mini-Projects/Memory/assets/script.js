@@ -26,10 +26,6 @@ let firstCard = false;
 let secondCard = false;
 let secondsValue;
 let minutesValue;
-
-window.onload = () => {
-  inputUserName.focus();
-};
 //Items array
 const items = [
   { name: "ace", image: "assets/img/ace.png" },
@@ -46,8 +42,12 @@ const items = [
   { name: "4heart", image: "assets/img/4heart.png" },
 ];
 
+window.onload = () => {
+  inputUserName.focus();
+};
+
 // Displaying leaderboard
-btnShowLeaderboard.addEventListener("click", function toggleLeaderboard() {
+btnShowLeaderboard.addEventListener("click", function () {
   if (toggleBtnLeaderboard) {
     this.innerText = "Hide Leaderboard";
     displayResult();
@@ -60,12 +60,109 @@ btnShowLeaderboard.addEventListener("click", function toggleLeaderboard() {
   sectionGameResult.scrollIntoView({ behavior: "smooth" });
 });
 
-//Initial Time
-let seconds = 0,
-  minutes = 0;
-//Initial moves and win count
-let movesCount = 0,
-  winCount = 0;
+// FUNCTION: displayResult() will fetch best record from the localStorage and display in UI rank wise.
+function displayResult() {
+  if (isScoreAvailable()) {
+    resultTable.innerHTML = `
+    <tr>
+      <th>Rank</th>
+      <th>Player Name</th>
+      <th>Time Taken</th>
+    </tr>
+    `;
+    let sortedScores = getSortedScores();
+    sortedScores.forEach((score, i) => {
+      let currentUserClass =
+        score[1].split("score-")[1] == playerName ? "light-dark" : "";
+      resultTable.insertAdjacentHTML(
+        "beforeend",
+        `<tr class=${currentUserClass}>
+      <td>#${i + 1}</td>
+      <td>${score[1].split("score-")[1]}</td>
+      <td>${score[0]}</td>
+    </tr>`
+      );
+    });
+    // sectionBtnClearLB.classList.remove("d-none");
+  } else {
+    resultTable.innerHTML = `<tr><td>No Record Available</td></tr>`;
+    // sectionBtnClearLB.classList.add("d-none");
+  }
+  sectionGameResult.classList.remove("d-none");
+}
+
+// This function will check is player record is available in local storage
+function isScoreAvailable() {
+  let scoreAvailable = false;
+  sectionBtnClearLB.classList.add("d-none");
+  Object.entries(localStorage).forEach((el) => {
+    if (el[1].split("score-").length == 2) {
+      sectionBtnClearLB.classList.remove("d-none");
+      scoreAvailable = true;
+    }
+  });
+  return scoreAvailable;
+}
+
+// FUNCTION: getSortedScores() will sort the scores present in localStorage and return sorted object
+function getSortedScores() {
+  return Object.entries(localStorage)
+    .filter((el) => {
+      return el[1].split("score-").length == 2;
+    })
+    .sort();
+}
+
+//Start game
+btnStart.addEventListener("click", () => {
+  // Checking if player name is filled?
+  if (isValidUserName(inputUserName.value)) {
+    sectionInput.classList.add("d-none");
+    movesCount = 0;
+    playerName = inputUserName.value;
+    seconds = 0;
+    minutes = 0;
+    //controls and buttons visibility
+    sectionGame.classList.remove("d-none");
+    btnStop.classList.remove("hide");
+    btnStart.classList.add("hide");
+    //Start timer
+    interval = setInterval(timeGenerator, 1000);
+    //initial moves
+    moves.innerHTML = `${movesCount}`;
+    highScore.innerHTML = `${getHighScore().bestScorerTiming} (${
+      getHighScore().bestScorerName
+    })`;
+    initializer();
+    errorMsg.innerText = "";
+    // Scroll to game section
+    sectionGame.scrollIntoView({ behavior: "smooth" });
+  } else {
+    errorMsg.innerText = "Not a valid name";
+  }
+  inputUserName.value = "";
+  sectionGameResult.classList.add("d-none");
+});
+
+// FUNCTION: isValidUserName() will take username as input and validate the username. If username is valid, it will return true, else it will return false.
+function isValidUserName() {
+  let valid = true;
+  // If username is blank
+  if (username.trim() == "") valid = false;
+  // Name should only contain 'a to z', 'A to Z', ' ' and '_'
+  username.split("").forEach((ch) => {
+    if (
+      !(
+        (ch.charCodeAt() >= 65 && ch.charCodeAt() <= 90) ||
+        (ch.charCodeAt() >= 97 && ch.charCodeAt() <= 122) ||
+        ch.charCodeAt() == 95 ||
+        ch.charCodeAt() == 32
+      )
+    )
+      valid = false;
+  });
+  return valid;
+}
 
 //FUNCTION: timeGenerator() will be called on each 1000ms to display the running time.
 function timeGenerator() {
@@ -81,10 +178,41 @@ function timeGenerator() {
   timeValue.innerHTML = `${minutesValue}:${secondsValue}`;
 }
 
+// FUNCTION: getHighScore() will get the best scorer and return the player name and player timing in the form of object
+function getHighScore() {
+  let bestScorerName;
+  let bestScorerTiming;
+  if (isScoreAvailable()) {
+    const bestScorer = getSortedScores()[0];
+    bestScorerTiming = bestScorer[0];
+    bestScorerName = bestScorer[1];
+    bestScorerName = bestScorerName.split("-")[1];
+  } else {
+    bestScorerName = "NA";
+    bestScorerTiming = "NA";
+  }
+  return { bestScorerName, bestScorerTiming };
+}
+
+//Initial Time
+let seconds = 0,
+  minutes = 0;
+//Initial moves and win count
+let movesCount = 0,
+  winCount = 0;
+
 //For calculating moves
 function movesCounter() {
   movesCount += 1;
   moves.innerHTML = `${movesCount}`;
+}
+
+//Initialize values and func calls
+function initializer() {
+  // result.innerText = "";
+  winCount = 0;
+  let cardValues = generateRandom();
+  matrixGenerator(cardValues);
 }
 
 //Pick random objects from the items array
@@ -131,8 +259,8 @@ function matrixGenerator(cardValues, size = 4) {
   cards.forEach((card) => {
     card.addEventListener("click", function () {
       if (firstCard == this) return;
-      //If selected card is not matched yet then only run (i.e already matched card when clicked would be ignored)
 
+      //If selected card is not matched yet then only run (i.e already matched card when clicked would be ignored)
       if (!card.classList.contains("matched")) {
         //flip the cliked card
         card.classList.add("flipped");
@@ -171,14 +299,12 @@ function matrixGenerator(cardValues, size = 4) {
               }, 1000);
             }
           } else {
-            //if the cards dont match
-            //flip the cards back to normal
-            let [tempFirst, tempSecond] = [firstCard, secondCard];
-            firstCard = false;
-            secondCard = false;
-            let delay = setTimeout(() => {
-              tempFirst.classList.remove("flipped");
-              tempSecond.classList.remove("flipped");
+            //if the cards dont match, flip the cards back to normal
+            setTimeout(() => {
+              firstCard.classList.remove("flipped");
+              secondCard.classList.remove("flipped");
+              firstCard = false;
+              secondCard = false;
             }, 900);
           }
         }
@@ -200,67 +326,6 @@ function shuffleArray(array) {
   return array;
 }
 
-function isValidUserName(username = "") {
-  let valid = true;
-  // If username is blank
-  if (username.trim() == "") valid = false;
-  username.split("").forEach((ch) => {
-    if (
-      !(
-        (ch.charCodeAt() >= 65 && ch.charCodeAt() <= 90) ||
-        (ch.charCodeAt() >= 97 && ch.charCodeAt() <= 122) ||
-        ch.charCodeAt() == 95 ||
-        ch.charCodeAt() == 32
-      )
-    )
-      valid = false;
-  });
-  return valid;
-}
-
-//Start game
-btnStart.addEventListener("click", () => {
-  toggleBtnLeaderboard = true;
-  // Checking if player name is filled?
-  if (isValidUserName(inputUserName.value)) {
-    sectionInput.classList.add("d-none");
-    movesCount = 0;
-    playerName = inputUserName.value;
-    seconds = 0;
-    minutes = 0;
-    //controls and buttons visibility
-    sectionGame.classList.remove("d-none");
-    btnStop.classList.remove("hide");
-    btnStart.classList.add("hide");
-    //Start timer
-    interval = setInterval(timeGenerator, 1000);
-    //initial moves
-    moves.innerHTML = `${movesCount}`;
-    highScore.innerHTML = `${getHighScore().bestScorerTiming} (${
-      getHighScore().bestScorerName
-    })`;
-    initializer();
-    errorMsg.innerText = "";
-    // Scroll to game section
-    sectionGame.scrollIntoView({ behavior: "smooth" });
-  } else {
-    errorMsg.innerText = "Not a valid name";
-  }
-  inputUserName.value = "";
-  sectionGameResult.classList.add("d-none");
-});
-
-//Stop game
-btnStop.addEventListener("click", stopGame);
-
-//Initialize values and func calls
-function initializer() {
-  // result.innerText = "";
-  winCount = 0;
-  let cardValues = generateRandom();
-  matrixGenerator(cardValues);
-}
-
 // FUNCTION stopGame() will clear the timer, and bring back the game in initial mode
 function stopGame() {
   sectionInput.classList.remove("d-none");
@@ -270,62 +335,8 @@ function stopGame() {
   btnStart.classList.remove("hide");
   clearInterval(interval);
 }
-
-// FUNCTION: getHighScore() will get the best scorer and return the player name and player timing in the form of object
-function getHighScore() {
-  let bestScorerName;
-  let bestScorerTiming;
-  if (isScoreAvailable()) {
-    const bestScorer = getSortedScores()[0];
-    bestScorerTiming = bestScorer[0];
-    bestScorerName = bestScorer[1];
-    bestScorerName = bestScorerName.split("-")[1];
-  } else {
-    bestScorerName = "NA";
-    bestScorerTiming = "NA";
-  }
-  return { bestScorerName, bestScorerTiming };
-}
-
-// FUNCTION: getSortedScores() will sort the scores present in localStorage and return sorted object
-function getSortedScores() {
-  return Object.entries(localStorage)
-    .filter((el) => {
-      return el[1].split("score-").length == 2;
-    })
-    .sort();
-}
-
-// FUNCTION: displayResult() will fetch best record from the localStorage and display in UI rank wise.
-function displayResult() {
-  if (isScoreAvailable()) {
-    resultTable.innerHTML = `
-    <tr>
-      <th>Rank</th>
-      <th>Player Name</th>
-      <th>Time Taken</th>
-    </tr>
-    `;
-    let sortedScores = getSortedScores();
-    sortedScores.forEach((score, i) => {
-      let currentUserClass =
-        score[1].split("score-")[1] == playerName ? "light-dark" : "";
-      resultTable.insertAdjacentHTML(
-        "beforeend",
-        `<tr class=${currentUserClass}>
-      <td>#${i + 1}</td>
-      <td>${score[1].split("score-")[1]}</td>
-      <td>${score[0]}</td>
-    </tr>`
-      );
-    });
-    // sectionBtnClearLB.classList.remove("d-none");
-  } else {
-    resultTable.innerHTML = `<tr><td>No Record Available</td></tr>`;
-    // sectionBtnClearLB.classList.add("d-none");
-  }
-  sectionGameResult.classList.remove("d-none");
-}
+//Stop game
+btnStop.addEventListener("click", stopGame);
 
 // Clearing the scores from the leaderboard
 btnClearLB.addEventListener("click", function () {
@@ -357,19 +368,6 @@ function isCorrectPassword(password) {
   return password == "etg" ? true : false;
 }
 
-// This function will check is player record is available in local storage
-function isScoreAvailable() {
-  let scoreAvailable = false;
-  sectionBtnClearLB.classList.add("d-none");
-  Object.entries(localStorage).forEach((el) => {
-    if (el[1].split("score-").length == 2) {
-      sectionBtnClearLB.classList.remove("d-none");
-      scoreAvailable = true;
-    }
-  });
-  return scoreAvailable;
-}
-
 // Share page with friends
 btnShare.addEventListener("click", function () {
   if (!navigator.share) {
@@ -388,3 +386,7 @@ btnShare.addEventListener("click", function () {
       console.log(err);
     });
 });
+
+arr = [1, 2, 3, 4, 5];
+
+console.log(...arr);
