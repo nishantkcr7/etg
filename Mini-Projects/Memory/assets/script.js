@@ -258,7 +258,7 @@ function matrixGenerator(cardValues, size = 4) {
   cards = document.querySelectorAll(".card-container");
   cards.forEach((card) => {
     card.addEventListener("click", function () {
-      if (firstCard == this) return;
+      // if (firstCard == this) return;
 
       //If selected card is not matched yet then only run (i.e already matched card when clicked would be ignored)
       if (!card.classList.contains("matched")) {
@@ -300,11 +300,12 @@ function matrixGenerator(cardValues, size = 4) {
             }
           } else {
             //if the cards dont match, flip the cards back to normal
-            setTimeout(() => {
-              firstCard.classList.remove("flipped");
-              secondCard.classList.remove("flipped");
-              firstCard = false;
-              secondCard = false;
+            let [tempFirst, tempSecond] = [firstCard, secondCard];
+            firstCard = false;
+            secondCard = false;
+            let delay = setTimeout(() => {
+              tempFirst.classList.remove("flipped");
+              tempSecond.classList.remove("flipped");
             }, 900);
           }
         }
