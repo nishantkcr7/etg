@@ -145,7 +145,7 @@ btnStart.addEventListener("click", () => {
 });
 
 // FUNCTION: isValidUserName() will take username as input and validate the username. If username is valid, it will return true, else it will return false.
-function isValidUserName() {
+function isValidUserName(username) {
   let valid = true;
   // If username is blank
   if (username.trim() == "") valid = false;
@@ -386,7 +386,3 @@ btnShare.addEventListener("click", function () {
       console.log(err);
     });
 });
-
-arr = [1, 2, 3, 4, 5];
-
-console.log(...arr);

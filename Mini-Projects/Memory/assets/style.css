@@ -28,7 +28,6 @@ body {
   display: grid;
   grid-template-columns: repeat(4, auto);
   align-content: center;
-  margin: rem;
   position: relative;
   justify-content: space-around;
 }
