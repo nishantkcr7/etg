@@ -115,7 +115,7 @@ function getSortedScores() {
 //Start game
 btnStart.addEventListener("click", () => {
   // Checking if player name is filled?
-  if (isValidUserName(inputUserName.value)) {
+  if (isValidUserName(inputUserName.value)[0]) {
     sectionInput.classList.add("d-none");
     movesCount = 0;
     playerName = inputUserName.value;
@@ -137,7 +137,7 @@ btnStart.addEventListener("click", () => {
     // Scroll to game section
     sectionGame.scrollIntoView({ behavior: "smooth" });
   } else {
-    errorMsg.innerText = "Not a valid name";
+    errorMsg.innerText = isValidUserName(inputUserName.value)[1];
   }
   inputUserName.value = "";
   sectionGameResult.classList.add("d-none");
@@ -145,11 +145,17 @@ btnStart.addEventListener("click", () => {
 
 // FUNCTION: isValidUserName() will take username as input and validate the username. If username is valid, it will return true, else it will return false.
 function isValidUserName(username) {
-  let valid = true;
+  let valid = true,
+    msg = "Name can't contains ";
   // If username is blank
-  if (username.trim() == "") valid = false;
+  if (username.trim() == "") {
+    valid = false;
+    msg += "blank.";
+    return [valid, msg];
+  }
+
   // Name should only contain 'a to z', 'A to Z', ' ' and '_'
-  username.split("").forEach((ch) => {
+  for (ch of username.split("")) {
     if (
       !(
         (ch.charCodeAt() >= 65 && ch.charCodeAt() <= 90) ||
@@ -157,10 +163,27 @@ function isValidUserName(username) {
         ch.charCodeAt() == 95 ||
         ch.charCodeAt() == 32
       )
-    )
+    ) {
       valid = false;
-  });
-  return valid;
+      msg += ch + " ";
+      return [valid, msg];
+    }
+  }
+  // username.split("").forEach((ch) => {
+  //   if (
+  //     !(
+  //       (ch.charCodeAt() >= 65 && ch.charCodeAt() <= 90) ||
+  //       (ch.charCodeAt() >= 97 && ch.charCodeAt() <= 122) ||
+  //       ch.charCodeAt() == 95 ||
+  //       ch.charCodeAt() == 32
+  //     )
+  //   ) {
+  //     valid = false;
+  //     msg += ch + " ";
+  //     return [valid, msg];
+  //   }
+  // });
+  // return [valid, msg];
 }
 
 //FUNCTION: timeGenerator() will be called on each 1000ms to display the running time.
