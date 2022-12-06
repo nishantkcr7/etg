@@ -26,27 +26,28 @@ let firstCard = false;
 let secondCard = false;
 let secondsValue;
 let minutesValue;
-//Items array
+path = "assets/img/";
+//Items array, it contains 12 different card with name and url source
 const items = [
-  { name: "ace", image: "assets/img/ace.png" },
-  { name: "jack", image: "assets/img/jack.png" },
-  { name: "joker", image: "assets/img/jocker.png" },
-  { name: "king", image: "assets/img/king.png" },
-  { name: "queen", image: "assets/img/queen.png" },
-  { name: "aspade", image: "assets/img/aspade.png" },
-  { name: "aheart", image: "assets/img/aheart.png" },
-  { name: "2heart", image: "assets/img/2heart.png" },
-  { name: "2spade", image: "assets/img/2spade.png" },
-  { name: "3heart", image: "assets/img/3heart.png" },
-  { name: "3spade", image: "assets/img/3spade.png" },
-  { name: "4heart", image: "assets/img/4heart.png" },
+  { name: "ace", image: `${path}/ace.png` },
+  { name: "jack", image: `${path}/jack.png` },
+  { name: "joker", image: `${path}/jocker.png` },
+  { name: "king", image: `${path}/king.png` },
+  { name: "queen", image: `${path}/queen.png` },
+  { name: "aspade", image: `${path}/aspade.png` },
+  { name: "aheart", image: `${path}/aheart.png` },
+  { name: "2heart", image: `${path}/2heart.png` },
+  { name: "2spade", image: `${path}/2spade.png` },
+  { name: "3heart", image: `${path}/3heart.png` },
+  { name: "3spade", image: `${path}/3spade.png` },
+  { name: "4heart", image: `${path}/4heart.png` },
 ];
 
 window.onload = () => {
   inputUserName.focus();
 };
 
-// Displaying leaderboard
+// Displaying leaderboard; On click on 'Display Leaderboard' button
 btnShowLeaderboard.addEventListener("click", function () {
   if (toggleBtnLeaderboard) {
     this.innerText = "Hide Leaderboard";
@@ -60,35 +61,33 @@ btnShowLeaderboard.addEventListener("click", function () {
   sectionGameResult.scrollIntoView({ behavior: "smooth" });
 });
 
-// FUNCTION: displayResult() will fetch best record from the localStorage and display in UI rank wise.
+// FUNCTION: displayResult() will fetch best record from the localStorage and display scores rank wise in UI.
 function displayResult() {
-  if (isScoreAvailable()) {
-    resultTable.innerHTML = `
+  sectionGameResult.classList.remove("d-none");
+  if (!isScoreAvailable()) {
+    resultTable.innerHTML = `<tr><td>No Record Available</td></tr>`;
+    return;
+  }
+  resultTable.innerHTML = `
     <tr>
       <th>Rank</th>
       <th>Player Name</th>
       <th>Time Taken</th>
     </tr>
     `;
-    let sortedScores = getSortedScores();
-    sortedScores.forEach((score, i) => {
-      let currentUserClass =
-        score[1].split("score-")[1] == playerName ? "light-dark" : "";
-      resultTable.insertAdjacentHTML(
-        "beforeend",
-        `<tr class=${currentUserClass}>
+  let sortedScores = getSortedScores();
+  sortedScores.forEach((score, i) => {
+    let currentUserClass =
+      score[1].split("score-")[1] == playerName ? "light-dark" : "";
+    resultTable.insertAdjacentHTML(
+      "beforeend",
+      `<tr class=${currentUserClass}>
       <td>#${i + 1}</td>
       <td>${score[1].split("score-")[1]}</td>
       <td>${score[0]}</td>
     </tr>`
-      );
-    });
-    // sectionBtnClearLB.classList.remove("d-none");
-  } else {
-    resultTable.innerHTML = `<tr><td>No Record Available</td></tr>`;
-    // sectionBtnClearLB.classList.add("d-none");
-  }
-  sectionGameResult.classList.remove("d-none");
+    );
+  });
 }
 
 // This function will check is player record is available in local storage
@@ -258,7 +257,7 @@ function matrixGenerator(cardValues, size = 4) {
   cards = document.querySelectorAll(".card-container");
   cards.forEach((card) => {
     card.addEventListener("click", function () {
-      // if (firstCard == this) return;
+      if (firstCard == this) return;
 
       //If selected card is not matched yet then only run (i.e already matched card when clicked would be ignored)
       if (!card.classList.contains("matched")) {

@@ -1,0 +1,25 @@
+.calandar-container {
+  display: grid;
+  height: 400px;
+  grid-template-columns: repeat(4, auto);
+  gap: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  fon
+}
+@media screen and (max-width: 500px) {
+  .calandar-container {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+@media screen and (max-width: 300px) {
+  .calandar-container {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media screen and (max-width: 200px) {
+  .calandar-container {
+    grid-template-columns: repeat(1, auto);
+  }
+}
