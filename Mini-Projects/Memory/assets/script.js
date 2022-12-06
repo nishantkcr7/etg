@@ -183,7 +183,7 @@ function isValidUserName(username) {
   //     return [valid, msg];
   //   }
   // });
-  // return [valid, msg];
+  return [valid, msg];
 }
 
 //FUNCTION: timeGenerator() will be called on each 1000ms to display the running time.
