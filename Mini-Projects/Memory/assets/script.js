@@ -26,7 +26,8 @@ let firstCard = false;
 let secondCard = false;
 let secondsValue;
 let minutesValue;
-path = "assets/img/";
+// path = "assets/img/";
+path = "https://nishantkcr7.github.io/etg/Mini-Projects/Memory/assets/img";
 //Items array, it contains 12 different card with name and url source
 const items = [
   { name: "ace", image: `${path}/ace.png` },
