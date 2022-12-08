@@ -1,0 +1,52 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.keyboard {
+  padding: 50px;
+  background-color: rgb(220, 214, 208);
+  border-radius: 50px;
+  border: 2px solid #333;
+  box-shadow: 9px 2px 2px 2px rgb(175, 175, 175);
+}
+.keyrow {
+  display: flex;
+}
+.keycol {
+  margin: 2px;
+  font-size: 1.3rem;
+  display: flex;
+  height: 60px;
+  width: 60px;
+  border: 1px solid rgb(100, 99, 99);
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgb(83, 82, 82);
+  color: white;
+  cursor: pointer;
+}
+.keycol:hover {
+  background-color: white;
+  color: rgb(83, 82, 82);
+}
+
+.keycol.active {
+  background-color: #333;
+  color: #fff;
+}
+.key.remove {
+  animation: key_animation 0.5s infinite;
+}
+@keyframes key_animation {
+  0% {
+    background-color: #333;
+    color: #fff;
+  }
+  100% {
+    background-color: #fff;
+    color: #333;
+  }
+}

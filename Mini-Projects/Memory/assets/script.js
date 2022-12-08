@@ -261,12 +261,12 @@ function matrixGenerator(cardValues, size = 4) {
   gameContainer.innerHTML = "";
   cardValues = [...cardValues, ...cardValues];
 
-  //simple shuffle
+  //CardValues will contain all the shuffled card.
   cardValues = shuffleArray(cardValues);
 
   for (let i = 0; i < size * size; i++) {
     gameContainer.innerHTML += `
-     <div class="card-container" data-card-value="${cardValues[i].name}">
+     <div class="card-container" role="button" tabindex="0" data-card-value="${cardValues[i].name}">
         <div class="card-before">
           <img src="assets/img/card.png" class="image"/>
         </div>
