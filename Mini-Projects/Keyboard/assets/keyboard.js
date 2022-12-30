@@ -61,6 +61,8 @@ keys.forEach((keyRows) => {
       col.style.marginRight = "44px";
       col.style.marginBottom = "24px";
     }
+    if (key == "Win") col.innerHTML = "ABCD";
+
     col.innerText = key;
     // sectionKeyboard.insertAdjacentHTML("beforeend", `<button>${key}</button>`);
   });

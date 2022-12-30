@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.signup-body {
+  background: radial-gradient(#6739bb, #35176b);
+  /* background-color: #35176b; */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  background-color: #fff !important;
+}
+.title {
+  font-family: "Lobster", cursive;
+}
+.card {
+  background: url("../assets/img/kbc-logo.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
