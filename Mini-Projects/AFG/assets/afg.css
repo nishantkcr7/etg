@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  position: relative;
+  height: 75vh;
+  background-color: bisque;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.068),
+      rgba(0, 0, 0, 0.15)
+    ),
+    url("https://wallpapercave.com/wp/wp2639536.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.hero-text {
+  font-family: "Lobster", cursive;
+  /* font-family: "Rubik Vinyl", cursive; */
+  color: white;
+  font-size: 58px;
+  position: absolute;
+  top: 35%;
+  left: 5%;
+  width: 40%;
+}
+.proud {
+  font-family: "Rubik Vinyl", cursive;
+}
+
+.brand {
+  color: white;
+  font-size: 28px;
+  font-family: "Gill Sans", "Gill Sans MT", "Calibri", "Trebuchet MS",
+    "sans-serif";
+}
+.btn-join {
+  background-color: rgb(229, 63, 80);
+  border: 1px solid rgb(173, 173, 227);
+  border-radius: 8%;
+  padding: 2%;
+  width: 20%;
+  color: white;
+  font-size: 20px;
+}
+
+.about {
+  height: 75vh;
+  border: 2px solid red;
+}
+
+.about-img {
+  background-image: url("https://th.bing.com/th/id/R.540abb21db3233f3b557eef17a8b8b4a?rik=aj84e0Qoip0ItQ&riu=http%3a%2f%2fwallsdesk.com%2fwp-content%2fuploads%2f2016%2f10%2fGym-HD-Background-.jpg&ehk=gFDF4wdIAjzQk8lkZ8BVraUl9Z5vFc%2feAignb5pfHgs%3d&risl=&pid=ImgRaw&r=0");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 500px;
+  top: 50%;
+}
+
+@media screen and (max-width: 900px) {
+  .hero-text {
+    font-size: 42px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .hero-text {
+    font-size: 38px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .hero-text {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .hero-text {
+    font-size: 28px;
+  }
+  .btn-join {
+    width: 55%;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .hero-text {
+    font-size: 20px;
+    width: 50%;
+  }
+  .btn-join {
+    width: 55%;
+    font-size: 20px;
+  }
+}
