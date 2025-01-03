@@ -111,9 +111,9 @@ nav {
   background: linear-gradient(to right, #fff, rgba(255, 173, 21, 0.1));
   box-shadow: none;
 }
-.author-name {
+/* .author-name {
   font-family: "Aclonica", sans-serif;
-}
+} */
 .name {
   color: rgb(255, 173, 21);
 }
